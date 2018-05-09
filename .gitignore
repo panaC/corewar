@@ -1,3 +1,9 @@
+#finder
+.DS_Store
+
+#vim
+.*~
+
 # Prerequisites
 *.d
 
