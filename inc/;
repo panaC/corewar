@@ -6,7 +6,7 @@
 /*   By: pierre <pleroux@student.42.fr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/15 10:01:43 by pierre            #+#    #+#             */
-/*   Updated: 2018/05/16 23:08:55 by pierre           ###   ########.fr       */
+/*   Updated: 2018/05/16 22:23:00 by pierre           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,18 @@ typedef union		u_reg
 
 /*
 ** decodage op_code :
+** enum flag encodage
+*/
+
+typedef enum		e_flag_encodage;
+{
+					T_REG = 1;
+					T_DIR = 2;
+					T_IND = 4;
+}					t_fl_e;
+
+/*
+** decodage op_code :
 ** info sur op_code cf op.c var globale
 */
 
@@ -56,9 +68,9 @@ typedef struct		s_op
 {
 	t_string		name;
 	t_uint8			nb_arg;
-	t_arg_type			flag[NB_FLAG];
+	t_fl_e			flag[NB_FLAG];
 	t_uint8			op_code;
-	t_uint32			cycle;
+	t_uint8			cycle;
 	t_string		comment;
 	t_bool			b_if_encod;
 	t_bool			b_size_dir;
@@ -70,7 +82,7 @@ typedef struct		s_op
 ** permet de pointer vers l'execution de l'op code
 */
 
-typedef int (*t_f_op)(void); //prevoir t_player
+typedef (int) (*t_f_op)(t_instruc*);
 
 /*
 ** decodage op_code :
@@ -86,7 +98,6 @@ typedef struct		s_instruction
 	t_op			info;
 	t_f_op			ft;
 }					t_instruc;
-
 
 /* game :
 ** structure processus
@@ -142,10 +153,10 @@ typedef struct		s_env
 }					t_env;
 
 /*
-** process.c
+** process.h
 */
 
-void				process_init_instruction(t_instruc *ist);
+void				process_init_instruction(t_instruc *ist)
 void				process_init_empty(t_process *p, int numero);
 void				process_init(t_process *p, t_process *prev, t_uint32 pc);
 t_process			*process_create(t_process *prev, t_uint32 pc);

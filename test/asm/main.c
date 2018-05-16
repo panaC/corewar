@@ -74,7 +74,17 @@ int		main()
 	memset(com, 0, COMMENT_LENGTH);
 
 	name[0] = '4';
-	name[1] = '2';
+	name[1] = '4';
+	name[2] = '4';
+	name[3] = '4';
+	name[4] = '4';
+	name[5] = '4';
+	name[6] = '2';
+	name[7] = '2';
+	name[8] = '2';
+	name[9] = '2';
+	name[10] = '2';
+	name[11] = '2';
 	com[0] = 'c';
 	com[1] = 'o';
 	com[2] = 'm';
