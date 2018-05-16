@@ -6,7 +6,7 @@
 /*   By: pierre <pleroux@student.42.fr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/15 10:01:43 by pierre            #+#    #+#             */
-/*   Updated: 2018/05/16 15:10:48 by pleroux          ###   ########.fr       */
+/*   Updated: 2018/05/16 20:29:10 by pleroux          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -120,12 +120,11 @@ typedef struct		s_process
 
 typedef struct		s_player
 {
+	header_t		head;
 	t_list			*process;
-	t_string		name;
-	t_string		comment;
 	t_uint8			data[CHAMP_MAX_SIZE];
-	t_uint32		data_size;
 	t_uint32		numero;
+	t_uint32		mem_ref;
 }					t_player;
 
 /* corewar :
@@ -147,6 +146,18 @@ typedef struct		s_env
 	t_f_op			ft_tab[NB_OP];
 
 	t_uint8			mem[MEM_SIZE];
+
+	t_string		err_parsing;
 }					t_env;
+
+/*
+** process.h
+*/
+
+void				process_init_instruction(t_instruc *ist)
+void				process_init_empty(t_process *p, int numero);
+void				process_init(t_process *p, t_process *prev, t_uint32 pc);
+t_process			*process_create(t_process *prev, t_uint32 pc);
+t_process			*process_add_lst(t_list **l, t_process *prev, t_uint32 pc);
 
 #endif
