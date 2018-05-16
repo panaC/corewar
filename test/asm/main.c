@@ -27,12 +27,44 @@ void	write_int(int fd, int val)
 	write(fd, &val, 1);
 }
 
-int		 main()
+void	write_16(int fd, int val)
+{
+	t_int s;
+	s.value = val;
+	val = s.byte.B3;
+	write(fd, &val, 1);
+	val = s.byte.B4;
+	write(fd, &val, 1);
+}
+
+int		main_2()
+{
+	int op = 0x04;
+
+	int fd = open("test.txt", O_CREAT | O_RDWR | O_TRUNC, 0777);
+	write(fd, &op, 1);
+	write_16(fd, 0x1234);
+	close(fd);
+	return (0);
+}
+
+int		main_1()
+{
+	int op = 0x04;
+
+	int fd = open("test.txt", O_CREAT | O_RDWR | O_TRUNC, 0777);
+	write(fd, &op, 1);
+	write_int(fd, 0x12345678);
+	close(fd);
+	return (0);
+}
+
+int		main()
 {
 	int fd = open("test.txt", O_CREAT | O_RDWR | O_TRUNC, 0777);
 	int zero = 0;
 	int op = 0x04;
-	int data = 0x54010203;
+	int data = 0x00010203;
 	int size = 5;
 
 	char name[PROG_NAME_LENGTH];
