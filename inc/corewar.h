@@ -6,13 +6,14 @@
 /*   By: pierre <pleroux@student.42.fr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/15 10:01:43 by pierre            #+#    #+#             */
-/*   Updated: 2018/05/16 15:10:48 by pleroux          ###   ########.fr       */
+/*   Updated: 2018/05/17 10:50:22 by msukhare         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef COREWAR_H
 # define COREWAR_H
 # include <libft.h>
+#include "op.h"
 # define NB_FLAG		3
 # define NB_ARG			3
 # define NB_OP			17
@@ -21,7 +22,7 @@
 ** decodage op_code :
 ** union pour encodage byte
 */
-
+/*
 typedef union		u_encodage
 {
 	struct			s_bit
@@ -33,36 +34,36 @@ typedef union		u_encodage
 	}				bit;
 	t_uint8			value;
 }					t_encodage;
-
+*/
 /*
 ** game use in t_process :
 ** union pour gerer taille variable REG_SIZE
 ** par defaut 4
 */
-
+/*
 typedef union		u_reg
 {
 	t_uint32		v;
 	t_uint8			t[REG_SIZE];
 }					t_reg;
-
+*/
 /*
 ** decodage op_code :
 ** enum flag encodage
 */
-
+/*
 typedef enum		e_flag_encodage;
 {
 					T_REG = 1;
 					T_DIR = 2;
 					T_IND = 4;
 }					t_fl_e;
-
+*/
 /*
 ** decodage op_code :
 ** info sur op_code cf op.c var globale
 */
-
+/*
 typedef struct		s_op
 {
 	t_string		name;
@@ -74,20 +75,20 @@ typedef struct		s_op
 	t_bool			b_if_encod;
 	t_bool			b_size_dir;
 }					t_op;
-
+*/
 /*
 ** decodage op_code :
 ** typedef sur ptr de fonction
 ** permet de pointer vers l'execution de l'op code
 */
 
-typedef (int) (*t_f_op)(t_instruc*);
+//typedef (int) (*t_f_op)(t_instruc*);
 
 /*
 ** decodage op_code :
 ** structure d'execution op_code
 */
-
+/*
 typedef struct		s_instruction
 {
 	t_uint32		index;
@@ -97,13 +98,13 @@ typedef struct		s_instruction
 	t_op			info;
 	t_f_op			ft;
 }					t_instruc;
-
+**/
 /* game :
 ** structure processus
 ** un exemplaire pour chaque new fork
 ** stokage dans la liste chaine du joueur
 */
-
+/*
 typedef struct		s_process
 {
 	t_bool			live;
@@ -112,12 +113,12 @@ typedef struct		s_process
 	t_reg			reg[REG_NUMBER];
 	t_instruc		op;
 }					t_process;
-
+*/
 /*
 ** game :
 ** structure de gestion du joueur
 */
-
+/*
 typedef struct		s_player
 {
 	t_list			*process;
@@ -127,7 +128,7 @@ typedef struct		s_player
 	t_uint32		data_size;
 	t_uint32		numero;
 }					t_player;
-
+*/
 /* corewar :
 ** structure d'environnement corewar
 ** arg / parsing / game
@@ -136,7 +137,9 @@ typedef struct		s_player
 typedef struct		s_env
 {
 	int				fd[MAX_PLAYERS];
-	t_player		player[MAX_PLAYERS];
+	int				verbos;
+	int				visu;
+/*	t_player		player[MAX_PLAYERS];
 	t_uint8			nb_player;
 
 	t_uint32		cycle_totale;
@@ -146,7 +149,32 @@ typedef struct		s_env
 
 	t_f_op			ft_tab[NB_OP];
 
-	t_uint8			mem[MEM_SIZE];
+	t_uint8			mem[MEM_SIZE];*/
 }					t_env;
+
+
+
+
+//check argv
+int					ft_check_argv(int argc, char **argv, t_env *env);
+int					ft_if_opt_in_sec(int start, char **argv, int argc);
+int					ft_if_after_n_error(int start, char **argv, int argc);
+int					ft_check_nb_champ(char **argv, int argc, int start);
+int					ft_str_in_str(char *str, char *cmp);
+int					ft_open_fd_for_champs(t_env *env, char **argv,\
+		int argc, int start);
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 #endif
