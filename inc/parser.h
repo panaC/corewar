@@ -6,12 +6,12 @@
 /*   By: pierre <pleroux@student.42.fr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/16 11:53:33 by pierre            #+#    #+#             */
-/*   Updated: 2018/05/16 20:35:48 by pleroux          ###   ########.fr       */
+/*   Updated: 2018/05/16 23:01:48 by pierre           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef COREWAR_H
-# define COREWAR_H
+#ifndef PARSER_H
+# define PARSER_H
 # include <libft.h>
 # include "corewar.h"
 
@@ -27,14 +27,14 @@ typedef union		u_uint32
 
 t_bool		parser(t_env *e);
 t_bool		parser_cor(t_env *e, int numero);
-t_bool		parser_cor_header(t_player *p);
-t_bool		parser_cor_data(t_player *p);
+t_bool		parser_cor_header(t_env *e, t_player *p);
+t_bool		parser_cor_data(t_env *e, t_player *p);
 
 /*
 ** parser_tools.c
 */
 
-void		parser_read_byte(int byte, int fd, void *buf);
+int			parser_read_byte(int byte, int fd, void *buf);
 void		parser_init_header(header_t *a);
 
 #endif

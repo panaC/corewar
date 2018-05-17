@@ -6,14 +6,19 @@
 /*   By: pierre <pleroux@student.42.fr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/16 12:57:24 by pierre            #+#    #+#             */
-/*   Updated: 2018/05/16 20:34:20 by pleroux          ###   ########.fr       */
+/*   Updated: 2018/05/17 10:08:36 by pierre           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <libft.h>
+#include <unistd.h>
+#include <fcntl.h>
+
+#include <stdio.h>
+
 #include "corewar.h"
 #include "op.h"
-
+#include "parser.h"
 /*
 ** boucle sur nb_player
 ** pour init tout les players
@@ -24,12 +29,12 @@ t_bool		parser(t_env *e)
 	int		i;
 
 	i = 1;
-	while (i <= nb_player)
+	while (i <= e->nb_player)
 	{
 		if (!parser_cor(e, i))
 		{
 			ft_printf("Error %s n°%d: %s\n", e->file[i - 1], i, e->err_parsing);
-			return (TRUE);
+			return (FALSE);
 		}
 		++i;
 	}
@@ -52,24 +57,22 @@ t_bool		parser_cor(t_env *e, int numero)
 
 	pl.numero = numero;
 	pl.process = NULL;
-	init_header(&(pl->head));
+	parser_init_header(&(pl.head));
 	ft_bzero(pl.data, CHAMP_MAX_SIZE);
 	if (!parser_cor_header(e, &pl))
 		return (FALSE);
 	if (!parser_cor_data(e, &pl))
 	{
-		ft_strdel(&(pl->comment));
-		ft_strdel(&(pl->name));
 		return (FALSE);
 	}
-	process_init_empty(&prev);
-	if (!process_add_lst(pl.process, &prev, 0))
+	// faire l'init du process dans game_init
+	process_init_empty(&prev, numero);
+	if (!process_add_lst(&(pl.process), &prev, 0))
 	{
-		ft_strdel(&(pl->comment));
-		ft_strdel(&(pl->name));
 		return (FALSE);
 	}
-	e->player[numero] = pl;
+	//
+	e->player[numero - 1] = pl;
 	return (TRUE);
 }
 
@@ -113,6 +116,7 @@ t_bool		parser_cor_header(t_env *e, t_player *p)
 			else
 			{
 				ft_sprintf(e->err_parsing, "header name too short");
+			}
 		}
 		else
 		{
@@ -130,6 +134,8 @@ t_bool		parser_cor_data(t_env *e, t_player *p)
 {
 	t_uint8		tmp;
 
+	printf("data_size : %u\n", p->head.prog_size);
+
 	if (p->head.prog_size > 1 && p->head.prog_size <= CHAMP_MAX_SIZE)
 	{
 		if (read(e->fd[p->numero - 1], p->data, p->head.prog_size)
@@ -141,17 +147,17 @@ t_bool		parser_cor_data(t_env *e, t_player *p)
 			}
 			else
 			{
-				ft_sprintf(e->err_parsing, "invalid header size %u", p->head.prog_size);
+				ft_sprintf(e->err_parsing, "invalid header size %u 3", p->head.prog_size);
 			}
 		}
 		else
 		{
-			ft_sprintf(e->err_parsing, "invalid header size %u", p->head.prog_size);
+			ft_sprintf(e->err_parsing, "invalid header size %u 2", p->head.prog_size);
 		}
 	}
 	else
 	{
-		ft_sprintf(e->err_parsing, "invalid header size %u", p->head.prog_size);
+		ft_sprintf(e->err_parsing, "invalid header size %u 1", p->head.prog_size);
 	}
 	return (TRUE);
 }

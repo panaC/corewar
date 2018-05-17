@@ -1,51 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main_union.c                                       :+:      :+:    :+:   */
+/*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pierre <pleroux@student.42.fr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/05/15 10:10:18 by pierre            #+#    #+#             */
-/*   Updated: 2018/05/16 22:40:42 by pierre           ###   ########.fr       */
+/*   Created: 2018/05/16 21:53:08 by pierre            #+#    #+#             */
+/*   Updated: 2018/05/16 22:42:11 by pierre           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-//MAIN DE TEST UNION
-
+#include "corewar.h"
+#include "op.h"
+#include "parser.h"
+#include <libft.h>
 #include <unistd.h>
 #include <fcntl.h>
 #include <stdio.h>
 #include <libft.h>
 
-int		read_byte(int byte, int fd, void *buf)
-{
-	int		i;
-	int		ret;
-
-	ret = -1;
-	if (byte > 0 && byte <= 8)
-	{
-		i = byte - 1;
-		while (i >= 0)
-		{
-			ret = read(fd, buf + i, 1);
-			--i;
-		}
-	}
-	return (ret);
-}
-
 int		main(void)
 {
+	t_env		e;
+	char *file = "../asm/test.txt";
 
-	t_uint8		buf[4];
-	char		name[128];
+	int fd = open(file, O_RDONLY);
+	printf("fd %d\n", fd);
 
-	int fd = open("test.txt", O_RDONLY);
+	e.nb_player = 1;
+	e.fd[0] = fd;
+	e.err_parsing = NULL;
+	e.file[0] = file;
 
-	read_byte(4, fd, buf);
-	read(fd, name, 128);
-	printf("%s\n", name)
+	int val = parser(&e);
 
-	return 0;
+	printf("val %d\n", val);
+	return (0);
 }

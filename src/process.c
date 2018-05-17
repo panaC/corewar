@@ -6,7 +6,7 @@
 /*   By: pleroux <pleroux@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/16 17:56:53 by pleroux           #+#    #+#             */
-/*   Updated: 2018/05/16 18:33:35 by pleroux          ###   ########.fr       */
+/*   Updated: 2018/05/16 23:05:46 by pierre           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,9 @@
 
 void		process_init_instruction(t_instruc *ist)
 {
+	int		i;
+
+	i = 0;
 	ist->index = 0;
 	ist->op_code = 0;
 	ist->encodage.value = 0;
