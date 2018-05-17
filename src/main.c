@@ -6,11 +6,12 @@
 /*   By: msukhare <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/16 16:02:23 by msukhare          #+#    #+#             */
-/*   Updated: 2018/05/17 14:25:49 by pleroux          ###   ########.fr       */
+/*   Updated: 2018/05/17 14:27:48 by pleroux          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "corewar.h"
+#include "parser.h"
 #include <stdio.h>
 
 static void	ft_init_struct(t_env *env)

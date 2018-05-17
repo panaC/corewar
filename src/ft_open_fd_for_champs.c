@@ -6,13 +6,15 @@
 /*   By: msukhare <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/17 10:37:43 by msukhare          #+#    #+#             */
-/*   Updated: 2018/05/17 13:46:59 by msukhare         ###   ########.fr       */
+/*   Updated: 2018/05/17 14:40:54 by pleroux          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "corewar.h"
 #include <fcntl.h>
 #include <errno.h>
+#include <unistd.h>
+#include <stdio.h>
 #include <string.h>
 
 static int	ft_check_fd_closed(int *fds, int fd, int end)

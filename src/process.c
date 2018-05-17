@@ -6,12 +6,14 @@
 /*   By: pleroux <pleroux@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/16 17:56:53 by pleroux           #+#    #+#             */
-/*   Updated: 2018/05/16 23:05:46 by pierre           ###   ########.fr       */
+/*   Updated: 2018/05/17 14:39:43 by pleroux          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <libft.h>
+#include <stdlib.h>
 #include "corewar.h"
+#include "op.h"
 
 void		process_init_instruction(t_instruc *ist)
 {
@@ -37,14 +39,14 @@ void		process_init_empty(t_process *p, int numero)
 	p->live = 0;
 	p->carry = 0;
 	p->pc = 0;
-	p->reg[0] = numero;
+	p->reg[0].v = numero;
 	i = 1;
 	while (i < REG_NUMBER)
 	{
-		p->reg[i] = 0;
+		p->reg[i].v = 0;
 		++i;
 	}
-	p->op = process_init_instruction();
+	process_init_instruction(&(p->op));
 }
 
 void		process_init(t_process *p, t_process *prev, t_uint32 pc)
@@ -60,7 +62,7 @@ void		process_init(t_process *p, t_process *prev, t_uint32 pc)
 		p->reg[i] = prev->reg[i];
 		++i;
 	}
-	p->op = init_instruction();
+	process_init_instruction(&(p->op));
 }
 
 t_process	*process_create(t_process *prev, t_uint32 pc)
@@ -73,7 +75,7 @@ t_process	*process_create(t_process *prev, t_uint32 pc)
 	{
 		process_init(p, prev, pc);
 	}
-	return (process);
+	return (p);
 }
 
 t_process	*process_add_lst(t_list **l, t_process *prev, t_uint32 pc)

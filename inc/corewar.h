@@ -6,7 +6,7 @@
 /*   By: pierre <pleroux@student.42.fr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/15 10:01:43 by pierre            #+#    #+#             */
-/*   Updated: 2018/05/17 14:12:45 by pleroux          ###   ########.fr       */
+/*   Updated: 2018/05/17 14:34:19 by pleroux          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -132,6 +132,8 @@ typedef struct		s_env
 
 	t_string		err_parsing;
 }					t_env;
+
+extern t_op			op_tab[17];
 
 //check argv
 int					ft_check_argv(int argc, char **argv, t_env *env);
