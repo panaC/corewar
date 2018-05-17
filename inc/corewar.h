@@ -140,6 +140,8 @@ typedef struct		s_env
 	t_f_op			ft_tab[NB_OP];
 
 	t_uint8			mem[MEM_SIZE];
+
+	t_string		err_parsing;
 }					t_env;
 
 //check argv
