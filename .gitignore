@@ -3,6 +3,8 @@
 
 #vim
 .*~
+.*.swp
+.*.swo
 
 # Prerequisites
 *.d
