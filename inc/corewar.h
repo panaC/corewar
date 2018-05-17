@@ -6,7 +6,7 @@
 /*   By: pierre <pleroux@student.42.fr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/15 10:01:43 by pierre            #+#    #+#             */
-/*   Updated: 2018/05/16 23:08:55 by pierre           ###   ########.fr       */
+/*   Updated: 2018/05/17 10:52:21 by pierre           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,9 +56,9 @@ typedef struct		s_op
 {
 	t_string		name;
 	t_uint8			nb_arg;
-	t_arg_type			flag[NB_FLAG];
+	t_arg_type		flag[NB_FLAG];
 	t_uint8			op_code;
-	t_uint32			cycle;
+	t_uint32		cycle;
 	t_string		comment;
 	t_bool			b_if_encod;
 	t_bool			b_size_dir;
@@ -70,7 +70,7 @@ typedef struct		s_op
 ** permet de pointer vers l'execution de l'op code
 */
 
-typedef int (*t_f_op)(void); //prevoir t_player
+typedef int (*t_f_op)(void*); //prevoir t_player ou struct custom pour fork
 
 /*
 ** decodage op_code :
@@ -86,7 +86,6 @@ typedef struct		s_instruction
 	t_op			info;
 	t_f_op			ft;
 }					t_instruc;
-
 
 /* game :
 ** structure processus
@@ -140,6 +139,15 @@ typedef struct		s_env
 
 	t_string		err_parsing;
 }					t_env;
+
+/*
+ * A FAIRE :
+ * les parametres necessaire pour la fct op :
+ * t_process
+ * ptr sur env nb_live
+ *
+ * a rajouter dans une structure dans op_code.h
+ */
 
 /*
 ** process.c

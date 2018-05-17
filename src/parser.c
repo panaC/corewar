@@ -6,7 +6,7 @@
 /*   By: pierre <pleroux@student.42.fr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/16 12:57:24 by pierre            #+#    #+#             */
-/*   Updated: 2018/05/16 23:03:55 by pierre           ###   ########.fr       */
+/*   Updated: 2018/05/17 10:08:36 by pierre           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,11 +65,13 @@ t_bool		parser_cor(t_env *e, int numero)
 	{
 		return (FALSE);
 	}
+	// faire l'init du process dans game_init
 	process_init_empty(&prev, numero);
 	if (!process_add_lst(&(pl.process), &prev, 0))
 	{
 		return (FALSE);
 	}
+	//
 	e->player[numero - 1] = pl;
 	return (TRUE);
 }
