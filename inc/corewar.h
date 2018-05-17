@@ -113,9 +113,11 @@ typedef struct		s_process
 typedef struct		s_player
 {
 	header_t		head;
-	t_list			*process;
-	t_uint8			data[CHAMP_MAX_SIZE];
+	t_list			*process;//null
+	t_uint8			data[CHAMP_MAX_SIZE];//bzero
 	t_uint32		numero;
+	int				fd;
+	char			*name;
 	t_uint32		mem_ref;
 }					t_player;
 /* corewar :
@@ -125,7 +127,6 @@ typedef struct		s_player
 
 typedef struct		s_env
 {
-	int				fd[MAX_PLAYERS];
 	int				verbos;
 	int				visu;
 	t_player		player[MAX_PLAYERS];
@@ -140,8 +141,6 @@ typedef struct		s_env
 	t_f_op			ft_tab[NB_OP];
 
 	t_uint8			mem[MEM_SIZE];
-
-	t_string		err_parsing;
 }					t_env;
 
 //check argv
@@ -150,8 +149,6 @@ int					ft_if_opt_in_sec(int start, char **argv, int argc);
 int					ft_if_after_n_error(int start, char **argv, int argc);
 int					ft_check_nb_champ(char **argv, int argc, int start);
 int					ft_str_in_str(char *str, char *cmp);
-int					ft_open_fd_for_champs(t_env *env, char **argv,\
-		int argc, int start);
 
 /*
  * A FAIRE :

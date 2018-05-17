@@ -6,7 +6,7 @@
 /*   By: msukhare <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/16 16:02:23 by msukhare          #+#    #+#             */
-/*   Updated: 2018/05/17 14:11:40 by msukhare         ###   ########.fr       */
+/*   Updated: 2018/05/17 14:55:38 by msukhare         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,11 +23,6 @@ static void	ft_init_struct(t_env *env)
 	env->cycle = 0;
 	env->nb_live = 0;
 	env->check = 0;
-	while (i < MAX_PLAYERS)
-	{
-		env->fd[i] = -1;
-		i++;
-	}
 	ft_bzero(env->mem, MEM_SIZE);
 }
 
