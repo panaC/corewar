@@ -6,14 +6,22 @@
 /*   By: pierre <pleroux@student.42.fr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/15 10:01:43 by pierre            #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2018/05/17 10:50:22 by msukhare         ###   ########.fr       */
+=======
+/*   Updated: 2018/05/17 10:52:21 by pierre           ###   ########.fr       */
+>>>>>>> 14bff6bd91a6b7465ffab069ed2e84bcc0f4a870
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef COREWAR_H
 # define COREWAR_H
 # include <libft.h>
+<<<<<<< HEAD
 #include "op.h"
+=======
+# include "op.h"
+>>>>>>> 14bff6bd91a6b7465ffab069ed2e84bcc0f4a870
 # define NB_FLAG		3
 # define NB_ARG			3
 # define NB_OP			17
@@ -49,6 +57,7 @@ typedef union		u_reg
 */
 /*
 ** decodage op_code :
+<<<<<<< HEAD
 ** enum flag encodage
 */
 /*
@@ -61,6 +70,8 @@ typedef enum		e_flag_encodage;
 */
 /*
 ** decodage op_code :
+=======
+>>>>>>> 14bff6bd91a6b7465ffab069ed2e84bcc0f4a870
 ** info sur op_code cf op.c var globale
 */
 /*
@@ -68,9 +79,9 @@ typedef struct		s_op
 {
 	t_string		name;
 	t_uint8			nb_arg;
-	t_fl_e			flag[NB_FLAG];
+	t_arg_type		flag[NB_FLAG];
 	t_uint8			op_code;
-	t_uint8			cycle;
+	t_uint32		cycle;
 	t_string		comment;
 	t_bool			b_if_encod;
 	t_bool			b_size_dir;
@@ -82,7 +93,11 @@ typedef struct		s_op
 ** permet de pointer vers l'execution de l'op code
 */
 
+<<<<<<< HEAD
 //typedef (int) (*t_f_op)(t_instruc*);
+=======
+typedef int (*t_f_op)(void*); //prevoir t_player ou struct custom pour fork
+>>>>>>> 14bff6bd91a6b7465ffab069ed2e84bcc0f4a870
 
 /*
 ** decodage op_code :
@@ -121,12 +136,11 @@ typedef struct		s_process
 /*
 typedef struct		s_player
 {
+	header_t		head;
 	t_list			*process;
-	t_string		name;
-	t_string		comment;
 	t_uint8			data[CHAMP_MAX_SIZE];
-	t_uint32		data_size;
 	t_uint32		numero;
+	t_uint32		mem_ref;
 }					t_player;
 */
 /* corewar :
@@ -137,9 +151,14 @@ typedef struct		s_player
 typedef struct		s_env
 {
 	int				fd[MAX_PLAYERS];
+<<<<<<< HEAD
 	int				verbos;
 	int				visu;
 /*	t_player		player[MAX_PLAYERS];
+=======
+	t_player		player[MAX_PLAYERS];
+	t_string		file[MAX_PLAYERS];
+>>>>>>> 14bff6bd91a6b7465ffab069ed2e84bcc0f4a870
 	t_uint8			nb_player;
 
 	t_uint32		cycle_totale;
@@ -149,6 +168,7 @@ typedef struct		s_env
 
 	t_f_op			ft_tab[NB_OP];
 
+<<<<<<< HEAD
 	t_uint8			mem[MEM_SIZE];*/
 }					t_env;
 
@@ -176,5 +196,30 @@ int					ft_open_fd_for_champs(t_env *env, char **argv,\
 
 
 
+=======
+	t_uint8			mem[MEM_SIZE];
+
+	t_string		err_parsing;
+}					t_env;
+
+/*
+ * A FAIRE :
+ * les parametres necessaire pour la fct op :
+ * t_process
+ * ptr sur env nb_live
+ *
+ * a rajouter dans une structure dans op_code.h
+ */
+
+/*
+** process.c
+*/
+
+void				process_init_instruction(t_instruc *ist);
+void				process_init_empty(t_process *p, int numero);
+void				process_init(t_process *p, t_process *prev, t_uint32 pc);
+t_process			*process_create(t_process *prev, t_uint32 pc);
+t_process			*process_add_lst(t_list **l, t_process *prev, t_uint32 pc);
+>>>>>>> 14bff6bd91a6b7465ffab069ed2e84bcc0f4a870
 
 #endif
