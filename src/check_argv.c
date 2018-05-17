@@ -6,7 +6,7 @@
 /*   By: msukhare <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/16 16:55:14 by msukhare          #+#    #+#             */
-/*   Updated: 2018/05/17 10:38:39 by msukhare         ###   ########.fr       */
+/*   Updated: 2018/05/17 14:06:07 by msukhare         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ int			ft_check_argv(int argc, char **argv, t_env *env)
 		return (0);
 	if (ft_if_opt_in_sec(end_opt, argv, argc) == 0 ||
 			ft_if_after_n_error(end_opt, argv, argc) == 0 ||
-			ft_check_nb_champ(argv, argc, end_opt) == 0 ||
+			(env->nb_player = ft_check_nb_champ(argv, argc, end_opt)) == 0 ||
 			ft_open_fd_for_champs(env, argv, argc, end_opt) == 0)
 		return (0);
 	return (1);

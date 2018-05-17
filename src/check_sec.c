@@ -6,7 +6,7 @@
 /*   By: msukhare <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/16 17:20:17 by msukhare          #+#    #+#             */
-/*   Updated: 2018/05/17 10:49:00 by msukhare         ###   ########.fr       */
+/*   Updated: 2018/05/17 14:05:26 by msukhare         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,5 +113,5 @@ int			ft_check_nb_champ(char **argv, int argc, int start)
 		ft_putstr_fd("no champs\n", 2);
 		return (0);
 	}
-	return (1);
+	return (nb_champs);
 }
