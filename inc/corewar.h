@@ -6,11 +6,7 @@
 /*   By: pierre <pleroux@student.42.fr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/15 10:01:43 by pierre            #+#    #+#             */
-<<<<<<< HEAD
-/*   Updated: 2018/05/17 10:50:22 by msukhare         ###   ########.fr       */
-=======
-/*   Updated: 2018/05/17 10:52:21 by pierre           ###   ########.fr       */
->>>>>>> 14bff6bd91a6b7465ffab069ed2e84bcc0f4a870
+/*   Updated: 2018/05/17 14:12:45 by pleroux          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +33,7 @@ typedef union		u_encodage
 	}				bit;
 	t_uint8			value;
 }					t_encodage;
+
 /*
 ** game use in t_process :
 ** union pour gerer taille variable REG_SIZE
@@ -47,16 +44,7 @@ typedef union		u_reg
 	t_uint32		v;
 	t_uint8			t[REG_SIZE];
 }					t_reg;
-/*
-** decodage op_code :
-** enum flag encodage
-*/
-typedef enum		e_flag_encodage;
-{
-					T_REG = 1;
-					T_DIR = 2;
-					T_IND = 4;
-}					t_fl_e;
+
 /*
 ** decodage op_code :
 ** info sur op_code cf op.c var globale
@@ -72,6 +60,7 @@ typedef struct		s_op
 	t_bool			b_if_encod;
 	t_bool			b_size_dir;
 }					t_op;
+
 /*
 ** decodage op_code :
 ** typedef sur ptr de fonction

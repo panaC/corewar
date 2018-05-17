@@ -6,11 +6,12 @@
 /*   By: msukhare <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/16 16:02:23 by msukhare          #+#    #+#             */
-/*   Updated: 2018/05/17 14:55:38 by msukhare         ###   ########.fr       */
+/*   Updated: 2018/05/17 15:19:02 by msukhare         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "corewar.h"
+#include <stdio.h>
 
 static void	ft_init_struct(t_env *env)
 {
@@ -31,7 +32,16 @@ int			main(int argc, char **argv)
 	t_env	env;
 
 	ft_init_struct(&env);
-	if (!ft_check_argv(argc, argv, &env))
-		return (0);
+	if (ft_check_argv(argc, argv, &env))
+	{
+		if (parser(&env))
+		{
+			printf("parser ok\n");
+		}
+		else
+		{
+			printf("parser err\n");
+		}
+	}
 	return (0);
 }
