@@ -6,7 +6,7 @@
 /*   By: pierre <pleroux@student.42.fr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/16 12:57:24 by pierre            #+#    #+#             */
-/*   Updated: 2018/05/17 14:11:08 by pleroux          ###   ########.fr       */
+/*   Updated: 2018/05/17 15:20:58 by pleroux          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 #include "corewar.h"
 #include "op.h"
 #include "parser.h"
+#include "ft_printf.h"
 /*
 ** boucle sur nb_player
 ** pour init tout les players
@@ -52,20 +53,16 @@ t_bool		parser(t_env *e)
 
 t_bool		parser_cor(t_env *e, int numero)
 {
-	t_player	pl;
-	t_process	prev;
-
-	pl.numero = numero;
-	pl.process = NULL;
+	/*
+	e->pl.numero = numero;
+	e->pl.process = NULL;
 	parser_init_header(&(pl.head));
 	ft_bzero(pl.data, CHAMP_MAX_SIZE);
-	if (!parser_cor_header(e, &pl))
+	*/
+	if (!parser_cor_header(e, &(e->pl)))
 		return (FALSE);
-	if (!parser_cor_data(e, &pl))
-	{
+	if (!parser_cor_data(e, &(e->pl)))
 		return (FALSE);
-	}
-	e->player[numero - 1] = pl;
 	return (TRUE);
 }
 

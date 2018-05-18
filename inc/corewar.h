@@ -6,7 +6,11 @@
 /*   By: pierre <pleroux@student.42.fr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/15 10:01:43 by pierre            #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2018/05/17 15:27:03 by msukhare         ###   ########.fr       */
+=======
+/*   Updated: 2018/05/17 14:34:19 by pleroux          ###   ########.fr       */
+>>>>>>> cddb47714e8c2cdad2bc4eb407f86e58f95d7060
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -130,6 +134,8 @@ typedef struct		s_env
 
 	t_uint8			mem[MEM_SIZE];
 }					t_env;
+
+extern t_op			op_tab[17];
 
 //check argv
 int					ft_check_argv(int argc, char **argv, t_env *env);

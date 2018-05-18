@@ -6,11 +6,13 @@
 /*   By: pleroux <pleroux@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/16 19:03:05 by pleroux           #+#    #+#             */
-/*   Updated: 2018/05/16 23:04:47 by pierre           ###   ########.fr       */
+/*   Updated: 2018/05/17 14:56:20 by pleroux          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <libft.h>
+#include <unistd.h>
+#include <fcntl.h>
 #include "corewar.h"
 #include "parser.h"
 
