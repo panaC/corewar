@@ -6,7 +6,7 @@
 /*   By: pierre <pleroux@student.42.fr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/15 10:01:43 by pierre            #+#    #+#             */
-/*   Updated: 2018/05/17 14:34:19 by pleroux          ###   ########.fr       */
+/*   Updated: 2018/05/18 12:56:05 by pierre           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -119,7 +119,6 @@ typedef struct		s_env
 	int				verbos;
 	int				visu;
 	t_player		player[MAX_PLAYERS];
-	t_string		file[MAX_PLAYERS];
 	t_uint8			nb_player;
 
 	t_uint32		cycle_totale;
@@ -130,6 +129,8 @@ typedef struct		s_env
 	t_f_op			ft_tab[NB_OP];
 
 	t_uint8			mem[MEM_SIZE];
+
+	t_string		err_parsing;
 }					t_env;
 
 extern t_op			op_tab[17];
