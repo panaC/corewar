@@ -6,7 +6,7 @@
 /*   By: msukhare <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/16 17:20:17 by msukhare          #+#    #+#             */
-/*   Updated: 2018/05/17 14:05:26 by msukhare         ###   ########.fr       */
+/*   Updated: 2018/05/18 13:27:50 by msukhare         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,12 @@ int			ft_if_opt_in_sec(int start, char **argv, int argc)
 		if (argv[start][0] == '-' && ft_strcmp("-n", argv[start]) != 0)
 		{
 			ft_putstr_fd("wrong place for option\n", 2);
+			return (0);
+		}
+		else if (ft_if_all_digit(argv[start]) == 1 && start >= 1 &&
+				ft_strcmp("-n", argv[start - 1]) != 0)
+		{
+			ft_putstr_fd("wrong syntax for place champ\n", 2);
 			return (0);
 		}
 		start++;
@@ -109,9 +115,8 @@ int			ft_check_nb_champ(char **argv, int argc, int start)
 		return (0);
 	}
 	if (nb_champs == 0)
-	{
 		ft_putstr_fd("no champs\n", 2);
-		return (0);
-	}
+	if (nb_champs == 1)
+		ft_putstr_fd("only 1 champ\n", 2);
 	return (nb_champs);
 }

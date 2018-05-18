@@ -6,7 +6,7 @@
 /*   By: msukhare <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/16 16:55:14 by msukhare          #+#    #+#             */
-/*   Updated: 2018/05/17 14:06:07 by msukhare         ###   ########.fr       */
+/*   Updated: 2018/05/18 13:16:09 by msukhare         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,23 @@ static int	ft_check_opt(char **argv, int argc, t_env *env)
 	return (0);
 }
 
+static void	ft_init_tab_players(t_env *env)
+{
+	int		i;
+
+	i = 0;
+	while (i < env->nb_player)
+	{
+		env->player[i].process = NULL;
+		env->player[i].numero = -1;
+		env->player[i].fd = -1;
+		env->player[i].name = NULL;
+		env->player[i].mem_ref = 0;
+		ft_bzero(env->player[i].data, CHAMP_MAX_SIZE);
+		i++;
+	}
+}
+#include <stdio.h>
 int			ft_check_argv(int argc, char **argv, t_env *env)
 {
 	int		end_opt;
@@ -59,7 +76,10 @@ int			ft_check_argv(int argc, char **argv, t_env *env)
 	if (ft_if_opt_in_sec(end_opt, argv, argc) == 0 ||
 			ft_if_after_n_error(end_opt, argv, argc) == 0 ||
 			(env->nb_player = ft_check_nb_champ(argv, argc, end_opt)) == 0 ||
-			ft_open_fd_for_champs(env, argv, argc, end_opt) == 0)
+			env->nb_player == 1)
+		return (0);
+	ft_init_tab_players(env);
+	if (ft_init_players(env, argv, end_opt, argc) == 0)
 		return (0);
 	return (1);
 }
