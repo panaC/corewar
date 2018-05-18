@@ -6,14 +6,14 @@
 /*   By: pierre <pleroux@student.42.fr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/15 10:01:43 by pierre            #+#    #+#             */
-/*   Updated: 2018/05/18 14:50:56 by pierre           ###   ########.fr       */
+/*   Updated: 2018/05/18 15:55:07 by pierre           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef COREWAR_H
 # define COREWAR_H
 # include <libft.h>
-#include "op.h"
+# include "op.h"
 # define NB_FLAG		3
 # define NB_ARG			3
 # define NB_OP			17
@@ -141,6 +141,7 @@ int					ft_if_opt_in_sec(int start, char **argv, int argc);
 int					ft_if_after_n_error(int start, char **argv, int argc);
 int					ft_check_nb_champ(char **argv, int argc, int start);
 int					ft_str_in_str(char *str, char *cmp);
+int					ft_init_players(t_env *env, char **argv, int start, int argc);
 
 /*
  * A FAIRE :
