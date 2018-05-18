@@ -6,11 +6,8 @@
 /*   By: pierre <pleroux@student.42.fr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/15 10:01:43 by pierre            #+#    #+#             */
-<<<<<<< HEAD
-/*   Updated: 2018/05/17 15:27:03 by msukhare         ###   ########.fr       */
-=======
+/*   Updated: 2018/05/18 09:18:10 by msukhare         ###   ########.fr       */
 /*   Updated: 2018/05/17 14:34:19 by pleroux          ###   ########.fr       */
->>>>>>> cddb47714e8c2cdad2bc4eb407f86e58f95d7060
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -143,6 +140,7 @@ int					ft_if_opt_in_sec(int start, char **argv, int argc);
 int					ft_if_after_n_error(int start, char **argv, int argc);
 int					ft_check_nb_champ(char **argv, int argc, int start);
 int					ft_str_in_str(char *str, char *cmp);
+int					ft_init_players(t_env *env, char **argv, int start, int argc);
 
 /*
  * A FAIRE :
