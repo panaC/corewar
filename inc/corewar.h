@@ -6,7 +6,7 @@
 /*   By: pierre <pleroux@student.42.fr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/15 10:01:43 by pierre            #+#    #+#             */
-/*   Updated: 2018/05/19 16:08:26 by pleroux          ###   ########.fr       */
+/*   Updated: 2018/05/19 17:01:36 by pleroux          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@
 ** typedef sur ptr de fonction
 ** permet de pointer vers l'execution de l'op code
 */
-typedef int (*t_f_op)(void *); //prevoir t_player ou struct custom pour fork
+typedef int (t_f_op)(void *); //prevoir t_player ou struct custom pour fork
 
 /*
 ** decodage op_code :
@@ -146,8 +146,6 @@ typedef struct		s_env
 	t_bool			visu;
 }					t_env;
 
-typedef struct		s_
-
 /*
 ** variable extern op_tab fournis dans op.h
 */
@@ -177,9 +175,25 @@ int					ft_check_fd_before(t_env *env, int i);
 ** process.c
 */
 void				process_init_instruction(t_instruc *ist);
-void				process_init_empty(t_process *p, int numero);
+void				process_init_empty(t_process *p, t_list *l, int numero);
 void				process_init(t_process *p, t_process *prev, t_uint32 pc);
 t_process			*process_create(t_process *prev, t_uint32 pc);
 t_process			*process_add_lst(t_list **l, t_process *prev, t_uint32 pc);
+
+/*
+** op_decod.c
+*/
+t_uint32			op_decod(t_process *p, t_uint8 *b, t_uint32 pc);
+
+/*
+** game_init.c
+*/
+t_bool				game_init(t_env *e);
+t_bool				game_init_mem(t_env *e);
+
+/*
+** game.c
+*/
+int					game(t_env *e);
 
 #endif

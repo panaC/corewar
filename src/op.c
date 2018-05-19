@@ -6,7 +6,7 @@
 /*   By: zaz <marvin@42.fr>                         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/10/04 11:43:01 by zaz               #+#    #+#             */
-/*   Updated: 2018/05/19 15:55:17 by pleroux          ###   ########.fr       */
+/*   Updated: 2018/05/19 16:21:11 by pleroux          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,10 +19,10 @@ t_op    op_tab[17] =
 	{"live", 1, {T_DIR}, 1, 10, "alive", 0, 0, NULL},
 	{"ld", 2, {T_DIR | T_IND, T_REG}, 2, 5, "load", 1, 0, NULL},
 	{"st", 2, {T_REG, T_IND | T_REG}, 3, 5, "store", 1, 0, NULL},
-	{"add", 3, {T_REG, T_REG, T_REG}, 4, 10, "addition", 1, 0, NULL},
+	{"add", 3, {T_REG, T_REG, T_REG}, 4, 10, "addition", 1, 0, op_add},
 	{"sub", 3, {T_REG, T_REG, T_REG}, 5, 10, "soustraction", 1, 0, op_sub},
 	{"and", 3, {T_REG | T_DIR | T_IND, T_REG | T_IND | T_DIR, T_REG}, 6, 6,
-		"et (and  r1, r2, r3   r1&r2 -> r3", 1, 0, op_and},
+		"et (and  r1, r2, r3   r1&r2 -> r3", 1, 0, NULL},
 	{"or", 3, {T_REG | T_IND | T_DIR, T_REG | T_IND | T_DIR, T_REG}, 7, 6,
 		"ou  (or   r1, r2, r3   r1 | r2 -> r3", 1, 0, NULL},
 	{"xor", 3, {T_REG | T_IND | T_DIR, T_REG | T_IND | T_DIR, T_REG}, 8, 6,

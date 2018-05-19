@@ -6,7 +6,7 @@
 /*   By: pleroux <pleroux@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/16 17:56:53 by pleroux           #+#    #+#             */
-/*   Updated: 2018/05/19 15:44:57 by pleroux          ###   ########.fr       */
+/*   Updated: 2018/05/19 16:25:14 by pleroux          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,6 @@ void		process_init_instruction(t_instruc *ist)
 		++i;
 	}
 	ist->info = op_tab[16];
-	ist->ft = NULL;
 }
 
 void		process_init_empty(t_process *p, t_list *l, int numero)

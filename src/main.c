@@ -6,7 +6,7 @@
 /*   By: msukhare <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/16 16:02:23 by msukhare          #+#    #+#             */
-/*   Updated: 2018/05/19 16:07:40 by pleroux          ###   ########.fr       */
+/*   Updated: 2018/05/19 16:24:48 by pleroux          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,5 +75,6 @@ int			main_2()
 	ft_print_memory(e.player[0].data, CHAMP_MAX_SIZE);
 
 	printf("val %d\n", val);
+	return (0);
 }
 

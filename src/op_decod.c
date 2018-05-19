@@ -6,7 +6,7 @@
 /*   By: pierre <pleroux@student.42.fr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/18 19:20:39 by pierre            #+#    #+#             */
-/*   Updated: 2018/05/19 15:51:23 by pleroux          ###   ########.fr       */
+/*   Updated: 2018/05/19 17:01:05 by pleroux          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,12 +16,13 @@
 
 static t_uint32	rot_mem(t_uint32 *pc)
 {
+	*pc = *pc + 1;
 	if (*pc == MEM_SIZE)
 		*pc = 0;
 	return (*pc);
 }
 
-t_uint32		op_decod(t_process *p, t_uint8 *b, t_uint32 pc, t_list **l)
+t_uint32		op_decod(t_process *p, t_uint8 *b, t_uint32 pc)
 {
 
 // attention memoire circulaire tester en permanence valeur de
@@ -46,37 +47,37 @@ t_uint32		op_decod(t_process *p, t_uint8 *b, t_uint32 pc, t_list **l)
 	}
 	if (p->op.info.cycle == 0)
 	{
-		if (p->op.b_if_encod == FALSE)
+		if (p->op.info.b_if_encod == FALSE)
 		{
-			if (p->op.b_size_dir)
+			if (p->op.info.b_size_dir)
 			{
 				//2 octets
-				val.v[0] = b[rot_mem(&(++pc))];
-				val.v[1] = b[rot_mem(&(++pc))];
+				val.v[0] = b[rot_mem(&pc)];
+				val.v[1] = b[rot_mem(&pc)];
 				p->op.arg[0] = val.v32;
 			}
 			else
 			{
 				//4 octets
-				val.v[0] = b[rot_mem(&(++pc))];
-				val.v[1] = b[rot_mem(&(++pc))];
-				val.v[2] = b[rot_mem(&(++pc))];
-				val.v[3] = b[rot_mem(&(++pc))];
+				val.v[0] = b[rot_mem(&pc)];
+				val.v[1] = b[rot_mem(&pc)];
+				val.v[2] = b[rot_mem(&pc)];
+				val.v[3] = b[rot_mem(&pc)];
 				p->op.arg[0] = val.v32;
 			}
 		}
 		else
 		{
 			val.v32 = 0;
-			p->op.encodage = b[rot_mem(&(++pc))];
-			encod[0] = p->op.encodage.a1;
-			encod[1] = p->op.encodage.a2;
-			encod[2] = p->op.encodage.a3;
-			while (i < p->op.nb_arg)
+			p->op.encodage.value = b[rot_mem(&pc)];
+			encod[0] = p->op.encodage.bit.a1;
+			encod[1] = p->op.encodage.bit.a2;
+			encod[2] = p->op.encodage.bit.a3;
+			while (i < p->op.info.nb_arg)
 			{
 				if (encod[i] == T_REG)
 				{
-					val.v8 = b[rot_mem(&(++pc))];
+					val.v8 = b[rot_mem(&pc)];
 					if (val.v8 && val.v8 <= REG_NUMBER)
 					{
 						p->op.arg[i] = p->reg[val.v8].v;
@@ -90,29 +91,29 @@ t_uint32		op_decod(t_process *p, t_uint8 *b, t_uint32 pc, t_list **l)
 				else if (encod[i] == T_IND)
 				{
 					//2 octets
-					val.v[0] = b[rot_mem(&(++pc))];
-					val.v[1] = b[rot_mem(&(++pc))];
+					val.v[0] = b[rot_mem(&pc)];
+					val.v[1] = b[rot_mem(&pc)];
 					p->op.arg[i] = p->pc + val.v32;
 					p->op.arg[i] = rot_mem(&(p->op.arg[0]));
 					p->op.arg_raw[i] = val.v32;
 				}
 				else if (encod[i] == T_DIR)
 				{
-					if (p->op.b_size_dir)
+					if (p->op.info.b_size_dir)
 					{
 						//2 octets
-						val.v[0] = b[rot_mem(&(++pc))];
-						val.v[1] = b[rot_mem(&(++pc))];
+						val.v[0] = b[rot_mem(&pc)];
+						val.v[1] = b[rot_mem(&pc)];
 						p->op.arg[i] = val.v32;
 						p->op.arg_raw[i] = val.v32;
 					}
 					else
 					{
 						//4 octets
-						val.v[0] = b[rot_mem(&(++pc))];
-						val.v[1] = b[rot_mem(&(++pc))];
-						val.v[2] = b[rot_mem(&(++pc))];
-						val.v[3] = b[rot_mem(&(++pc))];
+						val.v[0] = b[rot_mem(&pc)];
+						val.v[1] = b[rot_mem(&pc)];
+						val.v[2] = b[rot_mem(&pc)];
+						val.v[3] = b[rot_mem(&pc)];
 						p->op.arg[i] = val.v32;
 						p->op.arg_raw[i] = val.v32;
 					}
@@ -120,7 +121,7 @@ t_uint32		op_decod(t_process *p, t_uint8 *b, t_uint32 pc, t_list **l)
 				else
 				{
 					//encodage inconnu avance de 1 octets min
-					val.v[0] = b[rot_mem(&(++pc))];
+					val.v[0] = b[rot_mem(&pc)];
 					p->op.arg[i] = 0;
 					p->op.arg_raw[i] = 0;
 				}
@@ -131,7 +132,7 @@ t_uint32		op_decod(t_process *p, t_uint8 *b, t_uint32 pc, t_list **l)
 		//exec de la fct op
 		//recuperer le tableau ft_tab et executer la bonne fonction
 		//ou le mettre dans op_tab si possible de le modifier
-		p->op.ft(p, l);
+		p->op.info.ft(p);
 		//reset op
 		process_init_instruction(&(p->op));
 	}
@@ -140,5 +141,5 @@ t_uint32		op_decod(t_process *p, t_uint8 *b, t_uint32 pc, t_list **l)
 		//decremente cycle pour atteindre fin de cycle
 		--(p->op.info.cycle);
 	}
-	return (rot_mem(&pc));
+	return (pc);
 }
