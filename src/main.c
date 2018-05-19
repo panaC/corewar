@@ -6,12 +6,13 @@
 /*   By: msukhare <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/16 16:02:23 by msukhare          #+#    #+#             */
-/*   Updated: 2018/05/18 16:02:09 by pierre           ###   ########.fr       */
+/*   Updated: 2018/05/19 16:04:39 by pleroux          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "corewar.h"
 #include "parser.h"
+#include "op.h"
 #include <fcntl.h>
 #include <stdlib.h>
 #include <stdio.h>
@@ -40,6 +41,8 @@ int			main(int argc, char **argv)
 		if (parser(&env))
 		{
 			printf("parser ok\n");
+			game_init(&env);
+			ft_print_memory(env.mem, MEM_SIZE);
 		}
 		else
 		{

@@ -6,7 +6,7 @@
 /*   By: pierre <pleroux@student.42.fr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/18 19:20:39 by pierre            #+#    #+#             */
-/*   Updated: 2018/05/19 10:05:17 by pierre           ###   ########.fr       */
+/*   Updated: 2018/05/19 15:51:23 by pleroux          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ static t_uint32	rot_mem(t_uint32 *pc)
 	return (*pc);
 }
 
-t_uint32		op_decod(t_process *p, t_uint8 *b, t_uint32 pc)
+t_uint32		op_decod(t_process *p, t_uint8 *b, t_uint32 pc, t_list **l)
 {
 
 // attention memoire circulaire tester en permanence valeur de
@@ -37,8 +37,8 @@ t_uint32		op_decod(t_process *p, t_uint8 *b, t_uint32 pc)
 
 	val.v32 = 0;
 	i = 0;
-	if ((!p || !b) && b[pc] && b[pc] < 17)
-		return (0);
+	if ((!p || !b) && b[pc] && b[pc] > REG_NUMBER)
+		return (rot_mem(&pc));
 	if (p->op.info.op_code == 0)
 	{
 		p->op.op_code = b[pc];
@@ -79,7 +79,8 @@ t_uint32		op_decod(t_process *p, t_uint8 *b, t_uint32 pc)
 					val.v8 = b[rot_mem(&(++pc))];
 					if (val.v8 && val.v8 <= REG_NUMBER)
 					{
-						p->op.arg[i] = p->reg[val.v8];
+						p->op.arg[i] = p->reg[val.v8].v;
+						p->op.arg_raw[i] = val.v32;
 					}
 					else
 					{
@@ -93,6 +94,7 @@ t_uint32		op_decod(t_process *p, t_uint8 *b, t_uint32 pc)
 					val.v[1] = b[rot_mem(&(++pc))];
 					p->op.arg[i] = p->pc + val.v32;
 					p->op.arg[i] = rot_mem(&(p->op.arg[0]));
+					p->op.arg_raw[i] = val.v32;
 				}
 				else if (encod[i] == T_DIR)
 				{
@@ -102,6 +104,7 @@ t_uint32		op_decod(t_process *p, t_uint8 *b, t_uint32 pc)
 						val.v[0] = b[rot_mem(&(++pc))];
 						val.v[1] = b[rot_mem(&(++pc))];
 						p->op.arg[i] = val.v32;
+						p->op.arg_raw[i] = val.v32;
 					}
 					else
 					{
@@ -111,12 +114,15 @@ t_uint32		op_decod(t_process *p, t_uint8 *b, t_uint32 pc)
 						val.v[2] = b[rot_mem(&(++pc))];
 						val.v[3] = b[rot_mem(&(++pc))];
 						p->op.arg[i] = val.v32;
+						p->op.arg_raw[i] = val.v32;
 					}
 				}
 				else
 				{
 					//encodage inconnu avance de 1 octets min
 					val.v[0] = b[rot_mem(&(++pc))];
+					p->op.arg[i] = 0;
+					p->op.arg_raw[i] = 0;
 				}
 				++i;
 			}
@@ -125,9 +131,14 @@ t_uint32		op_decod(t_process *p, t_uint8 *b, t_uint32 pc)
 		//exec de la fct op
 		//recuperer le tableau ft_tab et executer la bonne fonction
 		//ou le mettre dans op_tab si possible de le modifier
-		//
+		p->op.ft(p, l);
 		//reset op
 		process_init_instruction(&(p->op));
+	}
+	else
+	{
+		//decremente cycle pour atteindre fin de cycle
+		--(p->op.info.cycle);
 	}
 	return (rot_mem(&pc));
 }
