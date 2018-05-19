@@ -6,11 +6,16 @@
 /*   By: msukhare <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/16 16:55:14 by msukhare          #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2018/05/18 16:55:27 by msukhare         ###   ########.fr       */
+=======
+/*   Updated: 2018/05/18 15:38:47 by pierre           ###   ########.fr       */
+>>>>>>> f677879a03995ce6bd867e1efddb0f61867f25d4
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "corewar.h"
+#include <libft.h>
 
 static int	ft_get_opt(char *str, t_env *env)
 {

@@ -6,18 +6,31 @@
 /*   By: pierre <pleroux@student.42.fr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/15 10:01:43 by pierre            #+#    #+#             */
-/*   Updated: 2018/05/19 14:20:37 by msukhare         ###   ########.fr       */
+/*   Updated: 2018/05/19 14:27:56 by msukhare         ###   ########.fr       */
 /*   Updated: 2018/05/17 14:34:19 by pleroux          ###   ########.fr       */
+/*   Updated: 2018/05/19 09:01:21 by pierre           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef COREWAR_H
 # define COREWAR_H
 # include <libft.h>
-#include "op.h"
+# include "op.h"
 # define NB_FLAG		3
 # define NB_ARG			3
 # define NB_OP			17
+
+/*
+** decodage op_code :
+** union pour decodage arg binaire
+*/
+typedef union		u_uint
+{
+	t_uint8			v8;
+	t_uint16		v16;
+	t_uint32		v32;
+	t_uint8			v[4];
+}					t_uint;
 
 /*
 ** decodage op_code :
@@ -130,6 +143,8 @@ typedef struct		s_env
 	t_f_op			ft_tab[NB_OP];
 
 	t_uint8			mem[MEM_SIZE];
+
+	t_string		err_parsing;
 }					t_env;
 
 extern t_op			op_tab[17];
