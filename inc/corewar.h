@@ -6,7 +6,7 @@
 /*   By: pierre <pleroux@student.42.fr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/15 10:01:43 by pierre            #+#    #+#             */
-/*   Updated: 2018/05/18 15:55:07 by pierre           ###   ########.fr       */
+/*   Updated: 2018/05/19 09:01:21 by pierre           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,18 @@
 # define NB_FLAG		3
 # define NB_ARG			3
 # define NB_OP			17
+
+/*
+** decodage op_code :
+** union pour decodage arg binaire
+*/
+typedef union		u_uint
+{
+	t_uint8			v8;
+	t_uint16		v16;
+	t_uint32		v32;
+	t_uint8			v[4];
+}					t_uint;
 
 /*
 ** decodage op_code :

@@ -6,7 +6,7 @@
 /*   By: pierre <pleroux@student.42.fr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/16 12:57:24 by pierre            #+#    #+#             */
-/*   Updated: 2018/05/18 16:06:40 by pierre           ###   ########.fr       */
+/*   Updated: 2018/05/18 16:41:46 by pierre           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -122,8 +122,6 @@ t_bool		parser_cor_header(t_env *e, t_player *p)
 t_bool		parser_cor_data(t_env *e, t_player *p)
 {
 	t_uint8		tmp;
-
-	printf("data_size : %u\n", p->head.prog_size);
 
 	if (p->head.prog_size > 1 && p->head.prog_size <= CHAMP_MAX_SIZE)
 	{
