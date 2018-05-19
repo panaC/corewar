@@ -6,7 +6,7 @@
 /*   By: pleroux <pleroux@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/16 17:56:53 by pleroux           #+#    #+#             */
-/*   Updated: 2018/05/17 14:39:43 by pleroux          ###   ########.fr       */
+/*   Updated: 2018/05/19 15:44:57 by pleroux          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,13 +26,14 @@ void		process_init_instruction(t_instruc *ist)
 	while (i < NB_ARG)
 	{
 		ist->arg[i] = 0;
+		ist->arg_raw[i] = 0;
 		++i;
 	}
 	ist->info = op_tab[16];
 	ist->ft = NULL;
 }
 
-void		process_init_empty(t_process *p, int numero)
+void		process_init_empty(t_process *p, t_list *l, int numero)
 {
 	int		i;
 
@@ -40,6 +41,7 @@ void		process_init_empty(t_process *p, int numero)
 	p->carry = 0;
 	p->pc = 0;
 	p->reg[0].v = numero;
+	p->begin_list = l;
 	i = 1;
 	while (i < REG_NUMBER)
 	{
@@ -57,6 +59,7 @@ void		process_init(t_process *p, t_process *prev, t_uint32 pc)
 	p->live = prev->live;
 	p->carry = prev->carry;
 	p->pc = pc;
+	p->begin_list = prev->begin_list;
 	while (i < REG_NUMBER)
 	{
 		p->reg[i] = prev->reg[i];
