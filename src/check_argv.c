@@ -6,7 +6,7 @@
 /*   By: msukhare <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/16 16:55:14 by msukhare          #+#    #+#             */
-/*   Updated: 2018/05/18 13:16:09 by msukhare         ###   ########.fr       */
+/*   Updated: 2018/05/18 16:55:27 by msukhare         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,6 @@ static void	ft_init_tab_players(t_env *env)
 		i++;
 	}
 }
-#include <stdio.h>
 int			ft_check_argv(int argc, char **argv, t_env *env)
 {
 	int		end_opt;
@@ -75,8 +74,7 @@ int			ft_check_argv(int argc, char **argv, t_env *env)
 		return (0);
 	if (ft_if_opt_in_sec(end_opt, argv, argc) == 0 ||
 			ft_if_after_n_error(end_opt, argv, argc) == 0 ||
-			(env->nb_player = ft_check_nb_champ(argv, argc, end_opt)) == 0 ||
-			env->nb_player == 1)
+			(env->nb_player = ft_check_nb_champ(argv, argc, end_opt)) == 0)
 		return (0);
 	ft_init_tab_players(env);
 	if (ft_init_players(env, argv, end_opt, argc) == 0)
