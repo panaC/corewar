@@ -6,7 +6,7 @@
 /*   By: pierre <pleroux@student.42.fr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/15 10:01:43 by pierre            #+#    #+#             */
-/*   Updated: 2018/05/19 15:45:19 by pleroux          ###   ########.fr       */
+/*   Updated: 2018/05/19 16:08:26 by pleroux          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -160,6 +160,9 @@ int					ft_if_after_n_error(int start, char **argv, int argc);
 int					ft_check_nb_champ(char **argv, int argc, int start);
 int					ft_str_in_str(char *str, char *cmp);
 int					ft_init_players(t_env *env, char **argv, int start, int argc);
+int					ft_check_in_tab_player(int place, t_env *env);
+int					ft_check_champs_before(t_env *env, char *str);
+int					ft_check_fd_before(t_env *env, int i);
 
 /*
  * A FAIRE :
