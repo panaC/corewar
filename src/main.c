@@ -6,16 +6,13 @@
 /*   By: msukhare <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/16 16:02:23 by msukhare          #+#    #+#             */
-<<<<<<< HEAD
-/*   Updated: 2018/05/18 10:14:45 by msukhare         ###   ########.fr       */
-=======
-/*   Updated: 2018/05/18 16:02:09 by pierre           ###   ########.fr       */
->>>>>>> f677879a03995ce6bd867e1efddb0f61867f25d4
+/*   Updated: 2018/05/19 16:07:40 by pleroux          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "corewar.h"
 #include "parser.h"
+#include "op.h"
 #include <fcntl.h>
 #include <stdlib.h>
 #include <stdio.h>
@@ -39,14 +36,16 @@ int			main(int argc, char **argv)
 	ft_init_struct(&env);
 	if (ft_check_argv(argc, argv, &env))
 	{
-	/*	if (parser(&env))
+		if (parser(&env))
 		{
 			printf("parser ok\n");
+			game_init(&env);
+			ft_print_memory(env.mem, MEM_SIZE);
 		}
 		else
-		{*/
+		{
 			printf("parser err\n");
-	//	}
+	}
 	i = 0;
 	while (i < env.nb_player)
 	{
