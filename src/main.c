@@ -6,7 +6,7 @@
 /*   By: msukhare <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/16 16:02:23 by msukhare          #+#    #+#             */
-/*   Updated: 2018/05/19 16:24:48 by pleroux          ###   ########.fr       */
+/*   Updated: 2018/05/19 22:48:12 by msukhare         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,63 @@ static void	ft_init_struct(t_env *env)
 	ft_bzero(env->mem, MEM_SIZE);
 }
 
+void		ft_creat_process(t_env *env, int i)
+{
+	t_process *tmp;
+
+	tmp = (t_process*)malloc(sizeof(t_process) * 1);
+	env->player[i].process = tmp;
+	tmp->next = NULL;
+	tmp->live = 1;
+	tmp->carry = 0;
+	tmp->pc = 1;
+	if (i >= 0)
+	{
+		tmp = (t_process*)malloc(sizeof(t_process) * 1);
+		tmp->next = env->player[i].process;
+		env->player[i].process = tmp;
+		tmp->live = 2;
+		tmp->carry = 1;
+		tmp->pc = 2;
+		if (i >= 1)
+		{
+			tmp = (t_process*)malloc(sizeof(t_process) * 1);
+			tmp->next = env->player[i].process;
+			env->player[i].process = tmp;
+			tmp->live = 0;
+			tmp->carry = 1;
+			tmp->pc = 3;
+			if (i >= 2)
+			{
+				tmp = (t_process*)malloc(sizeof(t_process) * 1);
+				tmp->next = env->player[i].process;
+				env->player[i].process = tmp;
+				tmp->live = 2;
+				tmp->carry = 1;
+				tmp->pc = 4;
+				tmp = (t_process*)malloc(sizeof(t_process) * 1);
+				tmp->next = env->player[i].process;
+				env->player[i].process = tmp;
+				tmp->live = 2;
+				tmp->carry = 1;
+				tmp->pc = 5;
+				tmp = (t_process*)malloc(sizeof(t_process) * 1);
+				tmp->next = env->player[i].process;
+				env->player[i].process = tmp;
+				tmp->live = 2;
+				tmp->carry = 1;
+				tmp->pc = 6;
+				tmp = (t_process*)malloc(sizeof(t_process) * 1);
+				tmp->next = env->player[i].process;
+				env->player[i].process = tmp;
+				tmp->live = 2;
+				tmp->carry = 1;
+				tmp->pc = 7;
+			}
+		}
+	}
+}
+
 int			main(int argc, char **argv)
 {
 	t_env	env;
@@ -36,7 +93,7 @@ int			main(int argc, char **argv)
 	ft_init_struct(&env);
 	if (ft_check_argv(argc, argv, &env))
 	{
-		if (parser(&env))
+	/*	if (parser(&env))
 		{
 			printf("parser ok\n");
 			game_init(&env);
@@ -44,14 +101,20 @@ int			main(int argc, char **argv)
 		}
 		else
 		{
-			printf("parser err\n");
+			printf("parser err\n");*/
+		i = 0;
+		while (i < env.nb_player)
+		{
+			ft_creat_process(&env, i);
+			i++;
+		}
+		game(&env);
 	}
 	i = 0;
 	while (i < env.nb_player)
 	{
 		printf("name = %s , numero = %d, fd = %d\n", env.player[i].name, env.player[i].numero, env.player[i].fd);
 		i++;
-	}
 	}
 	return (0);
 }
