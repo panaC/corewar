@@ -6,7 +6,7 @@
 /*   By: pleroux <pleroux@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/19 15:12:36 by pleroux           #+#    #+#             */
-/*   Updated: 2018/05/19 23:47:08 by pleroux          ###   ########.fr       */
+/*   Updated: 2018/05/20 04:12:13 by pleroux          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,8 @@ int			op_add(void *v, t_list *l, t_uint8 *b)
 	if (p->op.arg_raw[2] && p->op.arg_raw[2] < REG_NUMBER)
 	{
 		p->reg[p->op.arg_raw[2] - 1] = r;
+		if (r.v == 0)
+			p->carry = TRUE;
 	}
 	else
 	{
