@@ -6,7 +6,7 @@
 /*   By: pierre <pleroux@student.42.fr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/17 10:33:14 by pierre            #+#    #+#             */
-/*   Updated: 2018/05/20 02:24:32 by msukhare         ###   ########.fr       */
+/*   Updated: 2018/05/20 06:46:37 by msukhare         ###   ########.fr       */
 /*   Updated: 2018/05/19 17:27:55 by pleroux          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
@@ -74,20 +74,24 @@ int					game(t_env *e)
 {
 	t_process		*p;
 
-//	while (game_has_process(e))
-//	{
+	while (game_has_process(e))
+	{
 		while ((p = game_iter_process(e)))
 		{
 			//execute le process
+			//si celui si n'est pas dans une periode de cycle
+			//sinon
 			//verifier la paralellisation des instructions de chaque joueur
 			//pour savoir qui ecrit en memoire avant l'autre si proche de la
 			//meme case memoire
 			//priorise avec le numero
 			printf("%p live = %d, carry = %d, pc = %d \n\n\n",p, p->live, p->carry, p->pc);
 		}
-//		++e->cycle_totale;
-//		++e->cycle;
+		++e->cycle_totale;
+		++e->cycle;
+		if (e->cycle >= CYCLE_TO_DIE)
+			ft_delete_process(env);
 		//appel fct verification fin de cycle
-//	}
+	}
 	return (TRUE);
 }

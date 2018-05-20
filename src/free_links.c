@@ -1,51 +1,46 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_fork.c                                          :+:      :+:    :+:   */
+/*   free_links.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: msukhare <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/05/20 02:26:04 by msukhare          #+#    #+#             */
-/*   Updated: 2018/05/20 06:33:48 by msukhare         ###   ########.fr       */
+/*   Created: 2018/05/20 03:48:48 by msukhare          #+#    #+#             */
+/*   Updated: 2018/05/20 05:15:41 by msukhare         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "corewar.h"
 
-static void		ft_del_and_exit(t_env *env)
+static void		ft_delete(t_process *to_del, t_process *begin_list)
+{
+	while (begin_list && begin_list->next != to_del)
+		begin_list = begin_list->next;
+	begin_list->next = to_del->next;
+	free(to_del);
+}
+
+void			ft_delete_process(t_env *env)
 {
 	int			i;
 	t_process	*tmp;
-	t_process	*del;
 
+	env->cycle = 0;
 	i = 0;
 	while (i < env->nb_player)
 	{
 		tmp = env->player[i].process;
 		while (tmp)
 		{
-			del = tmp;
+			if (tmp->live == 0 && tmp != env->player[i].process)
+				ft_delete(tmp, env->player[i].process);
+			else if (tmp->live == 0 && tmp == env->player[i].process)
+			{
+				free(env->player[i].process);
+				env->player[i].process = NULL;
+			}
 			tmp = tmp->next;
-			free(del);
 		}
 		i++;
 	}
-	ft_putstr_fd("malloc fail\n", 2);
-	exit(-1);
-}
-
-void		ft_fork(t_env *env, t_process *p)
-{
-	t_process	*new;
-
-	if (!new = (t_process*)malloc(sizeof(t_process) * 1))
-		ft_del_and_exit(env);
-	new->numero = p->numero;
-	new->carry = p->carry;
-	new->live = p->live;
-	new->pc = p->pc;
-	while (p->next)
-		p = p->next;
-	p->next = new;
-	new->next = NULL;
 }
