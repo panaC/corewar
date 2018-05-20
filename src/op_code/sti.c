@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   sub.c                                              :+:      :+:    :+:   */
+/*   sti.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pleroux <pleroux@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/05/19 15:54:06 by pleroux           #+#    #+#             */
-/*   Updated: 2018/05/19 23:45:17 by pleroux          ###   ########.fr       */
+/*   Created: 2018/05/19 22:54:54 by pleroux           #+#    #+#             */
+/*   Updated: 2018/05/19 23:57:18 by pleroux          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,22 +15,22 @@
 #include "corewar.h"
 #include "op.h"
 
-int			op_sub(void *v, t_list *l, t_uint8 *b)
+int			op_sti(void *v, t_list *l, t_uint8 *b)
 {
-	t_process	*p;
-	t_reg		r;
+	t_process		*p;
+	t_reg			value;
+	t_uint32		addr;
+	int				i;
 
 	(void)l;
-	(void)b;
+	i = 0;
 	p = (t_process*)v;
-	r.v = p->op.arg[0] - p->op.arg[1];
-	if (p->op.arg_raw[2] && p->op.arg_raw[2] < REG_NUMBER)
+	value.v = p->op.arg[0];
+	addr = p->op.arg[1] + p->op.arg[2];
+	while (i < REG_SIZE)
 	{
-		p->reg[p->op.arg_raw[2] - 1] = r;
-	}
-	else
-	{
-		return (FALSE);
+		b[rot_mem(&addr)] = value.t[i];
+		++i;
 	}
 	return (TRUE);
 }

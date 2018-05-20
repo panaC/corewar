@@ -6,7 +6,7 @@
 /*   By: pierre <pleroux@student.42.fr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/15 10:01:43 by pierre            #+#    #+#             */
-/*   Updated: 2018/05/19 17:01:36 by pleroux          ###   ########.fr       */
+/*   Updated: 2018/05/20 00:15:40 by pleroux          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,13 +17,16 @@
 # define NB_FLAG		3
 # define NB_ARG			3
 # define NB_OP			17
+# define T_REG_BIT		1
+# define T_DIR_BIT		2
+# define T_IND_BIT		3
 
 /*
 ** decodage op_code :
 ** typedef sur ptr de fonction
 ** permet de pointer vers l'execution de l'op code
 */
-typedef int (t_f_op)(void *); //prevoir t_player ou struct custom pour fork
+typedef int (t_f_op)(void *, t_list *, t_uint8*);
 
 /*
 ** decodage op_code :
@@ -107,7 +110,6 @@ typedef struct		s_process
 	t_uint32		pc;
 	t_reg			reg[REG_NUMBER];
 	t_instruc		op;
-	t_list			*begin_list;
 }					t_process;
 
 /*
@@ -175,7 +177,7 @@ int					ft_check_fd_before(t_env *env, int i);
 ** process.c
 */
 void				process_init_instruction(t_instruc *ist);
-void				process_init_empty(t_process *p, t_list *l, int numero);
+void				process_init_empty(t_process *p, int numero);
 void				process_init(t_process *p, t_process *prev, t_uint32 pc);
 t_process			*process_create(t_process *prev, t_uint32 pc);
 t_process			*process_add_lst(t_list **l, t_process *prev, t_uint32 pc);
@@ -183,7 +185,8 @@ t_process			*process_add_lst(t_list **l, t_process *prev, t_uint32 pc);
 /*
 ** op_decod.c
 */
-t_uint32			op_decod(t_process *p, t_uint8 *b, t_uint32 pc);
+t_uint32			op_decod(t_process *p, t_uint8 *b, t_uint32 pc, t_list *l);
+t_uint32			rot_mem(t_uint32 *pc);;
 
 /*
 ** game_init.c

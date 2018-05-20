@@ -6,7 +6,7 @@
 /*   By: pierre <pleroux@student.42.fr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/17 09:59:36 by pierre            #+#    #+#             */
-/*   Updated: 2018/05/19 16:28:17 by pleroux          ###   ########.fr       */
+/*   Updated: 2018/05/19 23:44:22 by pleroux          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ t_bool			game_init(t_env *e)
 	i = 1;
 	while (i <= e->nb_player)
 	{
-		process_init_empty(&prev, e->player[i - 1].process, i);
+		process_init_empty(&prev, i);
 		if (!process_add_lst(&(e->player[i - 1].process), &prev, 0))
 		{
 			return (FALSE);
