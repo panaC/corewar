@@ -6,9 +6,13 @@
 /*   By: pierre <pleroux@student.42.fr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/15 10:01:43 by pierre            #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2018/05/19 19:45:09 by msukhare         ###   ########.fr       */
 /*   Updated: 2018/05/17 14:34:19 by pleroux          ###   ########.fr       */
 /*   Updated: 2018/05/19 09:01:21 by pierre           ###   ########.fr       */
+=======
+/*   Updated: 2018/05/20 00:15:40 by pleroux          ###   ########.fr       */
+>>>>>>> 25ac3071544935fba970717c00aa595724038277
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +23,16 @@
 # define NB_FLAG		3
 # define NB_ARG			3
 # define NB_OP			17
+# define T_REG_BIT		1
+# define T_DIR_BIT		2
+# define T_IND_BIT		3
+
+/*
+** decodage op_code :
+** typedef sur ptr de fonction
+** permet de pointer vers l'execution de l'op code
+*/
+typedef int (t_f_op)(void *, t_list *, t_uint8*);
 
 /*
 ** decodage op_code :
@@ -179,5 +193,22 @@ void				process_init_empty(t_process *p, int numero);
 void				process_init(t_process *p, t_process *prev, t_uint32 pc);
 t_process			*process_create(t_process *prev, t_uint32 pc);
 t_process			*process_add_lst(t_list **l, t_process *prev, t_uint32 pc);
+
+/*
+** op_decod.c
+*/
+t_uint32			op_decod(t_process *p, t_uint8 *b, t_uint32 pc, t_list *l);
+t_uint32			rot_mem(t_uint32 *pc);;
+
+/*
+** game_init.c
+*/
+t_bool				game_init(t_env *e);
+t_bool				game_init_mem(t_env *e);
+
+/*
+** game.c
+*/
+int					game(t_env *e);
 
 #endif
