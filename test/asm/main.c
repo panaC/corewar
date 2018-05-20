@@ -101,11 +101,11 @@ int		main()
 	/*padding 4 octets*/
 	write(fd, &zero, 4);
 	/*code : max 686 octets*/
-	int op = 11;
-	int data = 0x78010001;
+	int op = 3;
+	int data = 0x70010020;
 	write(fd, &op, 1);
 	write_int(fd, data);
-	data = 0x00200000;
+	data = 0x00000000;
 	write_int(fd, data);
 
 	/*end*/
