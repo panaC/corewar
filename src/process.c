@@ -6,7 +6,7 @@
 /*   By: pleroux <pleroux@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/16 17:56:53 by pleroux           #+#    #+#             */
-/*   Updated: 2018/05/19 23:43:45 by pleroux          ###   ########.fr       */
+/*   Updated: 2018/05/23 11:37:30 by msukhare         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,31 +74,24 @@ t_process	*process_create(t_process *prev, t_uint32 pc)
 	if (p)
 	{
 		process_init(p, prev, pc);
+		p->next = NULL;
 	}
 	return (p);
 }
 
-t_process	*process_add_lst(t_list **l, t_process *prev, t_uint32 pc)
+t_process		*process_add_lst(t_process **bg, t_process *prev, t_uint32 pc)
 {
-	t_process		*p;
-	t_list			*n;
+	t_process	*new;
 
-	p = process_create(prev, pc);
-	if (p)
+	if (!(new = process_create(prev, pc)))
+		return (NULL);
+	if (!(*bg))
+		*bg = new;
+	else
 	{
-		n = (t_list*)ft_memalloc(sizeof(*n));
-		if (n)
-		{
-			n->next = NULL;
-			n->content = (void*)p;
-			n->content_size = sizeof(*p);
-			ft_lstadd(l, n);
-		}
-		else
-		{
-			free(p);
-			p = NULL;
-		}
+		while (prev->next)
+			prev = prev->next;
+		prev->next = new;
 	}
-	return (p);
+	return (new);
 }

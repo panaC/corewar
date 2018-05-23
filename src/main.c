@@ -6,7 +6,7 @@
 /*   By: msukhare <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/16 16:02:23 by msukhare          #+#    #+#             */
-/*   Updated: 2018/05/20 02:22:36 by msukhare         ###   ########.fr       */
+/*   Updated: 2018/05/23 16:31:50 by msukhare         ###   ########.fr       */
 /*   Updated: 2018/05/20 00:34:44 by pleroux          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
@@ -36,51 +36,58 @@ void		ft_creat_process(t_env *env, int i)
 	tmp = (t_process*)malloc(sizeof(t_process) * 1);
 	env->player[i].process = tmp;
 	tmp->next = NULL;
-	tmp->live = 1;
+	tmp->live = 0;
 	tmp->carry = 0;
 	tmp->pc = 1;
+	tmp->name = "end";
 	if (i >= 0)
 	{
 		tmp = (t_process*)malloc(sizeof(t_process) * 1);
 		tmp->next = env->player[i].process;
 		env->player[i].process = tmp;
-		tmp->live = 2;
-		tmp->carry = 1;
+		tmp->live = 0;
+		tmp->carry = 0;
 		tmp->pc = 2;
+		tmp->name = "end -1";
 		if (i >= 1)
 		{
 			tmp = (t_process*)malloc(sizeof(t_process) * 1);
 			tmp->next = env->player[i].process;
 			env->player[i].process = tmp;
 			tmp->live = 0;
-			tmp->carry = 1;
+			tmp->carry = 0;
 			tmp->pc = 3;
+		tmp->name = "end -2";
 			if (i >= 2)
 			{
 				tmp = (t_process*)malloc(sizeof(t_process) * 1);
 				tmp->next = env->player[i].process;
 				env->player[i].process = tmp;
-				tmp->live = 2;
+				tmp->live = 0;
 				tmp->carry = 1;
 				tmp->pc = 4;
+		tmp->name = "end -3";
 				tmp = (t_process*)malloc(sizeof(t_process) * 1);
 				tmp->next = env->player[i].process;
 				env->player[i].process = tmp;
-				tmp->live = 2;
+				tmp->live = 0;
 				tmp->carry = 1;
 				tmp->pc = 5;
+		tmp->name = "end -4";
 				tmp = (t_process*)malloc(sizeof(t_process) * 1);
 				tmp->next = env->player[i].process;
 				env->player[i].process = tmp;
-				tmp->live = 2;
+				tmp->live = 0;
 				tmp->carry = 1;
 				tmp->pc = 6;
+			tmp->name = "end -5";
 				tmp = (t_process*)malloc(sizeof(t_process) * 1);
 				tmp->next = env->player[i].process;
 				env->player[i].process = tmp;
-				tmp->live = 2;
+				tmp->live = 0;
 				tmp->carry = 1;
 				tmp->pc = 7;
+		tmp->name = "start";
 			}
 		}
 	}
