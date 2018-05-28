@@ -6,8 +6,9 @@
 /*   By: msukhare <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/16 16:02:23 by msukhare          #+#    #+#             */
-/*   Updated: 2018/05/26 14:39:07 by msukhare         ###   ########.fr       */
+/*   Updated: 2018/05/28 11:43:11 by msukhare         ###   ########.fr       */
 /*   Updated: 2018/05/20 00:34:44 by pleroux          ###   ########.fr       */
+/*   Updated: 2018/05/20 07:04:26 by pleroux          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,12 +111,13 @@ int			main(int argc, char **argv)
 			ft_print_memory(env.mem, MEM_SIZE / 4);
 			/*int j = 0;
 			int k = 0;
-			while (j < 50)
+			while (j < 30)
 			{
 				k = op_decod((t_process*)env.player[0].process->content, env.mem, k, env.player[0].process);
 				printf("%d %d\n", k, ((t_process*)env.player[0].process->content)->reg[1].v);
 				j++;
 			}*/
+			}
 		}
 		else
 		{
