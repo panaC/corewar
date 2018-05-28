@@ -6,7 +6,7 @@
 /*   By: msukhare <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/20 03:48:48 by msukhare          #+#    #+#             */
-/*   Updated: 2018/05/23 10:28:52 by msukhare         ###   ########.fr       */
+/*   Updated: 2018/05/25 15:07:07 by msukhare         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 static void		ft_del_link(t_process **tmp, t_process *bg)
 {
-	while (bg && bg != (*tmp))
+	while (bg && bg->next != (*tmp))
 		bg = bg->next;
 	if (!bg)
 		return ;
@@ -41,13 +41,13 @@ void			ft_delete_process(t_env *env)
 				free(tmp);
 				tmp = env->player[i].process;
 			}
-			else if (tmp->live == 0)
+			else
 			{
-				ft_del_link(&tmp, env->player[i].process);
+				if (tmp->live == 0)
+					ft_del_link(&tmp, env->player[i].process);
+				tmp->live = 0;
 				tmp = tmp->next;
 			}
-			else
-				tmp = tmp->next;
 		}
 		i++;
 	}

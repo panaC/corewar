@@ -6,7 +6,7 @@
 /*   By: pierre <pleroux@student.42.fr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/18 19:20:39 by pierre            #+#    #+#             */
-/*   Updated: 2018/05/20 02:16:13 by pleroux          ###   ########.fr       */
+/*   Updated: 2018/05/26 13:34:42 by msukhare         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ t_uint32		rot_mem_set(t_uint32 *pc)
 	return (*pc);
 }
 
-t_uint32		op_decod(t_process *p, t_uint8 *b, t_uint32 pc, t_list *l)
+t_uint32		op_decod(t_process *p, t_uint8 *b, t_uint32 pc, t_process *l)
 {
 
 // attention memoire circulaire tester en permanence valeur de
