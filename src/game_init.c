@@ -6,7 +6,7 @@
 /*   By: pierre <pleroux@student.42.fr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/17 09:59:36 by pierre            #+#    #+#             */
-/*   Updated: 2018/05/19 23:44:22 by pleroux          ###   ########.fr       */
+/*   Updated: 2018/05/26 17:23:16 by msukhare         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,18 +18,23 @@ t_bool			game_init(t_env *e)
 {
 	int			i;
 	t_process	prev;
+	int			pc;
+	int			tmp;
 
 	//init prog player dans mem suivant numero de joueur
 	game_init_mem(e);
 	
 	i = 1;
+	pc = 0;
+	tmp = MEM_SIZE / e->nb_player;
 	while (i <= e->nb_player)
 	{
 		process_init_empty(&prev, i);
-		if (!process_add_lst(&(e->player[i - 1].process), &prev, 0))
+		if (!process_add_lst(&(e->player[i - 1].process), &prev, pc, (i - 1)))
 		{
 			return (FALSE);
 		}
+		pc += tmp;
 		++i;
 	}
 

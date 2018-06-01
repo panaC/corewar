@@ -6,7 +6,7 @@
 /*   By: msukhare <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/16 16:55:14 by msukhare          #+#    #+#             */
-/*   Updated: 2018/05/19 17:08:48 by pleroux          ###   ########.fr       */
+/*   Updated: 2018/05/26 14:38:22 by msukhare         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,12 +19,24 @@ static int	ft_get_opt(char *str, t_env *env)
 		env->verbos = 1;
 	else if (ft_strcmp(str, "-s") == 0)
 		env->visu = 1;
+	else if (ft_strcmp(str, "-dump") == 0)
+		dump = 1;
 	/*
 	 bonus a rajouter
 	*/
 	else
 		return (0);
 	return (1);
+}
+
+static int	ft_chk_dump(t_env *env, int *i, char **argv)
+{
+	if (!argv[*i + 1] || argv[*i + 1][0] == '\0')
+		return (1);
+	if (ft_if_all_digit(argv[*i + 1]) == 0)
+		return (1);
+	env->nb_cycle_dump = ft_atoi(argv[*i + 1]);
+	(*i)++;
 }
 
 static int	ft_check_opt(char **argv, int argc, t_env *env)
@@ -42,6 +54,11 @@ static int	ft_check_opt(char **argv, int argc, t_env *env)
 			if (ft_get_opt(argv[i], env) <= 0)
 			{
 				ft_putstr_fd("wrong option bro\n", 2);
+				return (0);
+			}
+			if (ft_strcmp(argv[i], "-dump") == 0 && ft_chk_dump(env, &i, argv))
+			{
+				ft_putstr_fd("need nb_cycle after dump\n", 2);
 				return (0);
 			}
 		}

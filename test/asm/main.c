@@ -61,17 +61,16 @@ int		main_1()
 
 int		main()
 {
-	int fd = open("test.txt", O_CREAT | O_RDWR | O_TRUNC, 0777);
+	int fd = open("test.cor", O_CREAT | O_RDWR | O_TRUNC, 0777);
 	int zero = 0;
-	int op = 0x04;
-	int data = 0x00010203;
-	int size = 5;
 
 	char name[PROG_NAME_LENGTH];
 	memset(name, 0, PROG_NAME_LENGTH);
 	
 	char com[COMMENT_LENGTH];
 	memset(com, 0, COMMENT_LENGTH);
+
+	int size = 9;
 
 	name[0] = '4';
 	name[1] = '4';
@@ -102,7 +101,11 @@ int		main()
 	/*padding 4 octets*/
 	write(fd, &zero, 4);
 	/*code : max 686 octets*/
+	int op = 3;
+	int data = 0x70010020;
 	write(fd, &op, 1);
+	write_int(fd, data);
+	data = 0x00000000;
 	write_int(fd, data);
 
 	/*end*/

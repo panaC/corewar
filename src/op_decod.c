@@ -6,7 +6,8 @@
 /*   By: pierre <pleroux@student.42.fr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/18 19:20:39 by pierre            #+#    #+#             */
-/*   Updated: 2018/05/20 02:16:13 by pleroux          ###   ########.fr       */
+/*   Updated: 2018/05/28 11:42:36 by msukhare         ###   ########.fr       */
+/*   Updated: 2018/05/20 02:25:04 by pleroux          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +31,7 @@ t_uint32		rot_mem_set(t_uint32 *pc)
 	return (*pc);
 }
 
-t_uint32		op_decod(t_process *p, t_uint8 *b, t_uint32 pc, t_list *l)
+t_uint32		op_decod(t_process *p, t_uint8 *b, t_uint32 pc, t_process *l)
 {
 
 // attention memoire circulaire tester en permanence valeur de
@@ -122,7 +123,7 @@ t_uint32		op_decod(t_process *p, t_uint8 *b, t_uint32 pc, t_list *l)
 					ft_printf("%u %u %u\n",p->op.arg[i], val.v32, p->pc);
 					p->op.arg[i] = p->pc + val.v32;
 					ft_printf("%u %u\n", val.v32, p->pc);
-					p->op.arg[i] = rot_mem(&(p->op.arg[0]));
+					p->op.arg[i] = rot_mem_set(&(p->op.arg[0]));
 					ft_printf("%u %u %u\n",p->op.arg[i], val.v32, p->pc);
 					p->op.arg_raw[i] = val.v32;
 					ft_printf("arg %u raw %u\n", p->op.arg[i], p->op.arg_raw[i]);
@@ -135,7 +136,7 @@ t_uint32		op_decod(t_process *p, t_uint8 *b, t_uint32 pc, t_list *l)
 						//2 octets
 						val.v[1] = b[rot_mem(&pc)];
 						val.v[0] = b[rot_mem(&pc)];
-						p->op.arg[i] = rot_mem(&(val.v32));
+						p->op.arg[i] = rot_mem_set(&(val.v32));
 						p->op.arg_raw[i] = val.v32;
 						ft_printf("arg %u raw %u\n", p->op.arg[i], p->op.arg_raw[i]);
 					}
@@ -146,7 +147,7 @@ t_uint32		op_decod(t_process *p, t_uint8 *b, t_uint32 pc, t_list *l)
 						val.v[2] = b[rot_mem(&pc)];
 						val.v[1] = b[rot_mem(&pc)];
 						val.v[0] = b[rot_mem(&pc)];
-						p->op.arg[i] = rot_mem(&(val.v32));
+						p->op.arg[i] = rot_mem_set(&(val.v32));
 						p->op.arg_raw[i] = val.v32;
 						ft_printf("arg %u raw %u\n", p->op.arg[i], p->op.arg_raw[i]);
 					}

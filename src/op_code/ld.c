@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   add.c                                              :+:      :+:    :+:   */
+/*   ld.c                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pleroux <pleroux@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/05/19 15:12:36 by pleroux           #+#    #+#             */
-/*   Updated: 2018/05/20 04:12:13 by pleroux          ###   ########.fr       */
+/*   Created: 2018/05/20 07:08:25 by pleroux           #+#    #+#             */
+/*   Updated: 2018/05/20 07:38:23 by pleroux          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,24 +15,22 @@
 #include "corewar.h"
 #include "op.h"
 
-int			op_add(void *v, t_list *l, t_uint8 *b)
+int			op_ld(void *v, t_list *l, t_uint8 *b)
 {
-	t_process	*p;
-	t_reg		r;
+	t_process		*p;
+	t_reg			value;
+	int				i;
 
 	(void)l;
 	(void)b;
+	i = REG_SIZE;
 	p = (t_process*)v;
-	r.v = p->op.arg[0] + p->op.arg[1];
-	if (p->op.arg_raw[2] && p->op.arg_raw[2] < REG_NUMBER)
-	{
-		p->reg[p->op.arg_raw[2] - 1] = r;
-		if (r.v == 0)
-			p->carry = TRUE;
-	}
+	if (p->op.arg_raw[1] && p->op.arg_raw[1] > REG_NUMBER)
+		return (FALSE);
 	else
 	{
-		return (FALSE);
+		value.v = p->op.arg[0];
+		p->reg[p->op.arg_raw[1] - 1] = value;
 	}
 	return (TRUE);
 }

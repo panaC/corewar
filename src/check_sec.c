@@ -6,7 +6,7 @@
 /*   By: msukhare <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/16 17:20:17 by msukhare          #+#    #+#             */
-/*   Updated: 2018/05/18 16:32:55 by msukhare         ###   ########.fr       */
+/*   Updated: 2018/05/26 14:39:43 by msukhare         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ int			ft_str_in_str(char *str, char *cmp)
 	return (0);
 }
 
-static int	ft_if_all_digit(char *str)
+int			ft_if_all_digit(char *str)
 {
 	int		i;
 

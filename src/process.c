@@ -6,7 +6,7 @@
 /*   By: pleroux <pleroux@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/16 17:56:53 by pleroux           #+#    #+#             */
-/*   Updated: 2018/05/24 12:26:44 by pierre           ###   ########.fr       */
+/*   Updated: 2018/06/01 12:42:52 by pierre           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,19 +79,19 @@ t_process	*process_create(t_process *prev, t_uint32 pc)
 	return (p);
 }
 
-t_process		*process_add_lst(t_process **bg, t_process *prev, t_uint32 pc)
+t_process		*process_add_lst(t_process **bg, t_process *prev, t_uint32 pc, int pos_player)
 {
 	t_process	*new;
 
 	if (!(new = process_create(prev, pc)))
 		return (NULL);
+	new->numero = pos_player;
 	if (!(*bg))
-		*bg = new;
+		(*bg) = new;
 	else
 	{
-		while (prev->next)
-			prev = prev->next;
-		prev->next = new;
+		new->next = (*bg);
+		(*bg) = new;
 	}
 	return (new);
 }

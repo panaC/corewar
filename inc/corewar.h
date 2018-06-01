@@ -6,13 +6,10 @@
 /*   By: pierre <pleroux@student.42.fr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/15 10:01:43 by pierre            #+#    #+#             */
-<<<<<<< HEAD
-/*   Updated: 2018/05/19 19:45:09 by msukhare         ###   ########.fr       */
+/*   Updated: 2018/05/26 14:38:42 by msukhare         ###   ########.fr       */
 /*   Updated: 2018/05/17 14:34:19 by pleroux          ###   ########.fr       */
 /*   Updated: 2018/05/19 09:01:21 by pierre           ###   ########.fr       */
-=======
 /*   Updated: 2018/05/20 00:15:40 by pleroux          ###   ########.fr       */
->>>>>>> 25ac3071544935fba970717c00aa595724038277
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,7 +92,7 @@ typedef struct		s_op
 ** permet de pointer vers l'execution de l'op code
 */
 
-typedef int (*t_f_op)(void*); //prevoir t_player ou struct custom pour fork
+//typedef int (*t_f_op)(void*); //prevoir t_player ou struct custom pour fork
 
 /*
 ** decodage op_code :
@@ -108,7 +105,7 @@ typedef struct		s_instruction
 	t_encodage		encodage;
 	t_uint32		arg[NB_ARG];
 	t_op			info;
-	t_f_op			ft;
+//	t_f_op			ft;
 }					t_instruc;
 /* game :
 ** structure processus
@@ -120,6 +117,8 @@ typedef struct		s_process
 	t_bool			live;
 	t_bool			carry;
 	t_uint32		pc;
+	char			*name;
+	int				numero;
 	t_reg			reg[REG_NUMBER];
 	t_instruc		op;
 	struct s_process	*next;
@@ -131,7 +130,7 @@ typedef struct		s_process
 typedef struct		s_player
 {
 	header_t		head;
-	t_process		*process;//null
+	t_process		*process;
 	t_uint8			data[CHAMP_MAX_SIZE];//bzero
 	t_uint32		numero;
 	int				fd;
@@ -147,6 +146,8 @@ typedef struct		s_env
 {
 	int				verbos;
 	int				visu;
+	int				dump;
+	int				nb_cycle_dump;
 	t_player		player[MAX_PLAYERS];
 	t_uint8			nb_player;
 
@@ -155,7 +156,7 @@ typedef struct		s_env
 	t_uint32		nb_live;
 	t_uint32		check;
 
-	t_f_op			ft_tab[NB_OP];
+//	t_f_op			ft_tab[NB_OP];
 
 	t_uint8			mem[MEM_SIZE];
 
@@ -174,6 +175,7 @@ int					ft_init_players(t_env *env, char **argv, int start, int argc);
 int					ft_check_in_tab_player(int place, t_env *env);
 int					ft_check_champs_before(t_env *env, char *str);
 int					ft_check_fd_before(t_env *env, int i);
+void				ft_delete_process(t_env *env);
 
 /*
  * A FAIRE :
@@ -192,12 +194,12 @@ void				process_init_instruction(t_instruc *ist);
 void				process_init_empty(t_process *p, int numero);
 void				process_init(t_process *p, t_process *prev, t_uint32 pc);
 t_process			*process_create(t_process *prev, t_uint32 pc);
-t_process			*process_add_lst(t_list **l, t_process *prev, t_uint32 pc);
+t_process			*process_add_lst(t_process **l, t_process *prev, t_uint32 pc, int pos_player);
 
 /*
 ** op_decod.c
 */
-t_uint32			op_decod(t_process *p, t_uint8 *b, t_uint32 pc, t_list *l);
+t_uint32			op_decod(t_process *p, t_uint8 *b, t_uint32 pc, t_process *l);
 t_uint32			rot_mem(t_uint32 *pc);;
 
 /*
