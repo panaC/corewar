@@ -1,0 +1,82 @@
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    Makefile                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: pierre <pleroux@student.42.fr>             +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2017/12/11 13:59:37 by pierre            #+#    #+#              #
+#    Updated: 2018/05/20 07:37:49 by pleroux          ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
+
+DBG=-ggdb -fsanitize=address -fno-omit-frame-pointer -g3
+DBG2=-ggdb  -fsanitize=address -fsanitize-memory-track-origins
+
+NAME = corewar
+CC = gcc
+LIB_PRINTF = ft_printf/libftprintf.a
+LIB_PRINTF_PATH = ft_printf/
+LIB_PRINTF_HEADER = ft_printf/inc
+LIB_PRINTF_LINK = ftprintf
+LIB = libft/libft.a
+LIB_PATH = libft/
+LIB_HEADER = libft/includes
+LIB_LINK = ft
+SRC_DIR = src/
+INC_DIR = inc/
+CFLAGS = -Wall -Werror -Wextra -I $(LIB_HEADER) -I $(LIB_PRINTF_HEADER) -I $(INC_DIR)
+LIB_FLAGS = -L$(LIB_PATH) -l$(LIB_LINK) \
+			-L$(LIB_PRINTF_PATH) -l$(LIB_PRINTF_LINK)
+INC_FILE = corewar.h \
+		   op.h \
+		   parser.h \
+		   op_code.h
+SRC_FILE = op.c \
+		   main.c \
+		   parser.c \
+		   parser_tools.c \
+		   process.c \
+		   check_sec.c \
+		   check_argv.c \
+		   check_champs_fds.c \
+		   game_init.c \
+		   init_player.c \
+		   op_decod.c \
+		   op_code/add.c \
+		   op_code/sub.c \
+		   op_code/sti.c \
+		   op_code/st.c \
+		   op_code/ld.c \
+		   op_code/aff.c
+		   #game.c
+
+SRC = $(addprefix $(SRC_DIR), $(SRC_FILE))
+INC = $(addprefix $(INC_DIR), $(INC_FILE))
+OBJ = $(SRC:.c=.o)
+
+all		: $(LIB) $(LIB_PRINTF) $(NAME)
+
+$(LIB)	:
+	make -C $(LIB_PATH)
+
+$(LIB_PRINTF)	:
+	make -C $(LIB_PRINTF_PATH)
+
+%.o: %.c $(INC)
+	     $(CC) $(CFLAGS) -o $@ -c $<
+
+$(NAME)	: $(OBJ)
+	$(CC) -o $(NAME) $(OBJ) $(CFLAGS) $(LIB_FLAGS)
+
+clean	:
+	rm -f $(OBJ)
+	make -C $(LIB_PATH) fclean
+	make -C $(LIB_PRINTF_PATH) fclean
+
+fclean	: clean
+	rm -f $(NAME)
+
+re		: clean all
+
+.PHONY	: all clean re fclean $(LIB) $(LIB_PRINTF)
