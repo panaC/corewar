@@ -6,7 +6,7 @@
 /*   By: msukhare <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/16 16:02:23 by msukhare          #+#    #+#             */
-/*   Updated: 2018/05/28 11:43:11 by msukhare         ###   ########.fr       */
+/*   Updated: 2018/06/01 17:42:25 by pleroux          ###   ########.fr       */
 /*   Updated: 2018/05/20 00:34:44 by pleroux          ###   ########.fr       */
 /*   Updated: 2018/05/20 07:04:26 by pleroux          ###   ########.fr       */
 /*                                                                            */
@@ -19,84 +19,27 @@
 #include <stdlib.h>
 #include <stdio.h>
 
-static void	ft_init_struct(t_env *env)
-{
-	env->verbos = 0;
-	env->visu = 0;
-	env->dump = 0;
-	env->nb_cycle_dump = 0;
-	env->cycle_totale = 0;
-	env->cycle = 0;
-	env->nb_live = 0;
-	env->check = 0;
-	ft_bzero(env->mem, MEM_SIZE);
-}
-/*
-void		ft_creat_process(t_env *env, int i)
-{
-	t_process *tmp;
-
-	tmp = (t_process*)malloc(sizeof(t_process) * 1);
-	env->player[i].process = tmp;
-	tmp->next = NULL;
-	tmp->live = 1;
-	tmp->carry = 0;
-	tmp->pc = 1;
-	tmp->name = "end";
-	if (i >= 0)
-	{
-		tmp = (t_process*)malloc(sizeof(t_process) * 1);
-		tmp->next = env->player[i].process;
-		env->player[i].process = tmp;
-		tmp->live = 4;
-		tmp->carry = 0;
-		tmp->pc = 2;
-		tmp->name = "end -1";
-		if (i >= 1)
-		{
-			tmp = (t_process*)malloc(sizeof(t_process) * 1);
-			tmp->next = env->player[i].process;
-			env->player[i].process = tmp;
-			tmp->live = 4;
-			tmp->carry = 0;
-			tmp->pc = 3;
-		tmp->name = "end -2";
-			if (i >= 2)
-			{
-				tmp = (t_process*)malloc(sizeof(t_process) * 1);
-				tmp->next = env->player[i].process;
-				env->player[i].process = tmp;
-				tmp->live = 5;
-				tmp->carry = 1;
-				tmp->pc = 4;
-		tmp->name = "end -3";
-				tmp = (t_process*)malloc(sizeof(t_process) * 1);
-				tmp->next = env->player[i].process;
-				env->player[i].process = tmp;
-				tmp->live = 6;
-				tmp->carry = 1;
-				tmp->pc = 5;
-		tmp->name = "end -4";
-				tmp = (t_process*)malloc(sizeof(t_process) * 1);
-				tmp->next = env->player[i].process;
-				env->player[i].process = tmp;
-				tmp->live = 5;
-				tmp->carry = 1;
-				tmp->pc = 6;
-			tmp->name = "end -5";
-				tmp = (t_process*)malloc(sizeof(t_process) * 1);
-				tmp->next = env->player[i].process;
-				env->player[i].process = tmp;
-				tmp->live = 5;
-				tmp->carry = 1;
-				tmp->pc = 7;
-		tmp->name = "start";
-			}
-		}
-	}
-}
-*/
 int			main(int argc, char **argv)
+{
+	t_env	env;
+
+	ft_init_struct(&env);
+	if (ft_check_argv(argc, argv, &env))
+	{
+		if (parser(&env))
+		{
+			game_init(&env);
+			game(&env);
+			print_win(&env);
+		}
+		else
+			verbose(&env, ERROR, "PARSER -> QUIT\n");
+	}
+	else
+		verbose(&env, ERROR, "ARG -> QUIT\n");
+}
+
+int			main_3(int argc, char **argv)
 {
 	t_env	env;
 	int		i;

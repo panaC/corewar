@@ -6,7 +6,7 @@
 #    By: pierre <pleroux@student.42.fr>             +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/12/11 13:59:37 by pierre            #+#    #+#              #
-#    Updated: 2018/05/20 07:37:49 by pleroux          ###   ########.fr        #
+#    Updated: 2018/06/01 21:02:47 by pleroux          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -34,6 +34,9 @@ INC_FILE = corewar.h \
 		   op_code.h
 SRC_FILE = op.c \
 		   main.c \
+		   init.c \
+		   game_iter_process.c \
+		   game_rules.c \
 		   parser.c \
 		   parser_tools.c \
 		   process.c \

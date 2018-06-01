@@ -6,7 +6,7 @@
 /*   By: pierre <pleroux@student.42.fr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/17 09:59:36 by pierre            #+#    #+#             */
-/*   Updated: 2018/05/26 17:23:16 by msukhare         ###   ########.fr       */
+/*   Updated: 2018/06/01 18:56:54 by pleroux          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,9 +21,7 @@ t_bool			game_init(t_env *e)
 	int			pc;
 	int			tmp;
 
-	//init prog player dans mem suivant numero de joueur
-	game_init_mem(e);
-	
+	game_init_mem(e);	
 	i = 1;
 	pc = 0;
 	tmp = MEM_SIZE / e->nb_player;
@@ -37,9 +35,6 @@ t_bool			game_init(t_env *e)
 		pc += tmp;
 		++i;
 	}
-
-	//init constante du jeux mais fait dans init_env
-	
 	return (TRUE);
 }
 

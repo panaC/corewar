@@ -6,7 +6,7 @@
 /*   By: pleroux <pleroux@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/20 06:22:36 by pleroux           #+#    #+#             */
-/*   Updated: 2018/05/20 07:13:46 by pleroux          ###   ########.fr       */
+/*   Updated: 2018/06/01 22:01:58 by pleroux          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,15 +15,14 @@
 #include "corewar.h"
 #include "op.h"
 
-int			op_st(void *v, t_list *l, t_uint8 *b)
+int			op_st(void *e)
 {
 	t_process		*p;
 	t_reg			value;
 	int				i;
 
-	(void)l;
 	i = REG_SIZE;
-	p = (t_process*)v;
+	p = ((t_env*)e)->current_process;
 	value.v = p->op.arg[0];
 	if (p->op.encodage.bit.a3 == T_REG)
 	{

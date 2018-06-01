@@ -6,7 +6,7 @@
 /*   By: pierre <pleroux@student.42.fr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/18 19:20:39 by pierre            #+#    #+#             */
-/*   Updated: 2018/05/28 11:42:36 by msukhare         ###   ########.fr       */
+/*   Updated: 2018/06/01 21:35:20 by pleroux          ###   ########.fr       */
 /*   Updated: 2018/05/20 02:25:04 by pleroux          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
@@ -31,7 +31,7 @@ t_uint32		rot_mem_set(t_uint32 *pc)
 	return (*pc);
 }
 
-t_uint32		op_decod(t_process *p, t_uint8 *b, t_uint32 pc, t_process *l)
+t_uint32		op_decod(t_env *e)
 {
 
 // attention memoire circulaire tester en permanence valeur de
@@ -44,7 +44,13 @@ t_uint32		op_decod(t_process *p, t_uint8 *b, t_uint32 pc, t_process *l)
 	t_uint		val;
 	t_uint8		encod[3];
 	t_uint8		i;
+	t_process	*p;
+	t_uint8		*b;
+	t_uint32	pc;
 
+	p = e->current_process;
+	b = e->mem;
+	pc = p->pc;
 	val.v32 = 0;
 	i = 0;
 	if (!p || !b || b[pc] == 0 || b[pc] > REG_NUMBER)
@@ -168,7 +174,7 @@ t_uint32		op_decod(t_process *p, t_uint8 *b, t_uint32 pc, t_process *l)
 		//exec de la fct op
 		//recuperer le tableau ft_tab et executer la bonne fonction
 		//ou le mettre dans op_tab si possible de le modifier
-		p->op.info.ft(p, l, b);
+		p->op.info.ft(e);
 		//reset op
 		process_init_instruction(&(p->op));
 		rot_mem(&pc);

@@ -6,7 +6,7 @@
 /*   By: pleroux <pleroux@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/20 07:31:49 by pleroux           #+#    #+#             */
-/*   Updated: 2018/05/20 07:43:25 by pleroux          ###   ########.fr       */
+/*   Updated: 2018/06/01 22:00:26 by pleroux          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,13 +16,11 @@
 #include "corewar.h"
 #include "op.h"
 
-int			op_aff(void *v, t_list *l, t_uint8 *b)
+int			op_aff(void *e)
 {
 	t_process		*p;
 
-	(void)l;
-	(void)b;
-	p = (t_process*)v;
+	p = ((t_env*)e)->current_process;
 	ft_printf("AFF: %c\n", p->op.arg[0] % 256);
 	return (TRUE);
 }

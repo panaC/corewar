@@ -6,7 +6,7 @@
 /*   By: pierre <pleroux@student.42.fr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/15 10:01:43 by pierre            #+#    #+#             */
-/*   Updated: 2018/05/26 14:38:42 by msukhare         ###   ########.fr       */
+/*   Updated: 2018/06/01 21:42:53 by pleroux          ###   ########.fr       */
 /*   Updated: 2018/05/17 14:34:19 by pleroux          ###   ########.fr       */
 /*   Updated: 2018/05/19 09:01:21 by pierre           ###   ########.fr       */
 /*   Updated: 2018/05/20 00:15:40 by pleroux          ###   ########.fr       */
@@ -29,7 +29,7 @@
 ** typedef sur ptr de fonction
 ** permet de pointer vers l'execution de l'op code
 */
-typedef int (t_f_op)(void *, t_list *, t_uint8*);
+typedef int (t_f_op)(void *);
 
 /*
 ** decodage op_code :
@@ -105,7 +105,7 @@ typedef struct		s_instruction
 	t_encodage		encodage;
 	t_uint32		arg[NB_ARG];
 	t_op			info;
-//	t_f_op			ft;
+	t_f_op			ft;
 }					t_instruc;
 /* game :
 ** structure processus
@@ -148,6 +148,7 @@ typedef struct		s_env
 	int				visu;
 	int				dump;
 	int				nb_cycle_dump;
+
 	t_player		player[MAX_PLAYERS];
 	t_uint8			nb_player;
 
@@ -159,11 +160,24 @@ typedef struct		s_env
 //	t_f_op			ft_tab[NB_OP];
 
 	t_uint8			mem[MEM_SIZE];
-
+	
 	t_string		err_parsing;
+
+	t_process		*current_process;
 }					t_env;
 
 extern t_op			op_tab[17];
+
+/*
+** init.c
+*/
+void				ft_init_struct(t_env *e);
+
+/*
+** game_iter_process.c
+*/
+t_process			*game_iter_process(t_env *env);
+int					game_has_process(t_env *env);
 
 //check argv
 int					ft_check_argv(int argc, char **argv, t_env *env);
@@ -200,7 +214,8 @@ t_process			*process_add_lst(t_process **l, t_process *prev, t_uint32 pc, int po
 ** op_decod.c
 */
 t_uint32			op_decod(t_process *p, t_uint8 *b, t_uint32 pc, t_process *l);
-t_uint32			rot_mem(t_uint32 *pc);;
+t_uint32			rot_mem(t_uint32 *pc);
+t_uint32			rot_mem_set(t_uint32 *pc);
 
 /*
 ** game_init.c
@@ -212,5 +227,11 @@ t_bool				game_init_mem(t_env *e);
 ** game.c
 */
 int					game(t_env *e);
+
+/*
+** game_rules.c
+*/
+t_bool				game_not_end(t_env *e);
+t_bool				game_rules(t_env *e);
 
 #endif
