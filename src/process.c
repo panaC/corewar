@@ -6,7 +6,7 @@
 /*   By: pleroux <pleroux@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/16 17:56:53 by pleroux           #+#    #+#             */
-/*   Updated: 2018/06/01 12:42:52 by pierre           ###   ########.fr       */
+/*   Updated: 2018/06/02 13:27:02 by pleroux          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,7 @@ void		process_init_empty(t_process *p, int numero)
 	p->carry = 0;
 	p->pc = 0;
 	p->reg[0].v = numero;
+	p->numero = numero;
 	i = 1;
 	while (i < REG_NUMBER)
 	{
@@ -57,6 +58,7 @@ void		process_init(t_process *p, t_process *prev, t_uint32 pc)
 	p->live = prev->live;
 	p->carry = prev->carry;
 	p->pc = pc;
+	p->numero = prev->numero;
 	while (i < REG_NUMBER)
 	{
 		p->reg[i] = prev->reg[i];
@@ -79,13 +81,12 @@ t_process	*process_create(t_process *prev, t_uint32 pc)
 	return (p);
 }
 
-t_process		*process_add_lst(t_process **bg, t_process *prev, t_uint32 pc, int pos_player)
+t_process		*process_add_lst(t_process **bg, t_process *prev, t_uint32 pc)
 {
 	t_process	*new;
 
 	if (!(new = process_create(prev, pc)))
 		return (NULL);
-	new->numero = pos_player;
 	if (!(*bg))
 		(*bg) = new;
 	else

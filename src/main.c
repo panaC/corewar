@@ -6,7 +6,7 @@
 /*   By: msukhare <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/16 16:02:23 by msukhare          #+#    #+#             */
-/*   Updated: 2018/06/01 17:42:25 by pleroux          ###   ########.fr       */
+/*   Updated: 2018/06/02 20:28:35 by pleroux          ###   ########.fr       */
 /*   Updated: 2018/05/20 00:34:44 by pleroux          ###   ########.fr       */
 /*   Updated: 2018/05/20 07:04:26 by pleroux          ###   ########.fr       */
 /*                                                                            */
@@ -24,19 +24,26 @@ int			main(int argc, char **argv)
 	t_env	env;
 
 	ft_init_struct(&env);
+	/*
+	 * debug
+	 */
+	env.verbos_lvl = 16;
+	/*
+	 * debug
+	 */
 	if (ft_check_argv(argc, argv, &env))
 	{
 		if (parser(&env))
 		{
 			game_init(&env);
 			game(&env);
-			print_win(&env);
+			//print_win(&env);
 		}
 		else
-			verbose(&env, ERROR, "PARSER -> QUIT\n");
+			verbose(&env, E, "PARSER -> QUIT\n");
 	}
 	else
-		verbose(&env, ERROR, "ARG -> QUIT\n");
+		verbose(&env, E, "ARG -> QUIT\n");
 }
 
 int			main_3(int argc, char **argv)
@@ -69,9 +76,10 @@ int			main_3(int argc, char **argv)
 		while (i < env.nb_player)
 		{
 			ft_creat_process(&env, i);
-			i++;*/
+			i++;
 		}
 		game(&env);
+		*/
 	}
 	i = 0;
 	while (i < env.nb_player)

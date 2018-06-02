@@ -6,7 +6,7 @@
 /*   By: pierre <pleroux@student.42.fr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/17 10:33:14 by pierre            #+#    #+#             */
-/*   Updated: 2018/06/01 22:05:09 by pleroux          ###   ########.fr       */
+/*   Updated: 2018/06/02 20:45:44 by pleroux          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include "corewar.h"
 #include "op.h"
 
-static void			print_process(t_env *e)
+/*static void			print_process(t_env *e)
 {
 	int		i;
 	t_process	*tmp;
@@ -25,29 +25,33 @@ static void			print_process(t_env *e)
 		tmp = e->player[i].process;
 		while (tmp)
 		{
-			printf("live = %d, carry = %d, pc = %d %s\n\n\n",tmp->live, tmp->carry, tmp->pc, tmp->name);
+			verbose(e, V_8, "live = %d, carry = %d, pc = %d %s\n\n\n",tmp->live, tmp->carry, tmp->pc, tmp->name);
 			tmp = tmp->next;
 		}
-		printf("player %d\n", i);
+		verbose(e, V_8, "player %d\n", i);
 		i++;
 	}
-}
+}*/
 
 int					game(t_env *e)
 {
 	t_process		*p;
 
+	verbose(e, V_7, "Start game\n");
 	while (game_has_process(e) && game_not_end(e))
 	{
+		verbose(e, V_6, "New Cycle %d : total %d\n", e->cycle, e->cycle_totale);
 		while ((p = game_iter_process(e)))
 		{
+			verbose(e, V_5, "process find p = %p\n", p);
+			verbose(e, V_6, "process: live = %d, carry = %d, pc = %d name = %s player = %d\n", p->live, p->carry, p->pc, p->name, p->numero);
 			e->current_process = p;
 			p->pc = op_decod(e);
-			//printf("%d live = %d, carry = %d, pc = %d %s player = %d\n\n\n",e->cycle_totale, p->live, p->carry, p->pc, p->name, p->numero);
 		}
 		game_rules(e);
 		++e->cycle_totale;
 		++e->cycle;
 	}
+	verbose(e, V_7, "End game\n");
 	return (TRUE);
 }

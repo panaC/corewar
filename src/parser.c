@@ -6,7 +6,7 @@
 /*   By: pierre <pleroux@student.42.fr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/16 12:57:24 by pierre            #+#    #+#             */
-/*   Updated: 2018/05/18 16:41:46 by pierre           ###   ########.fr       */
+/*   Updated: 2018/06/02 13:32:11 by pleroux          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,15 +31,19 @@ t_bool		parser(t_env *e)
 	int		i;
 
 	i = 1;
+	verbose(e, V_7, "Start Parsing %d players\n", e->nb_player);
 	while (i <= e->nb_player)
 	{
 		if (!parser_cor(e, i))
 		{
-			ft_printf("Error %s n°%d: %s\n", e->player[i - 1].name, i, e->err_parsing);
+			verbose(e, E_PARSING, "Parsing %s n°%d: %s\n",
+					e->player[i - 1].name, i, e->err_parsing);
 			return (FALSE);
 		}
+		verbose(e, V_6, "parsing %s n°%d -> OK\n", e->player[i - 1].name, i);
 		++i;
 	}
+	verbose(e, V_7, "End Parsing\n");
 	return (TRUE);
 }
 
@@ -129,7 +133,7 @@ t_bool		parser_cor_data(t_env *e, t_player *p)
 		{
 			if (read(p->fd, &tmp, 1) == 0)
 			{
-				lseek(p->fd , 0 , SEEK_SET);
+				lseek(p->fd, 0, SEEK_SET);
 				return (TRUE);
 			}
 			else

@@ -6,7 +6,7 @@
 /*   By: pierre <pleroux@student.42.fr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/17 09:59:36 by pierre            #+#    #+#             */
-/*   Updated: 2018/06/01 18:56:54 by pleroux          ###   ########.fr       */
+/*   Updated: 2018/06/02 13:29:24 by pleroux          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,20 +21,22 @@ t_bool			game_init(t_env *e)
 	int			pc;
 	int			tmp;
 
-	game_init_mem(e);	
+	verbose(e, V_7, "Start Game_init\n");
+	game_init_mem(e);
 	i = 1;
 	pc = 0;
 	tmp = MEM_SIZE / e->nb_player;
 	while (i <= e->nb_player)
 	{
+		verbose(e, V_8, "Init process %d\n", i);
 		process_init_empty(&prev, i);
-		if (!process_add_lst(&(e->player[i - 1].process), &prev, pc, (i - 1)))
-		{
+		verbose(e, V_8, "Add lst process %d\n", i);
+		if (!process_add_lst(&(e->player[i - 1].process), &prev, pc))
 			return (FALSE);
-		}
 		pc += tmp;
 		++i;
 	}
+	verbose(e, V_7, "End Game_init\n");
 	return (TRUE);
 }
 
@@ -43,6 +45,7 @@ t_bool			game_init_mem(t_env *e)
 	t_uint32	size;
 	int			i;
 
+	verbose(e, V_8, "Start Game_init_mem\n");
 	size = MEM_SIZE / e->nb_player;
 	i = 0;
 	while (i < e->nb_player)
@@ -51,5 +54,8 @@ t_bool			game_init_mem(t_env *e)
 		ft_memcpy(&(e->mem[i * size]), e->player[i].data, e->player[i].head.prog_size);
 		++i;
 	}
+	//debug
+	ft_dump(e);
+	//debug
 	return (TRUE);
 }

@@ -6,7 +6,7 @@
 #    By: pierre <pleroux@student.42.fr>             +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/12/11 13:59:37 by pierre            #+#    #+#              #
-#    Updated: 2018/06/01 21:02:47 by pleroux          ###   ########.fr        #
+#    Updated: 2018/06/02 19:52:35 by pleroux          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -35,6 +35,7 @@ INC_FILE = corewar.h \
 SRC_FILE = op.c \
 		   main.c \
 		   init.c \
+		   game.c \
 		   game_iter_process.c \
 		   game_rules.c \
 		   parser.c \
@@ -45,6 +46,9 @@ SRC_FILE = op.c \
 		   check_champs_fds.c \
 		   game_init.c \
 		   init_player.c \
+		   verbose.c \
+		   ft_dump.c \
+		   free_links.c \
 		   op_decod.c \
 		   op_code/add.c \
 		   op_code/sub.c \
@@ -52,7 +56,6 @@ SRC_FILE = op.c \
 		   op_code/st.c \
 		   op_code/ld.c \
 		   op_code/aff.c
-		   #game.c
 
 SRC = $(addprefix $(SRC_DIR), $(SRC_FILE))
 INC = $(addprefix $(INC_DIR), $(INC_FILE))

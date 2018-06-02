@@ -6,12 +6,20 @@
 /*   By: msukhare <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/16 16:55:14 by msukhare          #+#    #+#             */
-/*   Updated: 2018/05/26 14:38:22 by msukhare         ###   ########.fr       */
+/*   Updated: 2018/06/02 19:50:09 by pleroux          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "corewar.h"
 #include <libft.h>
+
+static void		init_header(header_t *a)
+{
+	a->magic = 0;
+	a->prog_size = 0;
+	ft_bzero(a->prog_name, PROG_NAME_LENGTH + 1);
+	ft_bzero(a->comment, COMMENT_LENGTH + 1);
+}
 
 static int	ft_get_opt(char *str, t_env *env)
 {
@@ -20,7 +28,7 @@ static int	ft_get_opt(char *str, t_env *env)
 	else if (ft_strcmp(str, "-s") == 0)
 		env->visu = 1;
 	else if (ft_strcmp(str, "-dump") == 0)
-		dump = 1;
+		env->dump = 1;
 	/*
 	 bonus a rajouter
 	*/
@@ -37,6 +45,7 @@ static int	ft_chk_dump(t_env *env, int *i, char **argv)
 		return (1);
 	env->nb_cycle_dump = ft_atoi(argv[*i + 1]);
 	(*i)++;
+	return (0);
 }
 
 static int	ft_check_opt(char **argv, int argc, t_env *env)
@@ -75,8 +84,9 @@ static void	ft_init_tab_players(t_env *env)
 	i = 0;
 	while (i < env->nb_player)
 	{
+		init_header(&(env->player[i].head));
 		env->player[i].process = NULL;
-		env->player[i].numero = -1;
+		env->player[i].numero = 1;
 		env->player[i].fd = -1;
 		env->player[i].name = NULL;
 		env->player[i].mem_ref = 0;

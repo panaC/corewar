@@ -6,7 +6,7 @@
 /*   By: pleroux <pleroux@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/01 19:07:48 by pleroux           #+#    #+#             */
-/*   Updated: 2018/06/01 20:13:08 by pleroux          ###   ########.fr       */
+/*   Updated: 2018/06/02 20:57:11 by pleroux          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,8 +49,10 @@ t_process			*game_iter_process(t_env *env)
 	t_process		*tmp;
 	int				i;
 	static int		i_pro = 0;
-	static int		i_play = env->nb_player - 1;
+	static int		i_play;
 
+	verbose(env, V_7, "Start game_iter_process\n");
+	i_play = (env->nb_player - 1);
 	while (i_play >= 0)
 	{
 		i = 0;
@@ -58,16 +60,20 @@ t_process			*game_iter_process(t_env *env)
 		while (i++ < i_pro && tmp)
 			tmp = tmp->next;
 		i_play--;
-		if (*i_play < 0 && *i_pro < ft_get_max_pro(env))
+		if (i_play < 0 && i_pro < ft_get_max_pro(env))
 		{
 			i_pro++;
 			i_play = (env->nb_player - 1);
 		}
 		if (tmp)
+		{
+			verbose(env, V_7, "End game_iter_process\n");
 			return (tmp);
+		}
 	}
 	i_pro = 0;
 	i_play = env->nb_player - 1;
+	verbose(env, V_7, "End game_iter_process\n");
 	return (NULL);
 }
 
@@ -75,13 +81,18 @@ int					game_has_process(t_env *env)
 {
 	int				i;
 
+	verbose(env, V_7, "Start game_has_process\n");
 	i = 0;
 	while (i < env->nb_player)
 	{
 		if (env->player[i].process)
+		{
+			verbose(env, V_7, "End game_has_process\n");
 			return (1);
+		}
 		i++;
 	}
+	verbose(env, V_7, "End game_has_process\n");
 	return (0);
 }
 
