@@ -6,7 +6,7 @@
 /*   By: pierre <pleroux@student.42.fr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/18 19:20:39 by pierre            #+#    #+#             */
-/*   Updated: 2018/06/04 14:23:10 by pierre           ###   ########.fr       */
+/*   Updated: 2018/06/04 17:00:35 by pierre           ###   ########.fr       */
 /*   Updated: 2018/05/20 02:25:04 by pleroux          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
@@ -127,7 +127,7 @@ t_uint32		op_decod(t_env *e)
 					val.v[1] = b[rot_mem(&pc)];
 					val.v[0] = b[rot_mem(&pc)];
 					p->op.arg[i] = p->pc + val.v32;
-					p->op.arg[i] = rot_mem_set(&(p->op.arg[0]));
+					p->op.arg[i] = rot_mem_set(&(p->op.arg[i]));
 					p->op.arg_raw[i] = val.v32;
 					verbose(e, V_7, "op: arg %u raw %u\n", p->op.arg[i], p->op.arg_raw[i]);
 				}

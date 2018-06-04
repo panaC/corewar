@@ -6,7 +6,7 @@
 #    By: pierre <pleroux@student.42.fr>             +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/12/11 13:59:37 by pierre            #+#    #+#              #
-#    Updated: 2018/06/03 18:17:39 by pierre           ###   ########.fr        #
+#    Updated: 2018/06/04 18:18:51 by pierre           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -59,7 +59,9 @@ SRC_FILE = op.c \
 		   op_code/aff.c \
 	       op_code/fork.c \
 		   op_code/lfork.c \
-		   op_code/live.c
+		   op_code/live.c \
+		   op_code/ldi.c \
+		   op_code/lldi.c 
 
 SRC = $(addprefix $(SRC_DIR), $(SRC_FILE))
 INC = $(addprefix $(INC_DIR), $(INC_FILE))

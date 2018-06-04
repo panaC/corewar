@@ -6,7 +6,7 @@
 /*   By: pleroux <pleroux@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/19 22:54:54 by pleroux           #+#    #+#             */
-/*   Updated: 2018/06/02 19:51:25 by pleroux          ###   ########.fr       */
+/*   Updated: 2018/06/04 18:15:46 by pierre           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,11 +27,7 @@ int			op_sti(void *e)
 	p = ((t_env*)e)->current_process;
 	value.v = p->op.arg[0];
 	addr = p->op.arg[1] + p->op.arg[2];
-	ft_printf("sti: out %u addr %u\n", value.v, addr);
 	while (i >= 0)
-	{
-		((t_env*)e)->mem[rot_mem(&addr) - 1] = value.t[i];
-		--i;
-	}
+		((t_env*)e)->mem[rot_mem(&addr) - 1] = value.t[--i];
 	return (TRUE);
 }

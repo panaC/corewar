@@ -1,21 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ldi.c                                              :+:      :+:    :+:   */
+/*   lldi.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pleroux <pleroux@student.42.fr>            +#+  +:+       +#+        */
+/*   By: pierre <pleroux@student.42.fr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/05/20 07:23:51 by pleroux           #+#    #+#             */
-/*   Updated: 2018/06/04 18:20:25 by pierre           ###   ########.fr       */
+/*   Created: 2018/06/04 18:16:14 by pierre            #+#    #+#             */
+/*   Updated: 2018/06/04 18:20:14 by pierre           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <libft.h>
-#include "op_code.h"
 #include "corewar.h"
+#include "op_code.h"
 #include "op.h"
 
-int			op_ldi(void *env)
+int			op_lldi(void *env)
 {
 	t_process		*p;
 	t_env			*e;
@@ -26,7 +26,7 @@ int			op_ldi(void *env)
 	i = (IND_SIZE > 4 ? 3 : IND_SIZE - 1);
 	e = (t_env *)env;
 	p = e->current_process;
-	pc = p->pc + (p->op.arg[0] % IDX_MOD);
+	pc = p->pc + p->op.arg[0];
 	while (i >= 0)
 		s.v[--i] = e->mem[rot_mem(&pc)];
 	s.v32 += p->op.arg[1];

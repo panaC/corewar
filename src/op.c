@@ -6,7 +6,7 @@
 /*   By: zaz <marvin@42.fr>                         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/10/04 11:43:01 by zaz               #+#    #+#             */
-/*   Updated: 2018/06/03 18:16:57 by pierre           ###   ########.fr       */
+/*   Updated: 2018/06/04 18:18:22 by pierre           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,13 +29,13 @@ t_op    op_tab[17] =
 		"ou (xor  r1, r2, r3   r1^r2 -> r3", 1, 0, NULL},
 	{"zjmp", 1, {T_DIR}, 9, 20, "jump if zero", 0, 1, NULL},
 	{"ldi", 3, {T_REG | T_DIR | T_IND, T_DIR | T_REG, T_REG}, 10, 25,
-		"load index", 1, 1, NULL},
+		"load index", 1, 1, op_ldi},
 	{"sti", 3, {T_REG, T_REG | T_DIR | T_IND, T_DIR | T_REG}, 11, 25,
 		"store index", 1, 1, op_sti},
 	{"fork", 1, {T_DIR}, 12, 800, "fork", 0, 1, op_fork},
 	{"lld", 2, {T_DIR | T_IND, T_REG}, 13, 10, "long load", 1, 0, NULL},
 	{"lldi", 3, {T_REG | T_DIR | T_IND, T_DIR | T_REG, T_REG}, 14, 50,
-		"long load index", 1, 1, NULL},
+		"long load index", 1, 1, op_lldi},
 	{"lfork", 1, {T_DIR}, 15, 1000, "long fork", 0, 1, op_lfork},
 	{"aff", 1, {T_REG}, 16, 2, "aff", 1, 0, op_aff},
 	{0, 0, {0}, 0, 0, 0, 0, 0, 0}
