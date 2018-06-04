@@ -6,7 +6,7 @@
 /*   By: pleroux <pleroux@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/20 07:08:25 by pleroux           #+#    #+#             */
-/*   Updated: 2018/05/20 07:38:23 by pleroux          ###   ########.fr       */
+/*   Updated: 2018/06/01 22:00:57 by pleroux          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,16 +15,14 @@
 #include "corewar.h"
 #include "op.h"
 
-int			op_ld(void *v, t_list *l, t_uint8 *b)
+int			op_ld(void *e)
 {
 	t_process		*p;
 	t_reg			value;
 	int				i;
 
-	(void)l;
-	(void)b;
 	i = REG_SIZE;
-	p = (t_process*)v;
+	p = ((t_env*)e)->current_process;
 	if (p->op.arg_raw[1] && p->op.arg_raw[1] > REG_NUMBER)
 		return (FALSE);
 	else

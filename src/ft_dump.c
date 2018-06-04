@@ -6,19 +6,20 @@
 /*   By: msukhare <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/26 14:43:38 by msukhare          #+#    #+#             */
-/*   Updated: 2018/05/26 15:12:26 by msukhare         ###   ########.fr       */
+/*   Updated: 2018/06/02 20:30:16 by pleroux          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "corewar.h"
+#include "op.h"
 
 static void	print_hex(unsigned char hex)
 {
 	char	*tab;
 
 	tab = "0123456789abcdef";
-	ft_putchar(tab[hex / 32]);
-	ft_putchar(tab[hex % 32]);
+	ft_putchar(tab[hex / ft_strlen(tab)]);
+	ft_putchar(tab[hex % ft_strlen(tab)]);
 }
 
 static void	print_char(unsigned char hex)
@@ -38,7 +39,7 @@ static void	make_hexs(unsigned char *line, size_t curline)
 	{
 		if (i && i % 2 == 0)
 			ft_putchar(' ');
-		if (curline * 32 + i < SIZE_MEM)
+		if (curline * 32 + i < MEM_SIZE)
 			print_hex(line[i]);
 		else
 			ft_putstr("  ");
@@ -69,5 +70,4 @@ void		ft_dump(t_env *env)
 		tmp += 32;
 		curline++;
 	}
-	ft_del_and_exit(env, NULL);
 }

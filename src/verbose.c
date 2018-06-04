@@ -1,43 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   st.c                                               :+:      :+:    :+:   */
+/*   verbose.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pleroux <pleroux@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/05/20 06:22:36 by pleroux           #+#    #+#             */
-/*   Updated: 2018/06/02 19:51:45 by pleroux          ###   ########.fr       */
+/*   Created: 2018/06/02 12:35:11 by pleroux           #+#    #+#             */
+/*   Updated: 2018/06/02 19:53:50 by pleroux          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <ft_printf.h>
 #include <libft.h>
-#include "op_code.h"
+#include <unistd.h>
+#include <stdarg.h>
 #include "corewar.h"
-#include "op.h"
 
-int			op_st(void *e)
+int				verbose(t_env *e, int code, const char *s, ...)
 {
-	t_process		*p;
-	t_reg			value;
-	int				i;
+	char		*str;
+	va_list		ap;
+	int			sl;
 
-	i = REG_SIZE;
-	p = ((t_env*)e)->current_process;
-	value.v = p->op.arg[0];
-	if (p->op.encodage.bit.a3 == T_REG)
+	sl = 0;
+	if (code <= e->verbos_lvl)
 	{
-		if (p->op.arg_raw[1] && p->op.arg_raw[1] > REG_NUMBER)
-			return (FALSE);
-		else
-			p->reg[p->op.arg_raw[1] - 1] = value;
-	}
-	else
-	{
-		while (i >= 0)
+		ft_printf(((code < 0) ? "ERROR :%d: " : "VERBOSE :%d: "), code);
+		va_start(ap, s);
+		sl = ft_vasprintf(&str, s, ap);
+		va_end(ap);
+		if (sl > 0)
 		{
-			((t_env*)e)->mem[p->pc + (p->op.arg_raw[1] % IDX_MOD)] = value.t[i];
-			--i;
+			write(1, str, sl);
+			ft_strdel(&str);
 		}
 	}
-	return (TRUE);
+	return (sl);
 }

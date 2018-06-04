@@ -6,7 +6,7 @@
 /*   By: pleroux <pleroux@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/16 19:03:05 by pleroux           #+#    #+#             */
-/*   Updated: 2018/05/17 14:56:20 by pleroux          ###   ########.fr       */
+/*   Updated: 2018/06/02 19:50:22 by pleroux          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,10 +34,4 @@ int			parser_read_byte(int byte, int fd, void *buf)
 	return (ret);
 }
 
-void		parser_init_header(header_t *a)
-{
-	a->magic = 0;
-	a->prog_size = 0;
-	ft_bzero(a->prog_name, PROG_NAME_LENGTH + 1);
-	ft_bzero(a->comment, COMMENT_LENGTH + 1);
-}
+

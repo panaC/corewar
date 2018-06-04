@@ -6,10 +6,7 @@
 /*   By: pierre <pleroux@student.42.fr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/15 10:01:43 by pierre            #+#    #+#             */
-/*   Updated: 2018/05/26 14:38:42 by msukhare         ###   ########.fr       */
-/*   Updated: 2018/05/17 14:34:19 by pleroux          ###   ########.fr       */
-/*   Updated: 2018/05/19 09:01:21 by pierre           ###   ########.fr       */
-/*   Updated: 2018/05/20 00:15:40 by pleroux          ###   ########.fr       */
+/*   Updated: 2018/06/02 19:53:30 by pleroux          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,13 +20,24 @@
 # define T_REG_BIT		1
 # define T_DIR_BIT		2
 # define T_IND_BIT		3
+# define E				-2
+# define E_PARSING		-1
+# define PRINT			0
+# define V_1			1
+# define V_2			2
+# define V_3			3
+# define V_4			4
+# define V_5			5
+# define V_6			6
+# define V_7			7
+# define V_8			8
 
 /*
 ** decodage op_code :
 ** typedef sur ptr de fonction
 ** permet de pointer vers l'execution de l'op code
 */
-typedef int (t_f_op)(void *, t_list *, t_uint8*);
+typedef int (t_f_op)(void *);
 
 /*
 ** decodage op_code :
@@ -84,15 +92,8 @@ typedef struct		s_op
 	t_string		comment;
 	t_bool			b_if_encod;
 	t_bool			b_size_dir;
+	t_f_op			*ft;
 }					t_op;
-
-/*
-** decodage op_code :
-** typedef sur ptr de fonction
-** permet de pointer vers l'execution de l'op code
-*/
-
-//typedef int (*t_f_op)(void*); //prevoir t_player ou struct custom pour fork
 
 /*
 ** decodage op_code :
@@ -104,8 +105,8 @@ typedef struct		s_instruction
 	t_uint8			op_code;
 	t_encodage		encodage;
 	t_uint32		arg[NB_ARG];
+	t_uint32		arg_raw[NB_ARG];
 	t_op			info;
-//	t_f_op			ft;
 }					t_instruc;
 /* game :
 ** structure processus
@@ -144,10 +145,12 @@ typedef struct		s_player
 
 typedef struct		s_env
 {
-	int				verbos;
-	int				visu;
-	int				dump;
-	int				nb_cycle_dump;
+	t_bool			verbos;
+	int				verbos_lvl;
+	t_bool			visu;
+	t_bool			dump;
+	t_uint32		nb_cycle_dump;
+
 	t_player		player[MAX_PLAYERS];
 	t_uint8			nb_player;
 
@@ -159,13 +162,27 @@ typedef struct		s_env
 //	t_f_op			ft_tab[NB_OP];
 
 	t_uint8			mem[MEM_SIZE];
-
+	
 	t_string		err_parsing;
+
+	t_process		*current_process;
 }					t_env;
 
 extern t_op			op_tab[17];
 
+/*
+** init.c
+*/
+void				ft_init_struct(t_env *e);
+
+/*
+** game_iter_process.c
+*/
+t_process			*game_iter_process(t_env *env);
+int					game_has_process(t_env *env);
+
 //check argv
+int					ft_if_all_digit(char *str);
 int					ft_check_argv(int argc, char **argv, t_env *env);
 int					ft_if_opt_in_sec(int start, char **argv, int argc);
 int					ft_if_after_n_error(int start, char **argv, int argc);
@@ -194,13 +211,15 @@ void				process_init_instruction(t_instruc *ist);
 void				process_init_empty(t_process *p, int numero);
 void				process_init(t_process *p, t_process *prev, t_uint32 pc);
 t_process			*process_create(t_process *prev, t_uint32 pc);
-t_process			*process_add_lst(t_process **l, t_process *prev, t_uint32 pc, int pos_player);
+t_process			*process_add_lst(t_process **bg, t_process *prev,
+		t_uint32 pc);
 
 /*
 ** op_decod.c
 */
-t_uint32			op_decod(t_process *p, t_uint8 *b, t_uint32 pc, t_process *l);
-t_uint32			rot_mem(t_uint32 *pc);;
+t_uint32			op_decod(t_env *e);
+t_uint32			rot_mem(t_uint32 *pc);
+t_uint32			rot_mem_set(t_uint32 *pc);
 
 /*
 ** game_init.c
@@ -212,5 +231,23 @@ t_bool				game_init_mem(t_env *e);
 ** game.c
 */
 int					game(t_env *e);
+
+/*
+** game_rules.c
+*/
+t_bool				game_not_end(t_env *e);
+t_bool				game_rules(t_env *e);
+
+/*
+** verbose.c
+*/
+int					verbose(t_env *e, int code, const char *s, ...);
+
+/*
+** ft_dump.c
+*/
+void				ft_dump(t_env *env);
+
+
 
 #endif
