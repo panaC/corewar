@@ -6,7 +6,7 @@
 /*   By: pierre <pleroux@student.42.fr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/17 10:33:14 by pierre            #+#    #+#             */
-/*   Updated: 2018/06/04 13:08:52 by pierre           ###   ########.fr       */
+/*   Updated: 2018/06/04 14:22:17 by pierre           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ int					game(t_env *e)
 	verbose(e, V_7, "Start game\n");
 	while (game_has_process(e) && game_not_end(e))
 	{
-		verbose(e, V_6, "New Cycle %d : total %d\n", e->cycle, e->cycle_totale);
+		verbose(e, V_3, "New Cycle %d : total %d\n", e->cycle, e->cycle_totale);
 		print_process(e);
 		while ((p = game_iter_process(e)))
 		{

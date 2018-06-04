@@ -6,7 +6,7 @@
 /*   By: pierre <pleroux@student.42.fr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/03 18:04:58 by pierre            #+#    #+#             */
-/*   Updated: 2018/06/03 18:18:19 by pierre           ###   ########.fr       */
+/*   Updated: 2018/06/04 14:07:56 by pierre           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@ int			op_live(t_env *e)
 	t_process	*p;
 
 	p = ((t_env*)e)->current_process;
+	++e->nb_live;
 	if ((unsigned int)p->numero == p->op.arg[0])
 		p->live = TRUE;
 	else

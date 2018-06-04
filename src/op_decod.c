@@ -6,7 +6,7 @@
 /*   By: pierre <pleroux@student.42.fr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/18 19:20:39 by pierre            #+#    #+#             */
-/*   Updated: 2018/06/03 16:39:28 by pierre           ###   ########.fr       */
+/*   Updated: 2018/06/04 14:23:10 by pierre           ###   ########.fr       */
 /*   Updated: 2018/05/20 02:25:04 by pleroux          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
@@ -95,7 +95,7 @@ t_uint32		op_decod(t_env *e)
 		{
 			verbose(e, V_7, "op: encodage\n");
 			p->op.encodage.value = b[rot_mem(&pc)];
-			ft_print_memory(&(b[pc]), 1);
+			//ft_print_memory(&(b[pc]), 1);
 			encod[0] = p->op.encodage.bit.a4;
 			encod[1] = p->op.encodage.bit.a3;
 			encod[2] = p->op.encodage.bit.a2;
@@ -157,7 +157,7 @@ t_uint32		op_decod(t_env *e)
 				}
 				else
 				{
-					ft_printf("op: boucle encodage inconnu %d\n", i);
+					//ft_printf("op: boucle encodage inconnu %d\n", i);
 					//encodage inconnu avance de 1 octets min
 					val.v[0] = b[rot_mem(&pc)];
 					p->op.arg[i] = 0;
