@@ -6,9 +6,7 @@
 /*   By: msukhare <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/16 16:02:23 by msukhare          #+#    #+#             */
-/*   Updated: 2018/06/03 17:59:54 by pierre           ###   ########.fr       */
-/*   Updated: 2018/05/20 00:34:44 by pleroux          ###   ########.fr       */
-/*   Updated: 2018/05/20 07:04:26 by pleroux          ###   ########.fr       */
+/*   Updated: 2018/06/04 13:46:39 by pierre           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +66,6 @@ int			main_3(int argc, char **argv)
 				j++;
 			}*/
 			}
-		}
 		else
 		{
 			printf("parser err\n");
