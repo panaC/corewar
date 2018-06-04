@@ -1,32 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ld.c                                               :+:      :+:    :+:   */
+/*   live.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pleroux <pleroux@student.42.fr>            +#+  +:+       +#+        */
+/*   By: pierre <pleroux@student.42.fr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/05/20 07:08:25 by pleroux           #+#    #+#             */
-/*   Updated: 2018/06/03 14:31:07 by pierre           ###   ########.fr       */
+/*   Created: 2018/06/03 18:04:58 by pierre            #+#    #+#             */
+/*   Updated: 2018/06/03 18:18:19 by pierre           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <libft.h>
-#include "op_code.h"
 #include "corewar.h"
-#include "op.h"
+#include <libft.h>
 
-int			op_ld(void *e)
+int			op_live(t_env *e)
 {
-	t_process		*p;
-	t_reg			value;
+	t_process	*p;
 
 	p = ((t_env*)e)->current_process;
-	if (p->op.arg_raw[1] && p->op.arg_raw[1] > REG_NUMBER)
-		return (FALSE);
+	if ((unsigned int)p->numero == p->op.arg[0])
+		p->live = TRUE;
 	else
 	{
-		value.v = p->op.arg[0];
-		p->reg[p->op.arg_raw[1] - 1] = value;
+		//Reflechir a rajouter un pool de true pour le numero de l'adversaire
+		//si set et lors de la verif garder des processus
+		//ou gerer cela dans la regle du jeux avec un tableau
 	}
 	return (TRUE);
 }

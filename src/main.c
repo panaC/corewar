@@ -6,7 +6,7 @@
 /*   By: msukhare <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/16 16:02:23 by msukhare          #+#    #+#             */
-/*   Updated: 2018/06/02 20:28:35 by pleroux          ###   ########.fr       */
+/*   Updated: 2018/06/03 17:59:54 by pierre           ###   ########.fr       */
 /*   Updated: 2018/05/20 00:34:44 by pleroux          ###   ########.fr       */
 /*   Updated: 2018/05/20 07:04:26 by pleroux          ###   ########.fr       */
 /*                                                                            */
@@ -37,7 +37,7 @@ int			main(int argc, char **argv)
 		{
 			game_init(&env);
 			game(&env);
-			//print_win(&env);
+			print_win(&env);
 		}
 		else
 			verbose(&env, E, "PARSER -> QUIT\n");
@@ -49,7 +49,7 @@ int			main(int argc, char **argv)
 int			main_3(int argc, char **argv)
 {
 	t_env	env;
-	int		i;
+	//int		i;
 
 	ft_init_struct(&env);
 	if (ft_check_argv(argc, argv, &env))
@@ -81,12 +81,14 @@ int			main_3(int argc, char **argv)
 		game(&env);
 		*/
 	}
+		/*
 	i = 0;
 	while (i < env.nb_player)
 	{
 		printf("name = %s , numero = %d, fd = %d\n", env.player[i].name, env.player[i].numero, env.player[i].fd);
 		i++;
 	}
+	*/
 	return (0);
 }
 

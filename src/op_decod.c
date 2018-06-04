@@ -6,7 +6,7 @@
 /*   By: pierre <pleroux@student.42.fr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/18 19:20:39 by pierre            #+#    #+#             */
-/*   Updated: 2018/06/02 20:25:23 by pleroux          ###   ########.fr       */
+/*   Updated: 2018/06/03 16:39:28 by pierre           ###   ########.fr       */
 /*   Updated: 2018/05/20 02:25:04 by pleroux          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
@@ -65,7 +65,7 @@ t_uint32		op_decod(t_env *e)
 		p->op.info = op_tab[b[pc] - 1];
 		verbose(e, V_7, "op: op_code %x\n", b[pc]);
 	}
-	if (p->op.info.cycle == 0)
+	if (p->op.info.cycle == 1)
 	{
 		verbose(e, V_7, "op: GO\n");
 		if (p->op.info.b_if_encod == FALSE)
@@ -75,18 +75,19 @@ t_uint32		op_decod(t_env *e)
 			{
 				verbose(e, V_7, "op: DIR 2B\n");
 				//2 octets
-				val.v[0] = b[rot_mem(&pc)];
 				val.v[1] = b[rot_mem(&pc)];
+				val.v[0] = b[rot_mem(&pc)];
 				p->op.arg[0] = val.v32;
+				verbose(e, V_7, "op: arg[0] %u\n", p->op.arg[0]);
 			}
 			else
 			{
 				verbose(e, V_7, "op: DIR 4B\n");
 				//4 octets
-				val.v[0] = b[rot_mem(&pc)];
-				val.v[1] = b[rot_mem(&pc)];
-				val.v[2] = b[rot_mem(&pc)];
 				val.v[3] = b[rot_mem(&pc)];
+				val.v[2] = b[rot_mem(&pc)];
+				val.v[1] = b[rot_mem(&pc)];
+				val.v[0] = b[rot_mem(&pc)];
 				p->op.arg[0] = val.v32;
 			}
 		}

@@ -6,7 +6,7 @@
 /*   By: pleroux <pleroux@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/01 20:31:40 by pleroux           #+#    #+#             */
-/*   Updated: 2018/06/02 15:56:24 by pleroux          ###   ########.fr       */
+/*   Updated: 2018/06/03 17:57:36 by pierre           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,10 @@
 t_bool			game_not_end(t_env *e)
 {
 	if (e->dump && e->cycle_totale == e->nb_cycle_dump)
+	{
+		e->win_player = -1;
 		return (FALSE);
+	}
 	return (TRUE);
 }
 

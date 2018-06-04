@@ -6,7 +6,7 @@
 #    By: pierre <pleroux@student.42.fr>             +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/12/11 13:59:37 by pierre            #+#    #+#              #
-#    Updated: 2018/06/02 19:52:35 by pleroux          ###   ########.fr        #
+#    Updated: 2018/06/03 18:17:39 by pierre           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,8 +26,8 @@ LIB_LINK = ft
 SRC_DIR = src/
 INC_DIR = inc/
 CFLAGS = -Wall -Werror -Wextra -I $(LIB_HEADER) -I $(LIB_PRINTF_HEADER) -I $(INC_DIR)
-LIB_FLAGS = -L$(LIB_PATH) -l$(LIB_LINK) \
-			-L$(LIB_PRINTF_PATH) -l$(LIB_PRINTF_LINK)
+LIB_FLAGS = -L$(LIB_PRINTF_PATH) -l$(LIB_PRINTF_LINK) -L$(LIB_PATH) -l$(LIB_LINK)
+			
 INC_FILE = corewar.h \
 		   op.h \
 		   parser.h \
@@ -49,13 +49,17 @@ SRC_FILE = op.c \
 		   verbose.c \
 		   ft_dump.c \
 		   free_links.c \
+		   print_win.c \
 		   op_decod.c \
 		   op_code/add.c \
 		   op_code/sub.c \
 		   op_code/sti.c \
 		   op_code/st.c \
 		   op_code/ld.c \
-		   op_code/aff.c
+		   op_code/aff.c \
+	       op_code/fork.c \
+		   op_code/lfork.c \
+		   op_code/live.c
 
 SRC = $(addprefix $(SRC_DIR), $(SRC_FILE))
 INC = $(addprefix $(INC_DIR), $(INC_FILE))
@@ -73,7 +77,7 @@ $(LIB_PRINTF)	:
 	     $(CC) $(CFLAGS) -o $@ -c $<
 
 $(NAME)	: $(OBJ)
-	$(CC) -o $(NAME) $(OBJ) $(CFLAGS) $(LIB_FLAGS)
+	$(CC) -o $(NAME) $(CFLAGS) $(OBJ) $(LIB_FLAGS)
 
 clean	:
 	rm -f $(OBJ)

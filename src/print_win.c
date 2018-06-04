@@ -1,32 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ld.c                                               :+:      :+:    :+:   */
+/*   print_win.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pleroux <pleroux@student.42.fr>            +#+  +:+       +#+        */
+/*   By: pierre <pleroux@student.42.fr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/05/20 07:08:25 by pleroux           #+#    #+#             */
-/*   Updated: 2018/06/03 14:31:07 by pierre           ###   ########.fr       */
+/*   Created: 2018/06/03 17:49:15 by pierre            #+#    #+#             */
+/*   Updated: 2018/06/03 18:01:58 by pierre           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <libft.h>
-#include "op_code.h"
 #include "corewar.h"
-#include "op.h"
+#include <libft.h>
+#include <ft_printf.h>
 
-int			op_ld(void *e)
+int			print_win(t_env *e)
 {
-	t_process		*p;
-	t_reg			value;
-
-	p = ((t_env*)e)->current_process;
-	if (p->op.arg_raw[1] && p->op.arg_raw[1] > REG_NUMBER)
-		return (FALSE);
+	if (e->win_player > 0)
+	{
+		ft_printf("And the winner is : player %d : \"%s\" (%s)\n",
+				e->win_player, e->player[e->win_player].head.prog_name,
+				e->player[e->win_player].head.comment);
+	}
 	else
 	{
-		value.v = p->op.arg[0];
-		p->reg[p->op.arg_raw[1] - 1] = value;
+		ft_dump(e);
 	}
 	return (TRUE);
 }

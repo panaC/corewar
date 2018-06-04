@@ -6,7 +6,7 @@
 /*   By: msukhare <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/20 03:48:48 by msukhare          #+#    #+#             */
-/*   Updated: 2018/06/01 12:44:02 by pierre           ###   ########.fr       */
+/*   Updated: 2018/06/04 10:33:26 by pierre           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ static void		ft_del_link(t_process **tmp, t_process *bg)
 	if (!bg)
 		return ;
 	bg->next = (*tmp)->next;
-	free(*tmp);
+	ft_memdel((void**)tmp);
 	(*tmp) = bg;
 }
 

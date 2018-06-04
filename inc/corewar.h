@@ -6,7 +6,7 @@
 /*   By: pierre <pleroux@student.42.fr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/15 10:01:43 by pierre            #+#    #+#             */
-/*   Updated: 2018/06/02 19:53:30 by pleroux          ###   ########.fr       */
+/*   Updated: 2018/06/03 18:01:05 by pierre           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,7 +118,6 @@ typedef struct		s_process
 	t_bool			live;
 	t_bool			carry;
 	t_uint32		pc;
-	char			*name;
 	int				numero;
 	t_reg			reg[REG_NUMBER];
 	t_instruc		op;
@@ -152,7 +151,8 @@ typedef struct		s_env
 	t_uint32		nb_cycle_dump;
 
 	t_player		player[MAX_PLAYERS];
-	t_uint8			nb_player;
+	int				nb_player;
+	int				win_player;
 
 	t_uint32		cycle_totale;
 	t_uint32		cycle;
@@ -248,6 +248,9 @@ int					verbose(t_env *e, int code, const char *s, ...);
 */
 void				ft_dump(t_env *env);
 
-
+/*
+** print_win.c
+*/
+int					print_win(t_env *e);
 
 #endif

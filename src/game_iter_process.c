@@ -6,13 +6,14 @@
 /*   By: pleroux <pleroux@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/01 19:07:48 by pleroux           #+#    #+#             */
-/*   Updated: 2018/06/02 20:57:11 by pleroux          ###   ########.fr       */
+/*   Updated: 2018/06/04 13:25:31 by pierre           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <libft.h>
 #include "corewar.h"
 
+/*
 static int			ft_lenlst(t_process *pro)
 {
 	int				len;
@@ -43,7 +44,157 @@ static int			ft_get_max_pro(t_env *env)
 	}
 	return (max);
 }
+*/
 
+/*
+t_process			*game_iter_process(t_env *e)
+{
+	static t_process	*tab[MAX_PLAYERS];
+	static int			curs_num = -1;
+	int					i;
+	t_process			*ret;
+
+	i = 0;
+	ret = NULL;
+	while(i < MAX_PLAYERS)
+	{
+		if (tab[i] != NULL)
+		{
+			e->win_player = i + 1;
+			break;
+		}
+		++i;
+	}
+	if (i == MAX_PLAYERS)
+	{
+		i = 0;
+		while (i < MAX_PLAYERS)
+		{
+			if (i < e->nb_player)
+				tab[i] = e->player[i].process;
+			else
+				tab[i] = NULL;
+			++i;
+		}
+	}
+	else
+	{
+		while (TRUE)
+		{
+			if (curs_num == -1)
+				curs_num = e->nb_player - 1;
+			if (tab[curs_num] != NULL)
+			{
+				 ret = tab[curs_num];
+				 tab[curs_num] = tab[curs_num]->next;
+				 --curs_num;
+				 break;
+			}
+			--curs_num;
+		}
+	}
+	return (ret);
+
+}
+*/
+
+/*
+static t_process	*game_iter_process_search(t_env *e,
+		t_process **tab, int *curs_num)
+{
+	int				i;
+	t_process		*ret;
+
+	i = 0;
+	ret = NULL;
+	while(i < MAX_PLAYERS)
+	{
+		if (tab[i] != NULL)
+		{
+			e->win_player = i + 1;
+			break;
+		}
+		++i;
+	}
+	if (i == MAX_PLAYERS)
+		*curs_num = -1;
+	else
+	{
+		while (TRUE)
+		{
+			if (*curs_num == -1)
+				*curs_num = e->nb_player - 1;
+			if (tab[*curs_num] != NULL)
+			{
+				 verbose(e, V_8, "tab %d\n", tab[*curs_num]);
+				 ret = tab[*curs_num];
+				 tab[*curs_num] = tab[*curs_num]->next;
+				 verbose(e, V_8, "tab %d\n", tab[*curs_num]);
+				 --(*curs_num);
+				 break;
+			}
+			--(*curs_num);
+		}
+	}
+	return (ret);
+}
+*/
+
+t_process			*game_iter_process(t_env *e)
+{
+	static t_process	*tab[MAX_PLAYERS];
+	static int			curs_num = -2;
+	int					i;
+	t_process			*ret;
+
+	i = 0;
+	ret = NULL;
+	if (curs_num == -2)
+	{
+		while (i < MAX_PLAYERS)
+		{
+			if (i < e->nb_player)
+				tab[i] = e->player[i].process;
+			else
+				tab[i] = NULL;
+			++i;
+		}
+		curs_num = MAX_PLAYERS - 1;
+	}
+	i = 0;
+	while (i < MAX_PLAYERS)
+	{
+		if (tab[i] != NULL)
+		{
+			e->win_player = i + 1;
+			break;
+		}
+		++i;
+	}
+	if (i == MAX_PLAYERS)
+		curs_num = -2;
+	else
+	{
+		while (TRUE)
+		{
+			if (curs_num == -1)
+				curs_num = e->nb_player - 1;
+			if (tab[curs_num] != NULL)
+			{
+				 verbose(e, V_8, "tab %d\n", tab[curs_num]);
+				 ret = tab[curs_num];
+				 tab[curs_num] = tab[curs_num]->next;
+				 verbose(e, V_8, "tab %d\n", tab[curs_num]);
+				 --curs_num;
+				 break;
+			}
+			--curs_num;
+		}
+	}
+	return (ret);
+}
+
+/*
 t_process			*game_iter_process(t_env *env)
 {
 	t_process		*tmp;
@@ -76,6 +227,7 @@ t_process			*game_iter_process(t_env *env)
 	verbose(env, V_7, "End game_iter_process\n");
 	return (NULL);
 }
+*/
 
 int					game_has_process(t_env *env)
 {

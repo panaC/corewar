@@ -6,7 +6,7 @@
 /*   By: zaz <marvin@42.fr>                         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/10/04 11:43:01 by zaz               #+#    #+#             */
-/*   Updated: 2018/06/01 12:43:08 by pierre           ###   ########.fr       */
+/*   Updated: 2018/06/03 18:16:57 by pierre           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 
 t_op    op_tab[17] =
 {
-	{"live", 1, {T_DIR}, 1, 10, "alive", 0, 0, NULL},
+	{"live", 1, {T_DIR}, 1, 10, "alive", 0, 0, op_live},
 	{"ld", 2, {T_DIR | T_IND, T_REG}, 2, 5, "load", 1, 0, op_ld},
 	{"st", 2, {T_REG, T_IND | T_REG}, 3, 5, "store", 1, 0, op_st},
 	{"add", 3, {T_REG, T_REG, T_REG}, 4, 10, "addition", 1, 0, op_add},
@@ -32,11 +32,11 @@ t_op    op_tab[17] =
 		"load index", 1, 1, NULL},
 	{"sti", 3, {T_REG, T_REG | T_DIR | T_IND, T_DIR | T_REG}, 11, 25,
 		"store index", 1, 1, op_sti},
-	{"fork", 1, {T_DIR}, 12, 800, "fork", 0, 1, NULL},
+	{"fork", 1, {T_DIR}, 12, 800, "fork", 0, 1, op_fork},
 	{"lld", 2, {T_DIR | T_IND, T_REG}, 13, 10, "long load", 1, 0, NULL},
 	{"lldi", 3, {T_REG | T_DIR | T_IND, T_DIR | T_REG, T_REG}, 14, 50,
 		"long load index", 1, 1, NULL},
-	{"lfork", 1, {T_DIR}, 15, 1000, "long fork", 0, 1, NULL},
+	{"lfork", 1, {T_DIR}, 15, 1000, "long fork", 0, 1, op_lfork},
 	{"aff", 1, {T_REG}, 16, 2, "aff", 1, 0, op_aff},
 	{0, 0, {0}, 0, 0, 0, 0, 0, 0}
 };

@@ -1,32 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ld.c                                               :+:      :+:    :+:   */
+/*   lfork.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pleroux <pleroux@student.42.fr>            +#+  +:+       +#+        */
+/*   By: pierre <pleroux@student.42.fr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/05/20 07:08:25 by pleroux           #+#    #+#             */
-/*   Updated: 2018/06/03 14:31:07 by pierre           ###   ########.fr       */
+/*   Created: 2018/06/03 17:10:56 by pierre            #+#    #+#             */
+/*   Updated: 2018/06/03 17:26:13 by pierre           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <libft.h>
-#include "op_code.h"
 #include "corewar.h"
 #include "op.h"
+#include <libft.h>
 
-int			op_ld(void *e)
+int			op_lfork(void *e)
 {
-	t_process		*p;
-	t_reg			value;
+	t_process	*p;
 
 	p = ((t_env*)e)->current_process;
-	if (p->op.arg_raw[1] && p->op.arg_raw[1] > REG_NUMBER)
-		return (FALSE);
-	else
-	{
-		value.v = p->op.arg[0];
-		p->reg[p->op.arg_raw[1] - 1] = value;
-	}
-	return (TRUE);
+	p->carry = TRUE;
+	p->pc += p->op.arg[0];
+	return ((process_add_lst(&(((t_env*)e)->player[p->numero - 1].process), p,
+			rot_mem_set(&(p->pc))) == NULL) ? FALSE : TRUE);
 }
