@@ -6,7 +6,7 @@
 /*   By: pleroux <pleroux@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/01 17:39:27 by pleroux           #+#    #+#             */
-/*   Updated: 2018/06/04 14:06:14 by pierre           ###   ########.fr       */
+/*   Updated: 2018/06/05 16:04:11 by pleroux          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,7 +91,6 @@ void	ft_init_struct(t_env *env)
 	env->nb_cycle_dump = 0;
 	env->cycle_totale = 0;
 	env->cycle = 0;
-	env->cycle_totale = 0;
 	env->nb_live = 0;
 	env->err_parsing = NULL;
 	env->current_process = NULL;

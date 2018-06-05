@@ -6,7 +6,7 @@
 /*   By: pleroux <pleroux@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/01 19:07:48 by pleroux           #+#    #+#             */
-/*   Updated: 2018/06/04 13:25:31 by pierre           ###   ########.fr       */
+/*   Updated: 2018/06/05 15:27:26 by pleroux          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -181,10 +181,8 @@ t_process			*game_iter_process(t_env *e)
 				curs_num = e->nb_player - 1;
 			if (tab[curs_num] != NULL)
 			{
-				 verbose(e, V_8, "tab %d\n", tab[curs_num]);
 				 ret = tab[curs_num];
 				 tab[curs_num] = tab[curs_num]->next;
-				 verbose(e, V_8, "tab %d\n", tab[curs_num]);
 				 --curs_num;
 				 break;
 			}

@@ -6,13 +6,7 @@
 /*   By: pierre <pleroux@student.42.fr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/18 19:20:39 by pierre            #+#    #+#             */
-<<<<<<< HEAD
-/*   Updated: 2018/06/05 13:31:37 by pleroux          ###   ########.fr       */
-=======
-/*   Updated: 2018/06/05 14:42:26 by msukhare         ###   ########.fr       */
-/*   Updated: 2018/06/04 17:00:35 by pierre           ###   ########.fr       */
->>>>>>> 111aa7373492ee3a6e21f55f11d9b7e6137c02a1
-/*   Updated: 2018/05/20 02:25:04 by pleroux          ###   ########.fr       */
+/*   Updated: 2018/06/05 15:56:43 by pleroux          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -180,9 +174,8 @@ t_uint32		op_decod(t_env *e)
 		//test de la fonction si true == Modification du PC et pas ajout du pc d'op_decod
 		if (p->op.info.ft(e))
 			pc = p->pc;
-		p->op.info.ft(e);
-		process_init_instruction(&(p->op));
 		rot_mem(&pc);
+		process_init_instruction(&(p->op));
 	}
 	else
 	{

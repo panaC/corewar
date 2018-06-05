@@ -6,7 +6,7 @@
 /*   By: pierre <pleroux@student.42.fr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/15 10:01:43 by pierre            #+#    #+#             */
-/*   Updated: 2018/06/03 18:01:05 by pierre           ###   ########.fr       */
+/*   Updated: 2018/06/05 15:09:37 by pleroux          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -154,6 +154,7 @@ typedef struct		s_env
 	int				nb_player;
 	int				win_player;
 
+	t_uint32		cycle_to_die;
 	t_uint32		cycle_totale;
 	t_uint32		cycle;
 	t_uint32		nb_live;

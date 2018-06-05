@@ -6,7 +6,7 @@
 /*   By: msukhare <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/20 02:26:04 by msukhare          #+#    #+#             */
-/*   Updated: 2018/06/03 17:28:21 by pierre           ###   ########.fr       */
+/*   Updated: 2018/06/05 13:27:46 by pleroux          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,7 @@ int			op_fork(void *e)
 
 	p = ((t_env*)e)->current_process;
 	p->pc += (p->op.arg[0] % IDX_MOD);
-	return ((process_add_lst(&(((t_env*)e)->player[p->numero - 1].process), p,
-			rot_mem_set(&(p->pc))) == NULL) ? FALSE : TRUE);
+	process_add_lst(&(((t_env*)e)->player[p->numero - 1].process),
+			p, rot_mem_set(&(p->pc)));
+	return (FALSE);
 }

@@ -6,7 +6,7 @@
 #    By: pierre <pleroux@student.42.fr>             +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/12/11 13:59:37 by pierre            #+#    #+#              #
-#    Updated: 2018/06/05 14:42:58 by msukhare         ###   ########.fr        #
+#    Updated: 2018/06/05 15:12:09 by pleroux          ###   ########.fr        #
 #    Updated: 2018/06/04 18:18:51 by pierre           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
@@ -60,8 +60,7 @@ SRC_FILE = op.c \
 		   op_code/aff.c \
 	       op_code/fork.c \
 		   op_code/lfork.c \
-		   op_code/live.c\
-		   op_code/ft_zjmp.c\
+		   op_code/zjmp.c \
 		   op_code/live.c \
 		   op_code/ldi.c \
 		   op_code/lldi.c 

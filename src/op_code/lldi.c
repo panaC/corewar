@@ -6,7 +6,7 @@
 /*   By: pierre <pleroux@student.42.fr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/04 18:16:14 by pierre            #+#    #+#             */
-/*   Updated: 2018/06/04 18:20:14 by pierre           ###   ########.fr       */
+/*   Updated: 2018/06/05 13:28:28 by pleroux          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,5 +34,5 @@ int			op_lldi(void *env)
 	while (i >= 0)
 		p->reg[p->op.arg_raw[2]].t[--i] = e->mem[rot_mem(&(s.v32))];
 	p->carry = 1;
-	return (TRUE);
+	return (FALSE);
 }

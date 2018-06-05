@@ -6,7 +6,7 @@
 /*   By: pleroux <pleroux@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/19 22:54:54 by pleroux           #+#    #+#             */
-/*   Updated: 2018/06/04 18:15:46 by pierre           ###   ########.fr       */
+/*   Updated: 2018/06/05 13:28:49 by pleroux          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,5 +29,5 @@ int			op_sti(void *e)
 	addr = p->op.arg[1] + p->op.arg[2];
 	while (i >= 0)
 		((t_env*)e)->mem[rot_mem(&addr) - 1] = value.t[--i];
-	return (TRUE);
+	return (FALSE);
 }

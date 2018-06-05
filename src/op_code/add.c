@@ -6,7 +6,7 @@
 /*   By: pleroux <pleroux@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/19 15:12:36 by pleroux           #+#    #+#             */
-/*   Updated: 2018/06/01 21:49:10 by pleroux          ###   ########.fr       */
+/*   Updated: 2018/06/05 13:25:00 by pleroux          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,9 +28,5 @@ int			op_add(void *e)
 		if (r.v == 0)
 			p->carry = TRUE;
 	}
-	else
-	{
-		return (FALSE);
-	}
-	return (TRUE);
+	return (0);
 }
