@@ -6,7 +6,7 @@
 /*   By: msukhare <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/16 16:55:14 by msukhare          #+#    #+#             */
-/*   Updated: 2018/06/02 19:50:09 by pleroux          ###   ########.fr       */
+/*   Updated: 2018/06/05 09:50:15 by msukhare         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,15 +37,31 @@ static int	ft_get_opt(char *str, t_env *env)
 	return (1);
 }
 
-static int	ft_chk_dump(t_env *env, int *i, char **argv)
+static int	ft_get_after_opt(t_env *env, int *i, char **argv)
 {
-	if (!argv[*i + 1] || argv[*i + 1][0] == '\0')
+	int		opt;
+
+	if (ft_strcmp("-dump", argv[*i]) == 0)
+		opt = 1;
+	else if (ft_strcmp("-v", argv[*i]) == 0)
+		opt = 2;
+	else
 		return (1);
-	if (ft_if_all_digit(argv[*i + 1]) == 0)
-		return (1);
-	env->nb_cycle_dump = ft_atoi(argv[*i + 1]);
+	if (!argv[*i + 1] || argv[*i + 1][0] == '\0' ||
+			ft_if_all_digit(argv[*i + 1]) == 0)
+	{
+		if (opt == 1)
+			ft_putstr_fd("need nb_cycle to dump after -dump\n", 2);
+		else if (opt == 2)
+			ft_putstr_fd("need lvl verbose after -v\n", 2);
+		return (0);
+	}
 	(*i)++;
-	return (0);
+	if (opt == 1)
+		env->nb_cycle_dump = ft_atoi(argv[*i]);
+	else
+		env->verbos_lvl = ft_atoi(argv[*i]);
+	return (1);
 }
 
 static int	ft_check_opt(char **argv, int argc, t_env *env)
@@ -65,11 +81,8 @@ static int	ft_check_opt(char **argv, int argc, t_env *env)
 				ft_putstr_fd("wrong option bro\n", 2);
 				return (0);
 			}
-			if (ft_strcmp(argv[i], "-dump") == 0 && ft_chk_dump(env, &i, argv))
-			{
-				ft_putstr_fd("need nb_cycle after dump\n", 2);
+			if (ft_get_after_opt(env, &i, argv) != 1)
 				return (0);
-			}
 		}
 		i++;
 	}
@@ -86,7 +99,7 @@ static void	ft_init_tab_players(t_env *env)
 	{
 		init_header(&(env->player[i].head));
 		env->player[i].process = NULL;
-		env->player[i].numero = 1;
+		env->player[i].numero = -1;
 		env->player[i].fd = -1;
 		env->player[i].name = NULL;
 		env->player[i].mem_ref = 0;
