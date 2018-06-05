@@ -6,7 +6,7 @@
 /*   By: pierre <pleroux@student.42.fr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/18 19:20:39 by pierre            #+#    #+#             */
-/*   Updated: 2018/06/04 17:00:35 by pierre           ###   ########.fr       */
+/*   Updated: 2018/06/05 13:31:37 by pleroux          ###   ########.fr       */
 /*   Updated: 2018/05/20 02:25:04 by pleroux          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
@@ -167,12 +167,12 @@ t_uint32		op_decod(t_env *e)
 				++i;
 			}
 		}
-
 		//exec de la fct op
 		//recuperer le tableau ft_tab et executer la bonne fonction
 		//ou le mettre dans op_tab si possible de le modifier
-		p->op.info.ft(e);
-		//reset op
+		//test de la fonction si true == Modification du PC et pas ajout du pc d'op_decod
+		if (p->op.info.ft(e))
+			pc = p->pc;
 		process_init_instruction(&(p->op));
 		rot_mem(&pc);
 	}
