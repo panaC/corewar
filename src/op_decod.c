@@ -6,7 +6,7 @@
 /*   By: pierre <pleroux@student.42.fr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/18 19:20:39 by pierre            #+#    #+#             */
-/*   Updated: 2018/06/04 14:23:10 by pierre           ###   ########.fr       */
+/*   Updated: 2018/06/05 11:56:37 by msukhare         ###   ########.fr       */
 /*   Updated: 2018/05/20 02:25:04 by pleroux          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
@@ -15,6 +15,8 @@
 #include "corewar.h"
 #include "op.h"
 #include <ft_printf.h>
+#include <stdlib.h>
+#include <stdio.h>
 
 t_uint32		rot_mem(t_uint32 *pc)
 {
@@ -167,11 +169,12 @@ t_uint32		op_decod(t_env *e)
 				++i;
 			}
 		}
-
 		//exec de la fct op
 		//recuperer le tableau ft_tab et executer la bonne fonction
 		//ou le mettre dans op_tab si possible de le modifier
+		printf("\n\n\npc = %d\n\n\n", p->pc);
 		p->op.info.ft(e);
+		printf("\n\npc = %d\n\n", p->pc);
 		//reset op
 		process_init_instruction(&(p->op));
 		rot_mem(&pc);
