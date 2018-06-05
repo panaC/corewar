@@ -6,6 +6,7 @@
 /*   By: zaz <marvin@42.fr>                         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/10/04 11:43:01 by zaz               #+#    #+#             */
+/*   Updated: 2018/06/05 14:43:12 by msukhare         ###   ########.fr       */
 /*   Updated: 2018/06/04 18:18:22 by pierre           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
@@ -27,7 +28,7 @@ t_op    op_tab[17] =
 		"ou  (or   r1, r2, r3   r1 | r2 -> r3", 1, 0, NULL},
 	{"xor", 3, {T_REG | T_IND | T_DIR, T_REG | T_IND | T_DIR, T_REG}, 8, 6,
 		"ou (xor  r1, r2, r3   r1^r2 -> r3", 1, 0, NULL},
-	{"zjmp", 1, {T_DIR}, 9, 20, "jump if zero", 0, 1, NULL},
+	{"zjmp", 1, {T_DIR}, 9, 20, "jump if zero", 0, 1, op_zjmp},
 	{"ldi", 3, {T_REG | T_DIR | T_IND, T_DIR | T_REG, T_REG}, 10, 25,
 		"load index", 1, 1, op_ldi},
 	{"sti", 3, {T_REG, T_REG | T_DIR | T_IND, T_DIR | T_REG}, 11, 25,
