@@ -6,7 +6,7 @@
 /*   By: msukhare <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/18 08:42:38 by msukhare          #+#    #+#             */
-/*   Updated: 2018/06/06 11:38:45 by msukhare         ###   ########.fr       */
+/*   Updated: 2018/06/06 17:04:44 by msukhare         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,6 @@ static int	ft_init_player(t_env *env, char *str, int place)
 	env->player[place].numero = place;
 	env->player[place].name = str;
 	env->player[place].last_live = 0;
-	env->player[place].nb_live = 0;
 	return (1);
 }
 

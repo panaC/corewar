@@ -6,7 +6,7 @@
 /*   By: msukhare <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/06 09:28:49 by msukhare          #+#    #+#             */
-/*   Updated: 2018/06/06 11:57:39 by msukhare         ###   ########.fr       */
+/*   Updated: 2018/06/06 17:04:23 by msukhare         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ static void		ft_put_live_in_pro(t_process *p, void *e, int first)
 {
 	ft_printf("i am %s alive bitch", ((t_env *)e)->player[p->numero].name);
 	((t_env *)e)->player[p->numero].last_live = ((t_env *)e)->cycle_totale;
-	((t_env *)e)->player[p->numero].nb_live++;
+	((t_env *)e)->nb_live++;
 	if (first == 1)
 	{
 		p->live = 1;
