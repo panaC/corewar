@@ -6,7 +6,7 @@
 /*   By: pleroux <pleroux@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/20 07:23:51 by pleroux           #+#    #+#             */
-/*   Updated: 2018/06/05 13:28:07 by pleroux          ###   ########.fr       */
+/*   Updated: 2018/06/06 17:48:26 by pleroux          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int			op_ldi(void *env)
 {
 	t_process		*p;
 	t_env			*e;
-	t_uint32		pc;
+	int				pc;
 	t_uint			s;
 	int				i;
 

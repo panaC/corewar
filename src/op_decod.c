@@ -6,7 +6,7 @@
 /*   By: pierre <pleroux@student.42.fr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/18 19:20:39 by pierre            #+#    #+#             */
-/*   Updated: 2018/06/05 15:56:43 by pleroux          ###   ########.fr       */
+/*   Updated: 2018/06/06 17:44:27 by pleroux          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 
-t_uint32		rot_mem(t_uint32 *pc)
+t_uint32		rot_mem(int *pc)
 {
 	*pc = *pc + 1;
 	if (*pc >= MEM_SIZE)
@@ -25,7 +25,7 @@ t_uint32		rot_mem(t_uint32 *pc)
 	return (*pc);
 }
 
-t_uint32		rot_mem_set(t_uint32 *pc)
+t_uint32		rot_mem_set(int *pc)
 {
 	if (*pc >= MEM_SIZE)
 		*pc = *pc % MEM_SIZE;
@@ -46,8 +46,8 @@ t_uint32		op_decod(t_env *e)
 	t_uint8		encod[3];
 	t_uint8		i;
 	t_process	*p;
-	t_uint8		*b;
-	t_uint32	pc;
+	char		*b;
+	int			pc;
 
 	verbose(e, V_7, "Start Op_decode\n");
 	p = e->current_process;

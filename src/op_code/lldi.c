@@ -6,7 +6,7 @@
 /*   By: pierre <pleroux@student.42.fr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/04 18:16:14 by pierre            #+#    #+#             */
-/*   Updated: 2018/06/05 13:28:28 by pleroux          ###   ########.fr       */
+/*   Updated: 2018/06/06 17:48:47 by pleroux          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int			op_lldi(void *env)
 {
 	t_process		*p;
 	t_env			*e;
-	t_uint32		pc;
+	int				pc;
 	t_uint			s;
 	int				i;
 

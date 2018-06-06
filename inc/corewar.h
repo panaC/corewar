@@ -6,7 +6,7 @@
 /*   By: pierre <pleroux@student.42.fr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/15 10:01:43 by pierre            #+#    #+#             */
-/*   Updated: 2018/06/06 17:05:03 by msukhare         ###   ########.fr       */
+/*   Updated: 2018/06/06 17:48:00 by pleroux          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,10 +45,10 @@ typedef int (t_f_op)(void *);
 */
 typedef union		u_uint
 {
-	t_uint8			v8;
-	t_uint16		v16;
-	t_uint32		v32;
-	t_uint8			v[4];
+	char			v8;
+	short			v16;
+	int				v32;
+	char			v[4];
 }					t_uint;
 
 /*
@@ -74,8 +74,8 @@ typedef union		u_encodage
 */
 typedef union		u_reg
 {
-	t_uint32		v;
-	t_uint8			t[REG_SIZE];
+	int				v;
+	char			t[REG_SIZE];
 }					t_reg;
 
 /*
@@ -104,8 +104,8 @@ typedef struct		s_instruction
 	t_uint32		index;
 	t_uint8			op_code;
 	t_encodage		encodage;
-	t_uint32		arg[NB_ARG];
-	t_uint32		arg_raw[NB_ARG];
+	int				arg[NB_ARG];
+	int				arg_raw[NB_ARG];
 	t_op			info;
 }					t_instruc;
 /* game :
@@ -117,8 +117,8 @@ typedef struct		s_process
 {
 	t_bool			live;
 	t_bool			carry;
-	t_uint32		pc;
-	t_uint32		numero;
+	int				pc;
+	int				numero;
 	t_reg			reg[REG_NUMBER];
 	t_instruc		op;
 	struct s_process	*next;
@@ -131,8 +131,8 @@ typedef struct		s_player
 {
 	header_t		head;
 	t_process		*process;
-	t_uint8			data[CHAMP_MAX_SIZE];//bzero
-	t_uint32		numero;
+	char			data[CHAMP_MAX_SIZE];//bzero
+	int				numero;
 	int				fd;
 	char			*name;
 	t_uint32		mem_ref;
@@ -163,7 +163,7 @@ typedef struct		s_env
 
 //	t_f_op			ft_tab[NB_OP];
 
-	t_uint8			mem[MEM_SIZE];
+	char			mem[MEM_SIZE];
 	
 	t_string		err_parsing;
 
@@ -220,8 +220,8 @@ t_process			*process_add_lst(t_process **bg, t_process *prev,
 ** op_decod.c
 */
 t_uint32			op_decod(t_env *e);
-t_uint32			rot_mem(t_uint32 *pc);
-t_uint32			rot_mem_set(t_uint32 *pc);
+t_uint32			rot_mem(int *pc);
+t_uint32			rot_mem_set(int *pc);
 
 /*
 ** game_init.c
