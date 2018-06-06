@@ -6,7 +6,7 @@
 /*   By: pierre <pleroux@student.42.fr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/15 10:01:43 by pierre            #+#    #+#             */
-/*   Updated: 2018/06/05 15:09:37 by pleroux          ###   ########.fr       */
+/*   Updated: 2018/06/06 11:37:45 by msukhare         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,7 +118,7 @@ typedef struct		s_process
 	t_bool			live;
 	t_bool			carry;
 	t_uint32		pc;
-	int				numero;
+	t_uint32		numero;
 	t_reg			reg[REG_NUMBER];
 	t_instruc		op;
 	struct s_process	*next;
@@ -136,6 +136,8 @@ typedef struct		s_player
 	int				fd;
 	char			*name;
 	t_uint32		mem_ref;
+	unsigned long	last_live;
+	t_uint32		nb_live;
 }					t_player;
 /* corewar :
 ** structure d'environnement corewar

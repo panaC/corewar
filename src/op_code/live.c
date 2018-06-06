@@ -3,29 +3,60 @@
 /*                                                        :::      ::::::::   */
 /*   live.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pierre <pleroux@student.42.fr>             +#+  +:+       +#+        */
+/*   By: msukhare <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/06/03 18:04:58 by pierre            #+#    #+#             */
-/*   Updated: 2018/06/05 13:27:21 by pleroux          ###   ########.fr       */
+/*   Created: 2018/06/06 09:28:49 by msukhare          #+#    #+#             */
+/*   Updated: 2018/06/06 11:57:39 by msukhare         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "corewar.h"
 #include <libft.h>
+#include <ft_printf.h>
+#include "op_code.h"
+#include "corewar.h"
+#include "op.h"
 
-int			op_live(t_env *e)
+static void		ft_put_live_in_pro(t_process *p, void *e, int first)
+{
+	ft_printf("i am %s alive bitch", ((t_env *)e)->player[p->numero].name);
+	((t_env *)e)->player[p->numero].last_live = ((t_env *)e)->cycle_totale;
+	((t_env *)e)->player[p->numero].nb_live++;
+	if (first == 1)
+	{
+		p->live = 1;
+		return ;
+	}
+	while (p)
+	{
+		if (p->live == 0)
+		{
+			p->live = 1;
+			return ;
+		}
+		p = p->next;
+	}
+}
+
+int				op_live(void *e)
 {
 	t_process	*p;
+	int			i;
 
-	p = ((t_env*)e)->current_process;
-	++e->nb_live;
-	if ((unsigned int)p->numero == p->op.arg[0])
-		p->live = TRUE;
-	else
+	i = 0;
+	p = ((t_env *)e)->current_process;
+	if (p->op.arg[0] == p->numero)
 	{
-		//Reflechir a rajouter un pool de true pour le numero de l'adversaire
-		//si set et lors de la verif garder des processus
-		//ou gerer cela dans la regle du jeux avec un tableau
+		ft_put_live_in_pro(p, e, 1);
+		return (FALSE);
+	}
+	while (i < ((t_env *)e)->nb_player)
+	{
+		if (((t_env *)e)->player[i].process->numero == p->op.arg[0])
+		{
+			ft_put_live_in_pro(((t_env *)e)->player[i].process, e, 0);
+			return (FALSE);
+		}
+		++i;
 	}
 	return (FALSE);
 }

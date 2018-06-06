@@ -6,7 +6,7 @@
 /*   By: pierre <pleroux@student.42.fr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/03 13:23:29 by pierre            #+#    #+#             */
-/*   Updated: 2018/06/05 15:08:36 by pleroux          ###   ########.fr       */
+/*   Updated: 2018/06/06 15:23:21 by msukhare         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,5 +28,6 @@ int			op_sub(void *e);
 int			op_sub(void *e);
 int			op_live(void *e);
 int			op_zjmp(void *e);
+int			op_and(void *e);
 
 #endif

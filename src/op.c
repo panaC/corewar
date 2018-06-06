@@ -6,7 +6,7 @@
 /*   By: zaz <marvin@42.fr>                         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/10/04 11:43:01 by zaz               #+#    #+#             */
-/*   Updated: 2018/06/05 14:43:12 by msukhare         ###   ########.fr       */
+/*   Updated: 2018/06/06 15:24:01 by msukhare         ###   ########.fr       */
 /*   Updated: 2018/06/04 18:18:22 by pierre           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
@@ -23,7 +23,7 @@ t_op    op_tab[17] =
 	{"add", 3, {T_REG, T_REG, T_REG}, 4, 10, "addition", 1, 0, op_add},
 	{"sub", 3, {T_REG, T_REG, T_REG}, 5, 10, "soustraction", 1, 0, op_sub},
 	{"and", 3, {T_REG | T_DIR | T_IND, T_REG | T_IND | T_DIR, T_REG}, 6, 6,
-		"et (and  r1, r2, r3   r1&r2 -> r3", 1, 0, NULL},
+		"et (and  r1, r2, r3   r1&r2 -> r3", 1, 0, op_and},
 	{"or", 3, {T_REG | T_IND | T_DIR, T_REG | T_IND | T_DIR, T_REG}, 7, 6,
 		"ou  (or   r1, r2, r3   r1 | r2 -> r3", 1, 0, NULL},
 	{"xor", 3, {T_REG | T_IND | T_DIR, T_REG | T_IND | T_DIR, T_REG}, 8, 6,
