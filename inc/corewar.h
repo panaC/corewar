@@ -6,7 +6,7 @@
 /*   By: pierre <pleroux@student.42.fr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/15 10:01:43 by pierre            #+#    #+#             */
-/*   Updated: 2018/06/06 17:48:00 by pleroux          ###   ########.fr       */
+/*   Updated: 2018/06/06 18:55:43 by pleroux          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -219,9 +219,9 @@ t_process			*process_add_lst(t_process **bg, t_process *prev,
 /*
 ** op_decod.c
 */
-t_uint32			op_decod(t_env *e);
-t_uint32			rot_mem(int *pc);
-t_uint32			rot_mem_set(int *pc);
+int					op_decod(t_env *e);
+int					rot_mem(int *pc);
+int					rot_mem_set(int *pc);
 
 /*
 ** game_init.c

@@ -22,3 +22,8 @@
 - Verifier tout les fichiers present dans le git 42 et la bon fonctionnenement avec l'asm de Lou -> Mark/Pierre
 
 
+### test OP_code
+
+ - ld : -> gestion direct et indirect corection bug indirect memoire rotative et signed
+ 		- gerer le carry : carry == 1 si resulat == 0 mais qu'elle resultat
+

@@ -6,7 +6,7 @@
 /*   By: pierre <pleroux@student.42.fr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/17 10:33:14 by pierre            #+#    #+#             */
-/*   Updated: 2018/06/05 15:10:56 by pleroux          ###   ########.fr       */
+/*   Updated: 2018/06/06 18:06:30 by pleroux          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,15 @@ static void			print_process(t_env *e)
 	}
 }
 
+static void			print_info_process(t_env *e, t_process *p)
+{
+	int				i;
+
+	i = 0;
+	verbose(e, V_7, "INFO Process %p player %d: live=%d, carry=%d, pc=%d\n", p, p->numero, p->live, p->carry, p->pc);
+	verbose(e, V_7, "INFO Process reg 1 a 16: 0:%d 1:%d 2:%d 3:%d 4:%d 5:%d 6:%d 7:%d 8:%d 9:%d 10:%d 11:%d 12:%d 13:%d 14:%d 15:%d\n", p->reg[0].v, p->reg[1].v, p->reg[2].v, p->reg[3].v, p->reg[4].v, p->reg[5].v, p->reg[6].v, p->reg[7].v, p->reg[8].v, p->reg[9].v, p->reg[10].v, p->reg[11].v, p->reg[12].v, p->reg[13].v, p->reg[14].v, p->reg[15].v);
+}
+
 int					game(t_env *e)
 {
 	t_process		*p;
@@ -44,10 +53,12 @@ int					game(t_env *e)
 		print_process(e);
 		while ((p = game_iter_process(e)))
 		{
+			print_info_process(e, p);
 			verbose(e, V_5, "process find p = %p\n", p);
 			verbose(e, V_6, "process: live = %d, carry = %d, pc = %d player = %d\n", p->live, p->carry, p->pc, p->numero);
 			e->current_process = p;
 			p->pc = op_decod(e);
+			print_info_process(e, p);
 		}
 		game_rules(e);
 		++e->cycle_totale;

@@ -6,7 +6,7 @@
 /*   By: msukhare <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/06 14:39:36 by msukhare          #+#    #+#             */
-/*   Updated: 2018/06/06 17:06:21 by msukhare         ###   ########.fr       */
+/*   Updated: 2018/06/06 19:06:15 by pleroux          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int				op_and(void *e)
 	t_reg		tmp;
 
 	p = ((t_env *)e)->current_process;
-	if (p->op.arg_raw[2] && p->op.arg_raw[2] < REG_NUMBER)
+	if (p->op.arg_raw[2] && p->op.arg_raw[2] <= REG_NUMBER)
 	{
 		tmp.v = (p->op.arg[0] & p->op.arg[1]);
 		if (tmp.v == 0)
