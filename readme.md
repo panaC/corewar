@@ -8,6 +8,8 @@
 	- or
 	- and
 	- live (Ajout distrubution live adverse) -> Mark OK
+		- creation last_live
+		- utilisation de nb_live dans env
 
 - Corriger le bug nombre signed dans op_decod -> pierre
 - Faire le test unique de chaque op_code avec les 3 types arg -> pierre
