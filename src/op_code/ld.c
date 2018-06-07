@@ -6,7 +6,7 @@
 /*   By: pleroux <pleroux@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/20 07:08:25 by pleroux           #+#    #+#             */
-/*   Updated: 2018/06/06 19:05:32 by pleroux          ###   ########.fr       */
+/*   Updated: 2018/06/07 19:41:43 by pleroux          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,13 +18,20 @@
 int			op_ld(void *e)
 {
 	t_process		*p;
+	int				pc;
 
 	p = ((t_env*)e)->current_process;
-	if (p->op.arg_raw[1] && p->op.arg_raw[1] <= REG_NUMBER)
+	pc = op_decod_arg((t_env*)e);
+	if (p->op.arg[1] > 0 && p->op.arg[1] <= REG_NUMBER)
 	{
-		p->reg[p->op.arg_raw[1] - 1].v = p->op.arg[0];
-		if (p->reg[p->op.arg_raw[1] - 1].v == 0)
+		if (p->op.encodage.bit.a4 == T_IND_BIT)
+			p->op.arg[0] = get_int_mem_pc((t_env*)e, REG_SIZE,
+					p->pc + (p->op.arg[0] % IDX_MOD)).v32;
+		p->reg[p->op.arg[1] - 1].v = p->op.arg[0];
+		verbose(e, V_7, "op:ld: reg[%d]=%x\n", p->op.arg[1] - 1, p->reg[p->op.arg[1] - 1].v);
+		if (p->op.arg[0] == 0)
 			p->carry = 1;
 	}
-	return (FALSE);
+	p->pc = pc;
+	return (TRUE);
 }

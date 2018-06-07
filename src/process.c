@@ -6,7 +6,7 @@
 /*   By: pleroux <pleroux@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/16 17:56:53 by pleroux           #+#    #+#             */
-/*   Updated: 2018/06/06 10:30:53 by msukhare         ###   ########.fr       */
+/*   Updated: 2018/06/07 14:30:06 by pleroux          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,6 @@ void		process_init_instruction(t_instruc *ist)
 	while (i < NB_ARG)
 	{
 		ist->arg[i] = 0;
-		ist->arg_raw[i] = 0;
 		++i;
 	}
 	ist->info = op_tab[16];

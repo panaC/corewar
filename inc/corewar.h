@@ -6,7 +6,7 @@
 /*   By: pierre <pleroux@student.42.fr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/15 10:01:43 by pierre            #+#    #+#             */
-/*   Updated: 2018/06/06 18:55:43 by pleroux          ###   ########.fr       */
+/*   Updated: 2018/06/07 16:11:13 by pleroux          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ typedef union		u_uint
 	short			v16;
 	int				v32;
 	char			v[4];
-}					t_uint;
+}					t_int;
 
 /*
 ** decodage op_code :
@@ -105,7 +105,6 @@ typedef struct		s_instruction
 	t_uint8			op_code;
 	t_encodage		encodage;
 	int				arg[NB_ARG];
-	int				arg_raw[NB_ARG];
 	t_op			info;
 }					t_instruc;
 /* game :
@@ -222,6 +221,15 @@ t_process			*process_add_lst(t_process **bg, t_process *prev,
 int					op_decod(t_env *e);
 int					rot_mem(int *pc);
 int					rot_mem_set(int *pc);
+
+/*
+** op_decod_arg.c
+*/
+int					op_decod_arg(t_env *e);
+int					get_decod_arg(t_env *e, int *pc, t_uint8 enc, int n);
+t_int				get_int_mem(t_env *e, int s, int *pc);
+t_int				get_int_mem_pc(t_env *e, int s, int pc);
+void				set_int_mem_pc(t_env *e, int s, int pc, t_int val);
 
 /*
 ** game_init.c

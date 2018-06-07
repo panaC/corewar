@@ -6,7 +6,7 @@
 /*   By: pleroux <pleroux@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/19 15:12:36 by pleroux           #+#    #+#             */
-/*   Updated: 2018/06/06 19:06:00 by pleroux          ###   ########.fr       */
+/*   Updated: 2018/06/07 15:02:22 by pleroux          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,9 +22,9 @@ int			op_add(void *e)
 
 	p = ((t_env*)e)->current_process;
 	r.v = p->op.arg[0] + p->op.arg[1];
-	if (p->op.arg_raw[2] && p->op.arg_raw[2] <= REG_NUMBER)
+	if (p->op.arg[2] && p->op.arg[2] <= REG_NUMBER)
 	{
-		p->reg[p->op.arg_raw[2] - 1] = r;
+		p->reg[p->op.arg[2] - 1] = r;
 		if (r.v == 0)
 			p->carry = TRUE;
 	}

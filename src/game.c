@@ -6,7 +6,7 @@
 /*   By: pierre <pleroux@student.42.fr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/17 10:33:14 by pierre            #+#    #+#             */
-/*   Updated: 2018/06/06 18:06:30 by pleroux          ###   ########.fr       */
+/*   Updated: 2018/06/07 15:45:06 by pleroux          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ int					game(t_env *e)
 			verbose(e, V_5, "process find p = %p\n", p);
 			verbose(e, V_6, "process: live = %d, carry = %d, pc = %d player = %d\n", p->live, p->carry, p->pc, p->numero);
 			e->current_process = p;
-			p->pc = op_decod(e);
+			op_decod(e);
 			print_info_process(e, p);
 		}
 		game_rules(e);
