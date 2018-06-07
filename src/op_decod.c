@@ -6,7 +6,7 @@
 /*   By: pierre <pleroux@student.42.fr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/18 19:20:39 by pierre            #+#    #+#             */
-/*   Updated: 2018/06/05 15:56:43 by pleroux          ###   ########.fr       */
+/*   Updated: 2018/06/06 21:58:51 by pleroux          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,22 +17,27 @@
 #include <stdlib.h>
 #include <stdio.h>
 
-t_uint32		rot_mem(t_uint32 *pc)
+int				rot_mem(int *pc)
 {
 	*pc = *pc + 1;
 	if (*pc >= MEM_SIZE)
 		*pc = *pc % MEM_SIZE;
+	if (*pc < 0)
+		*pc = MEM_SIZE - *pc % MEM_SIZE;
+
 	return (*pc);
 }
 
-t_uint32		rot_mem_set(t_uint32 *pc)
+int				rot_mem_set(int *pc)
 {
 	if (*pc >= MEM_SIZE)
 		*pc = *pc % MEM_SIZE;
+	if (*pc < 0)
+		*pc = MEM_SIZE - *pc % MEM_SIZE;
 	return (*pc);
 }
 
-t_uint32		op_decod(t_env *e)
+int				op_decod(t_env *e)
 {
 
 // attention memoire circulaire tester en permanence valeur de
@@ -46,8 +51,8 @@ t_uint32		op_decod(t_env *e)
 	t_uint8		encod[3];
 	t_uint8		i;
 	t_process	*p;
-	t_uint8		*b;
-	t_uint32	pc;
+	char		*b;
+	int			pc;
 
 	verbose(e, V_7, "Start Op_decode\n");
 	p = e->current_process;
@@ -113,7 +118,7 @@ t_uint32		op_decod(t_env *e)
 					{
 						p->op.arg[i] = p->reg[val.v8 - 1].v;
 						p->op.arg_raw[i] = val.v32;
-						verbose(e, V_7, "arg %u raw %u\n", p->op.arg[i], p->op.arg_raw[i]);
+						verbose(e, V_7, "arg %d raw %d\n", p->op.arg[i], p->op.arg_raw[i]);
 					}
 					else
 					{
@@ -127,10 +132,10 @@ t_uint32		op_decod(t_env *e)
 					//2 octets
 					val.v[1] = b[rot_mem(&pc)];
 					val.v[0] = b[rot_mem(&pc)];
-					p->op.arg[i] = p->pc + val.v32;
+					p->op.arg[i] = p->pc + (int)val.v16;
 					p->op.arg[i] = rot_mem_set(&(p->op.arg[i]));
-					p->op.arg_raw[i] = val.v32;
-					verbose(e, V_7, "op: arg %u raw %u\n", p->op.arg[i], p->op.arg_raw[i]);
+					p->op.arg_raw[i] = (int)val.v16;
+					verbose(e, V_7, "op: arg %d raw %d\n", p->op.arg[i], p->op.arg_raw[i]);
 				}
 				else if (encod[i] == T_DIR_BIT)
 				{
@@ -140,9 +145,9 @@ t_uint32		op_decod(t_env *e)
 						//2 octets
 						val.v[1] = b[rot_mem(&pc)];
 						val.v[0] = b[rot_mem(&pc)];
-						p->op.arg[i] = rot_mem_set(&(val.v32));
-						p->op.arg_raw[i] = val.v32;
-						verbose(e, V_7, "op: arg %u raw %u\n", p->op.arg[i], p->op.arg_raw[i]);
+						p->op.arg[i] = (int)val.v16;
+						p->op.arg_raw[i] = (int)val.v16;
+						verbose(e, V_7, "op: arg %d raw %d\n", p->op.arg[i], p->op.arg_raw[i]);
 					}
 					else
 					{
@@ -151,9 +156,9 @@ t_uint32		op_decod(t_env *e)
 						val.v[2] = b[rot_mem(&pc)];
 						val.v[1] = b[rot_mem(&pc)];
 						val.v[0] = b[rot_mem(&pc)];
-						p->op.arg[i] = rot_mem_set(&(val.v32));
+						p->op.arg[i] = val.v32;
 						p->op.arg_raw[i] = val.v32;
-						verbose(e, V_7, "op: arg %u raw %u\n", p->op.arg[i], p->op.arg_raw[i]);
+						verbose(e, V_7, "op: arg %d raw %d\n", p->op.arg[i], p->op.arg_raw[i]);
 					}
 				}
 				else
@@ -163,7 +168,7 @@ t_uint32		op_decod(t_env *e)
 					val.v[0] = b[rot_mem(&pc)];
 					p->op.arg[i] = 0;
 					p->op.arg_raw[i] = 0;
-					verbose(e, V_7, "op: arg %u raw %u\n", p->op.arg[i], p->op.arg_raw[i]);
+					verbose(e, V_7, "op: arg %d raw %d\n", p->op.arg[i], p->op.arg_raw[i]);
 				}
 				++i;
 			}

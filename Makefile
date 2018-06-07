@@ -6,7 +6,7 @@
 #    By: pierre <pleroux@student.42.fr>             +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/12/11 13:59:37 by pierre            #+#    #+#              #
-#    Updated: 2018/06/06 15:24:58 by msukhare         ###   ########.fr        #
+#    Updated: 2018/06/06 17:49:23 by pleroux          ###   ########.fr        #
 #    Updated: 2018/06/04 18:18:51 by pierre           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
@@ -63,8 +63,8 @@ SRC_FILE = op.c \
 		   op_code/zjmp.c \
 		   op_code/live.c \
 		   op_code/ldi.c \
-		   op_code/lldi.c\
-		   op_code/and.c\
+		   op_code/lldi.c \
+		   op_code/and.c
 
 SRC = $(addprefix $(SRC_DIR), $(SRC_FILE))
 INC = $(addprefix $(INC_DIR), $(INC_FILE))

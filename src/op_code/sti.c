@@ -6,7 +6,7 @@
 /*   By: pleroux <pleroux@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/19 22:54:54 by pleroux           #+#    #+#             */
-/*   Updated: 2018/06/05 13:28:49 by pleroux          ###   ########.fr       */
+/*   Updated: 2018/06/06 17:46:03 by pleroux          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int			op_sti(void *e)
 {
 	t_process		*p;
 	t_reg			value;
-	t_uint32		addr;
+	int				addr;
 	int				i;
 
 	i = REG_SIZE - 1;
