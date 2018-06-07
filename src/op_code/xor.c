@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   and.c                                              :+:      :+:    :+:   */
+/*   xor.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: msukhare <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: pleroux <pleroux@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/06/06 14:39:36 by msukhare          #+#    #+#             */
-/*   Updated: 2018/06/07 21:24:16 by pleroux          ###   ########.fr       */
+/*   Created: 2018/06/07 21:21:00 by pleroux           #+#    #+#             */
+/*   Updated: 2018/06/07 21:24:34 by pleroux          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-int				op_and(void *e)
+int				op_xor(void *e)
 {
 	t_process	*p;
 	t_reg		val;
@@ -34,7 +34,7 @@ int				op_and(void *e)
 		if (p->op.encodage.bit.a3 == T_IND_BIT)
 			p->op.arg[1] = get_int_mem_pc((t_env*)e, REG_SIZE,
 					p->pc + (p->op.arg[1] % IDX_MOD)).v32;
-		val.v = p->op.arg[0] & p->op.arg[1];
+		val.v = p->op.arg[0] ^ p->op.arg[1];
 		p->reg[p->op.arg[2] - 1] = val;
 		if (val.v == 0)
 			p->carry = 1;

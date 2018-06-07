@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ld.c                                               :+:      :+:    :+:   */
+/*   lld.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pleroux <pleroux@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/05/20 07:08:25 by pleroux           #+#    #+#             */
-/*   Updated: 2018/06/07 20:58:04 by pleroux          ###   ########.fr       */
+/*   Created: 2018/06/07 21:00:47 by pleroux           #+#    #+#             */
+/*   Updated: 2018/06/07 21:01:17 by pleroux          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 #include "corewar.h"
 #include "op.h"
 
-int			op_ld(void *e)
+int			op_lld(void *e)
 {
 	t_process		*p;
 	int				pc;
@@ -26,9 +26,9 @@ int			op_ld(void *e)
 	{
 		if (p->op.encodage.bit.a4 == T_IND_BIT)
 			p->op.arg[0] = get_int_mem_pc((t_env*)e, REG_SIZE,
-					p->pc + (p->op.arg[0] % IDX_MOD)).v32;
+					p->pc + p->op.arg[0]).v32;
 		p->reg[p->op.arg[1] - 1].v = p->op.arg[0];
-		verbose(e, V_7, "op:ld: reg[%d]=%x\n", p->op.arg[1] - 1,
+		verbose(e, V_7, "op:lld: reg[%d]=%x\n", p->op.arg[1] - 1,
 				p->reg[p->op.arg[1] - 1].v);
 		if (p->op.arg[0] == 0)
 			p->carry = 1;

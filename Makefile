@@ -6,7 +6,7 @@
 #    By: pierre <pleroux@student.42.fr>             +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/12/11 13:59:37 by pierre            #+#    #+#              #
-#    Updated: 2018/06/07 15:08:24 by pleroux          ###   ########.fr        #
+#    Updated: 2018/06/07 21:22:34 by pleroux          ###   ########.fr        #
 #    Updated: 2018/06/04 18:18:51 by pierre           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
@@ -58,6 +58,7 @@ SRC_FILE = op.c \
 		   op_code/sti.c \
 		   op_code/st.c \
 		   op_code/ld.c \
+		   op_code/lld.c \
 		   op_code/aff.c \
 	       op_code/fork.c \
 		   op_code/lfork.c \
@@ -65,7 +66,9 @@ SRC_FILE = op.c \
 		   op_code/live.c \
 		   op_code/ldi.c \
 		   op_code/lldi.c \
-		   op_code/and.c
+		   op_code/and.c \
+		   op_code/or.c \
+		   op_code/xor.c
 
 SRC = $(addprefix $(SRC_DIR), $(SRC_FILE))
 INC = $(addprefix $(INC_DIR), $(INC_FILE))

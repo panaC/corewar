@@ -6,7 +6,7 @@
 /*   By: pierre <pleroux@student.42.fr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/03 13:23:29 by pierre            #+#    #+#             */
-/*   Updated: 2018/06/06 17:49:42 by pleroux          ###   ########.fr       */
+/*   Updated: 2018/06/07 21:21:44 by pleroux          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ int			op_aff(void *e);
 int			op_fork(void *e);
 int			op_lfork(void *e);
 int			op_ld(void *e);
+int			op_lld(void *e);
 int			op_ldi(void *e);
 int			op_lldi(void *e);
 int			op_st(void *e);
@@ -29,5 +30,7 @@ int			op_sub(void *e);
 int			op_live(void *e);
 int			op_zjmp(void *e);
 int			op_and(void *e);
+int			op_or(void *e);
+int			op_xor(void *e);
 
 #endif
