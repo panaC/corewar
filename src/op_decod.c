@@ -6,7 +6,7 @@
 /*   By: pierre <pleroux@student.42.fr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/18 19:20:39 by pierre            #+#    #+#             */
-/*   Updated: 2018/06/07 15:46:26 by pleroux          ###   ########.fr       */
+/*   Updated: 2018/06/08 11:50:22 by pleroux          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,6 @@ int				rot_mem(int *pc)
 		*pc = *pc % MEM_SIZE;
 	if (*pc < 0)
 		*pc = MEM_SIZE - *pc % MEM_SIZE;
-
 	return (*pc);
 }
 
