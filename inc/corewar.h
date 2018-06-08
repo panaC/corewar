@@ -6,7 +6,7 @@
 /*   By: pierre <pleroux@student.42.fr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/15 10:01:43 by pierre            #+#    #+#             */
-/*   Updated: 2018/06/07 16:11:13 by pleroux          ###   ########.fr       */
+/*   Updated: 2018/06/08 17:00:55 by pleroux          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -148,15 +148,15 @@ typedef struct		s_env
 	int				verbos_lvl;
 	t_bool			visu;
 	t_bool			dump;
-	t_uint32		nb_cycle_dump;
+	int				nb_cycle_dump;
 
 	t_player		player[MAX_PLAYERS];
 	int				nb_player;
 	int				win_player;
 
-	t_uint32		cycle_to_die;
-	t_uint32		cycle_totale;
-	t_uint32		cycle;
+	int				cycle_to_die;
+	int				cycle_totale;
+	int				cycle;
 	t_uint32		nb_live;
 	t_uint32		check;
 

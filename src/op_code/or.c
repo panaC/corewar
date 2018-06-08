@@ -6,7 +6,7 @@
 /*   By: pleroux <pleroux@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/07 21:20:32 by pleroux           #+#    #+#             */
-/*   Updated: 2018/06/07 21:24:43 by pleroux          ###   ########.fr       */
+/*   Updated: 2018/06/08 13:57:44 by pleroux          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,10 @@ int				op_or(void *e)
 {
 	t_process	*p;
 	t_reg		val;
+	int			pc;
 
 	p = ((t_env *)e)->current_process;
+	pc = op_decod_arg((t_env*)e);
 	if (p->op.arg[2] && p->op.arg[2] <= REG_NUMBER)
 	{
 		if (p->op.encodage.bit.a4 == T_REG_BIT &&
@@ -39,5 +41,6 @@ int				op_or(void *e)
 		if (val.v == 0)
 			p->carry = 1;
 	}
+	p->pc = pc;
 	return (TRUE);
 }

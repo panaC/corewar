@@ -6,7 +6,7 @@
 /*   By: pierre <pleroux@student.42.fr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/18 19:20:39 by pierre            #+#    #+#             */
-/*   Updated: 2018/06/08 11:50:22 by pleroux          ###   ########.fr       */
+/*   Updated: 2018/06/08 17:24:10 by pleroux          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,15 +48,16 @@ int				op_decod(t_env *e)
 		{
 			p->op.op_code = e->mem[p->pc];
 			p->op.info = op_tab[e->mem[p->pc] - 1];
-			verbose(e, V_7, "op: op_code %x\n", e->mem[p->pc]);
+			verbose(e, V_6, "op: op_code %0.2x\n", e->mem[p->pc]);
 		}
-		if (p->op.info.cycle == 1)
+		if (p->op.info.cycle <= 1)
 		{
-			verbose(e, V_7, "op: Start fct %x\n", e->mem[p->pc]);
-			p->op.info.ft(e);
-			process_init_instruction(&(p->op));
+			verbose(e, V_4, "op: %s\n", p->op.info.name);
+			if (p->op.info.ft(e))
+				process_init_instruction(&(p->op));
 		}
-		--(p->op.info.cycle);
+		else
+			--(p->op.info.cycle);
 	}
 	else
 		rot_mem(&(p->pc));

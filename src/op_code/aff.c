@@ -6,7 +6,7 @@
 /*   By: pleroux <pleroux@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/20 07:31:49 by pleroux           #+#    #+#             */
-/*   Updated: 2018/06/05 13:27:38 by pleroux          ###   ########.fr       */
+/*   Updated: 2018/06/08 14:41:30 by pleroux          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,5 +22,5 @@ int			op_aff(void *e)
 
 	p = ((t_env*)e)->current_process;
 	ft_printf("AFF: %c\n", p->op.arg[0] % 256);
-	return (FALSE);
+	return (TRUE);
 }

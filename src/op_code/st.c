@@ -6,7 +6,7 @@
 /*   By: pleroux <pleroux@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/20 06:22:36 by pleroux           #+#    #+#             */
-/*   Updated: 2018/06/07 19:41:39 by pleroux          ###   ########.fr       */
+/*   Updated: 2018/06/08 14:28:16 by pleroux          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,6 @@ int			op_st(void *e)
 			verbose(e, V_7, "op:st: reg[%d]=%x\n", p->op.arg[1] - 1, val.v32);
 		}
 	}
-	p->pc = rot_mem(&pc);
+	p->pc = pc;
 	return (TRUE);
 }
