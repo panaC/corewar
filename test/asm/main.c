@@ -61,7 +61,7 @@ int		main_1()
 
 int		main()
 {
-	int fd = open("test.cor", O_CREAT | O_RDWR | O_TRUNC, 0777);
+	int fd = open("../parser/good.cor", O_CREAT | O_RDWR | O_TRUNC, 0777);
 	int zero = 0;
 
 	char name[PROG_NAME_LENGTH];

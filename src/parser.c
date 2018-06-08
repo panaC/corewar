@@ -6,26 +6,23 @@
 /*   By: pierre <pleroux@student.42.fr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/16 12:57:24 by pierre            #+#    #+#             */
-/*   Updated: 2018/06/02 13:32:11 by pleroux          ###   ########.fr       */
+/*   Updated: 2018/06/08 10:40:47 by pierre           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <libft.h>
-#include <ft_printf.h>
 #include <unistd.h>
 #include <fcntl.h>
 #include <sys/types.h>
-
-#include <stdio.h>
-
+#include <ft_printf.h>
 #include "corewar.h"
 #include "op.h"
 #include "parser.h"
+
 /*
 ** boucle sur nb_player
 ** pour init tout les players
 */
-
 t_bool		parser(t_env *e)
 {
 	int		i;
@@ -55,15 +52,8 @@ t_bool		parser(t_env *e)
 ** appel fct parser_header
 ** appel fct parser_binaire
 */
-
 t_bool		parser_cor(t_env *e, int numero)
 {
-	/*
-	e->pl.numero = numero;
-	e->pl.process = NULL;
-	parser_init_header(&(pl.head));
-	ft_bzero(pl.data, CHAMP_MAX_SIZE);
-	*/
 	if (!parser_cor_header(e, &(e->player[numero - 1])))
 		return (FALSE);
 	if (!parser_cor_data(e, &(e->player[numero - 1])))
@@ -75,7 +65,6 @@ t_bool		parser_cor(t_env *e, int numero)
 ** init name et comment
 ** check header cf flowchart
 */
-
 t_bool		parser_cor_header(t_env *e, t_player *p)
 {
 	t_u_uint32		buf;
@@ -86,40 +75,36 @@ t_bool		parser_cor_header(t_env *e, t_player *p)
 		{
 			if (read(p->fd, p->head.prog_name,
 						PROG_NAME_LENGTH) == PROG_NAME_LENGTH)
-			{
-				if (parser_read_byte(4, p->fd, buf.buf) == 1 &&
-						parser_read_byte(4, p->fd, buf.buf) == 1)
-				{
-					p->head.prog_size = buf.value;
-					if (read(p->fd, p->head.comment, COMMENT_LENGTH) == COMMENT_LENGTH
-							&& parser_read_byte(4, p->fd, buf.buf) == 1)
-					{
-						return (TRUE);
-					}
-					else
-					{
-						ft_sprintf(&e->err_parsing, "header comment too short");
-					}
-				}
-				else
-				{
-					ft_sprintf(&e->err_parsing, "header code size too short");
-				}
-			}
+				return (parser_cor_header_next(e, p));
 			else
-			{
 				ft_sprintf(&e->err_parsing, "header name too short");
-			}
 		}
 		else
-		{
-			ft_sprintf(&e->err_parsing, "wrong COREWAR_EXEC_MAGIC");
-		}
+			ft_sprintf(&e->err_parsing, "wrong COREWAR_EXEC_MAGIC :%0.8x:",
+					buf.value);
 	}
 	else
-	{
 		ft_sprintf(&e->err_parsing, "header magic too short");
+	return (FALSE);
+}
+
+t_bool		parser_cor_header_next(t_env *e, t_player *p)
+{
+	t_u_uint32		buf;
+
+	if (parser_read_byte(4, p->fd, buf.buf) == 1 &&
+			parser_read_byte(4, p->fd, buf.buf) == 1)
+	{
+		p->head.prog_size = buf.value;
+		if (read(p->fd, p->head.comment,
+					COMMENT_LENGTH) == COMMENT_LENGTH &&
+				parser_read_byte(4, p->fd, buf.buf) == 1)
+			return (TRUE);
+		else
+			ft_sprintf(&e->err_parsing, "header comment too short");
 	}
+	else
+		ft_sprintf(&e->err_parsing, "header code size too short");
 	return (FALSE);
 }
 
@@ -136,19 +121,8 @@ t_bool		parser_cor_data(t_env *e, t_player *p)
 				lseek(p->fd, 0, SEEK_SET);
 				return (TRUE);
 			}
-			else
-			{
-				ft_sprintf(&e->err_parsing, "invalid header size %u 3", p->head.prog_size);
-			}
-		}
-		else
-		{
-			ft_sprintf(&e->err_parsing, "invalid header size %u 2", p->head.prog_size);
 		}
 	}
-	else
-	{
-		ft_sprintf(&e->err_parsing, "invalid header size %u 1", p->head.prog_size);
-	}
+	ft_sprintf(&e->err_parsing, "invalid header size %u", p->head.prog_size);
 	return (FALSE);
 }
