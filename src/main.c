@@ -6,7 +6,7 @@
 /*   By: msukhare <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/16 16:02:23 by msukhare          #+#    #+#             */
-/*   Updated: 2018/06/04 14:22:31 by pierre           ###   ########.fr       */
+/*   Updated: 2018/06/09 11:46:14 by pierre           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,13 +22,6 @@ int			main(int argc, char **argv)
 	t_env	env;
 
 	ft_init_struct(&env);
-	/*
-	 * debug
-	 */
-	env.verbos_lvl = 3;
-	/*
-	 * debug
-	 */
 	if (ft_check_argv(argc, argv, &env))
 	{
 		if (parser(&env))

@@ -6,7 +6,7 @@
 /*   By: pierre <pleroux@student.42.fr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/15 10:01:43 by pierre            #+#    #+#             */
-/*   Updated: 2018/06/08 17:00:55 by pleroux          ###   ########.fr       */
+/*   Updated: 2018/06/09 11:37:07 by pierre           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -261,6 +261,7 @@ void				ft_dump(t_env *env);
 /*
 ** print_win.c
 */
+void				select_winner(t_env *e);
 int					print_win(t_env *e);
 
 #endif
