@@ -6,7 +6,7 @@
 /*   By: pleroux <pleroux@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/01 20:31:40 by pleroux           #+#    #+#             */
-/*   Updated: 2018/06/09 16:25:22 by pleroux          ###   ########.fr       */
+/*   Updated: 2018/06/09 18:31:10 by pleroux          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,18 +31,18 @@ t_bool			game_rules(t_env *e)
 {
 	if (e->cycle >= e->cycle_to_die)
 	{
-		verbose(e, V_3, "Cycle_to_die atteint=%d -> check rules + rm process\n", e->cycle_to_die);
+		verbose(e, V_4, "Cycle_to_die %d--check/rm process\n", e->cycle_to_die);
 		if (e->nb_live >= NBR_LIVE)
 		{
 			e->check = 1;
 			e->cycle_to_die -= CYCLE_DELTA;
-			verbose(e, V_3, "NBR_LIVE new cycle_to_die=%d\n", e->cycle_to_die);
+			verbose(e, V_4, "NBR_LIVE new cycle_to_die=%d\n", e->cycle_to_die);
 		}
 		else if (e->check >= MAX_CHECKS)
 		{
 			e->check = 1;
 			e->cycle_to_die -= CYCLE_DELTA;
-			verbose(e, V_3, "NBR_CHECK new cycle_to_die=%d\n", e->cycle_to_die);
+			verbose(e, V_4, "NBR_CHECK new cycle_to_die=%d\n", e->cycle_to_die);
 		}
 		else
 			++e->check;

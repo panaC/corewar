@@ -6,8 +6,7 @@
 /*   By: zaz <marvin@42.fr>                         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/10/04 11:43:01 by zaz               #+#    #+#             */
-/*   Updated: 2018/06/07 21:22:09 by pleroux          ###   ########.fr       */
-/*   Updated: 2018/06/04 18:18:22 by pierre           ###   ########.fr       */
+/*   Updated: 2018/06/09 18:33:12 by pleroux          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +14,7 @@
 #include "corewar.h"
 #include "op_code.h"
 
-t_op    op_tab[17] =
+t_op		op_tab[17] =
 {
 	{"live", 1, {T_DIR}, 1, 10, "alive", 0, 0, op_live},
 	{"ld", 2, {T_DIR | T_IND, T_REG}, 2, 5, "load", 1, 0, op_ld},

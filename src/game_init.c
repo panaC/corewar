@@ -6,7 +6,7 @@
 /*   By: pierre <pleroux@student.42.fr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/17 09:59:36 by pierre            #+#    #+#             */
-/*   Updated: 2018/06/04 13:21:42 by pierre           ###   ########.fr       */
+/*   Updated: 2018/06/09 18:28:42 by pleroux          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,6 @@ t_bool			game_init(t_env *e)
 	{
 		verbose(e, V_8, "Init process %d\n", i);
 		process_init_empty(&prev, i);
-		verbose(e, V_8, "Add lst process %d\n", i);
 		if (!process_add_lst(&(e->player[i - 1].process), &prev, pc))
 			return (FALSE);
 		pc += tmp;
@@ -51,11 +50,9 @@ t_bool			game_init_mem(t_env *e)
 	while (i < e->nb_player)
 	{
 		e->player[i].mem_ref = i * size;
-		ft_memcpy(&(e->mem[i * size]), e->player[i].data, e->player[i].head.prog_size);
+		ft_memcpy(&(e->mem[i * size]), e->player[i].data,
+				e->player[i].head.prog_size);
 		++i;
 	}
-	//debug
-	ft_dump(e);
-	//debug
 	return (TRUE);
 }

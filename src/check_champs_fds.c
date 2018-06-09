@@ -6,13 +6,14 @@
 /*   By: msukhare <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/19 14:18:02 by msukhare          #+#    #+#             */
-/*   Updated: 2018/06/04 15:17:33 by msukhare         ###   ########.fr       */
+/*   Updated: 2018/06/09 18:38:37 by pleroux          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "corewar.h"
+#include <libft.h>
+#include <ft_printf.h>
 
-#include <stdio.h>
 int		ft_check_in_tab_player(int place, t_env *env)
 {
 	int	i;
@@ -27,7 +28,8 @@ int		ft_check_in_tab_player(int place, t_env *env)
 	{
 		if ((int)env->player[i].numero == place)
 		{
-			printf("place = %d num = %d\n i = %d", place, env->player[i].numero, i);
+			ft_printf("place = %d num = %d\n i = %d",
+					place, env->player[i].numero, i);
 			ft_putstr_fd("two champ on same place\n", 2);
 			return (0);
 		}
