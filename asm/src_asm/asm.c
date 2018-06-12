@@ -6,7 +6,7 @@
 /*   By: lchancri <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/14 13:06:40 by lchancri          #+#    #+#             */
-/*   Updated: 2018/06/06 21:07:51 by lchancri         ###   ########.fr       */
+/*   Updated: 2018/06/12 18:08:36 by pleroux          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,22 +46,14 @@ void		affiche_file(t_file *file)
 {
 	t_cmd		*cmd;
 
-	printf("name : %s\n", file->name);
-	printf("comment : %s\n", file->comment);
 	while (file->label)
 	{
-		printf("label, a = %d : %s\n", file->label->a, file->label->name);
 		while (file->label->cmd)
 		{
 			cmd = file->label->cmd;
-			printf("			%d", cmd->op_code);
 			if (cmd->arg1_type != 0)
-				printf(", 1:%d(%d)", cmd->arg1_type, cmd->arg1_value);
 			if (cmd->arg2_type != 0)
-				printf(", 2:%d(%d)", cmd->arg2_type, cmd->arg2_value);
 			if (cmd->arg3_type != 0)
-				printf(", 3:%d(%d)", cmd->arg3_type, cmd->arg3_value);
-			printf("\n");
 			file->label->cmd = file->label->cmd->next;
 		}
 		file->label = file->label->next;

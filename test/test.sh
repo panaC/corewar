@@ -21,17 +21,18 @@ find ressources -name "*.s" -type f -print | while read FILE;
 do
 	echo $FILE" :"
 	echo "OFFICIEL : "
-	./corewar_github/asm $FILE
+	./ressources/asm $FILE
 	hexdump -C "${FILE/%.s/.cor}" > "${FILE/%.s/.odiff}"
 	rm -rf "${FILE/%.s/.cor}"
 	echo "RENDU : "
-	./corewar_github/asm $FILE
+	./asm/asm $FILE
 	hexdump -C "${FILE/%.s/.cor}" > "${FILE/%.s/.rdiff}"
 	echo "DIFF : "
 	diff "${FILE/%.s/.odiff}" "${FILE/%.s/.rdiff}"
 	rm -rf "${FILE/%.s/.odiff}" "${FILE/%.s/.rdiff}"
 done
 
+read
 echo ""
 echo "##################"
 echo "Test corewar"
@@ -43,9 +44,9 @@ find ressources -name "*.cor" -type f -print | while read FILE;
 do
 	echo $FILE" :"
 	echo "OFFICIEL : "
-	./corewar_github/corewar $FILE
+	./ressources/corewar $FILE
 	echo "RENDU : "
-	./corewar_github/corewar $FILE
+	./corewar $FILE
 done
 
 echo ""
@@ -58,9 +59,9 @@ do
 	do
 		echo $FILE" & "$FILE_2" :"
 		echo "OFFICIEL : "
-		./corewar_github/corewar $FILE $FILE_2
+		./ressources/corewar $FILE $FILE_2
 		echo "RENDU : "
-		./corewar_github/corewar $FILE $FILE_2
+		./corewar $FILE $FILE_2
 	done
 done
 
@@ -77,9 +78,9 @@ do
 			echo $FILE" :"
 		echo $FILE" & "$FILE_2" & "$FILE_3: :
 			echo "OFFICIEL : "
-			./corewar_github/corewar $FILE $FILE_2 $FILE_3
+			./ressources/corewar $FILE $FILE_2 $FILE_3
 			echo "RENDU : "
-			./corewar_github/corewar $FILE $FILE_2 $FILE_3
+			./corewar $FILE $FILE_2 $FILE_3
 		done	
 	done
 done
@@ -94,8 +95,8 @@ do
 	do
 		echo $FILE" & "$FILE_2" :"
 		echo "OFFICIEL : "
-		./corewar_github/corewar $FILE $FILE_2 $FILE $FILE_2
+		./ressources/corewar $FILE $FILE_2 $FILE $FILE_2
 		echo "RENDU : "
-		./corewar_github/corewar $FILE $FILE_2 $FILE $FILE_2
+		./corewar $FILE $FILE_2 $FILE $FILE_2
 	done
 done
