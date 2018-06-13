@@ -6,7 +6,7 @@
 /*   By: pierre <pleroux@student.42.fr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/15 10:01:43 by pierre            #+#    #+#             */
-/*   Updated: 2018/06/09 11:37:07 by pierre           ###   ########.fr       */
+/*   Updated: 2018/06/13 13:02:59 by msukhare         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -136,6 +136,7 @@ typedef struct		s_player
 	char			*name;
 	t_uint32		mem_ref;
 	unsigned long	last_live;
+	int				nb_live;
 }					t_player;
 /* corewar :
 ** structure d'environnement corewar
@@ -163,6 +164,7 @@ typedef struct		s_env
 //	t_f_op			ft_tab[NB_OP];
 
 	char			mem[MEM_SIZE];
+	char			mem_gui[MEM_SIZE];
 	
 	t_string		err_parsing;
 
