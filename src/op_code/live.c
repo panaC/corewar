@@ -6,7 +6,7 @@
 /*   By: msukhare <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/06 09:28:49 by msukhare          #+#    #+#             */
-/*   Updated: 2018/06/08 17:27:33 by pleroux          ###   ########.fr       */
+/*   Updated: 2018/06/13 13:21:35 by msukhare         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,52 +16,29 @@
 #include "corewar.h"
 #include "op.h"
 
-static void		ft_put_live_in_pro(t_process *p, void *e, int first)
-{
-	ft_printf("INFO : I am %s and i am alive bitch\n",
-			((t_env *)e)->player[p->numero - 1].name);
-	((t_env *)e)->player[p->numero - 1].last_live = ((t_env *)e)->cycle_totale;
-	((t_env *)e)->nb_live++;
-	if (first == 1)
-	{
-		p->live = 1;
-		return ;
-	}
-	while (p)
-	{
-		if (p->live == 0)
-		{
-			p->live = 1;
-			return ;
-		}
-		p = p->next;
-	}
-}
-
 int				op_live(void *e)
 {
 	t_process	*p;
+	t_env		*env;
 	int			i;
 	int			pc;
 
 	i = 0;
-	p = ((t_env *)e)->current_process;
-	pc = op_decod_arg((t_env*)e);
-	if (p->op.arg[0] == (int)(p->numero * - 1))
+	env = (t_env *)e;
+	p = env->current_process;
+	pc = op_decod_arg(env);
+	p->live = 1;
+	while (i < env->nb_player)
 	{
-		ft_put_live_in_pro(p, e, 1);
-		p->pc = pc;
-		return (TRUE);
-	}
-	while (i < ((t_env *)e)->nb_player)
-	{
-		if (((((t_env *)e)->player[i].process->numero) * -1) == p->op.arg[0])
+		if (p->op.arg[0] == (int)(env->player[i].numero * - 1))
 		{
-			ft_put_live_in_pro(((t_env *)e)->player[i].process, e, 0);
+			env->player[i].last_live = env->cycle;
+			env->player[i].nb_live++;
+			env->nb_live++;
 			p->pc = pc;
 			return (TRUE);
 		}
-		++i;
+		i++;
 	}
 	p->pc = pc;
 	return (TRUE);
