@@ -6,7 +6,7 @@
 /*   By: pleroux <pleroux@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/20 06:22:36 by pleroux           #+#    #+#             */
-/*   Updated: 2018/06/08 14:28:16 by pleroux          ###   ########.fr       */
+/*   Updated: 2018/06/13 13:21:13 by pleroux          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,8 @@ int			op_st(void *e)
 		{
 			set_int_mem_pc((t_env*)e, REG_SIZE,
 					p->pc + (p->op.arg[1] % IDX_MOD), val);
+			set_int_gui_pc((t_env*)e, REG_SIZE,
+					p->pc + (p->op.arg[1] % IDX_MOD), (t_int)p->numero);
 			verbose(e, V_7, "op:st: mem[%d]=%x\n", p->pc, val.v32);
 		}
 		else if (p->op.encodage.bit.a3 == T_REG_BIT &&

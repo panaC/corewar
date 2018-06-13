@@ -6,7 +6,7 @@
 /*   By: pierre <pleroux@student.42.fr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/15 10:01:43 by pierre            #+#    #+#             */
-/*   Updated: 2018/06/13 13:02:59 by msukhare         ###   ########.fr       */
+/*   Updated: 2018/06/13 13:20:07 by pleroux          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -158,7 +158,7 @@ typedef struct		s_env
 	int				cycle_to_die;
 	int				cycle_totale;
 	int				cycle;
-	t_uint32		nb_live;
+		t_uint32		nb_live;
 	t_uint32		check;
 
 //	t_f_op			ft_tab[NB_OP];
@@ -265,5 +265,10 @@ void				ft_dump(t_env *env);
 */
 void				select_winner(t_env *e);
 int					print_win(t_env *e);
+
+/*
+** mem_gui.c
+*/
+void				set_int_gui_pc(t_env *e, int s, int pc, t_int val);
 
 #endif

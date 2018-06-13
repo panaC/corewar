@@ -6,7 +6,7 @@
 /*   By: pleroux <pleroux@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/01 17:39:27 by pleroux           #+#    #+#             */
-/*   Updated: 2018/06/09 18:31:53 by pleroux          ###   ########.fr       */
+/*   Updated: 2018/06/13 13:07:44 by pleroux          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,4 +29,5 @@ void	ft_init_struct(t_env *env)
 	env->err_parsing = NULL;
 	env->current_process = NULL;
 	ft_bzero(env->mem, MEM_SIZE);
+	ft_bzero(env->mem_gui, MEM_SIZE);
 }

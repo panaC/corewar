@@ -6,7 +6,7 @@
 /*   By: pierre <pleroux@student.42.fr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/17 09:59:36 by pierre            #+#    #+#             */
-/*   Updated: 2018/06/09 18:28:42 by pleroux          ###   ########.fr       */
+/*   Updated: 2018/06/13 13:11:28 by pleroux          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,7 @@ t_bool			game_init_mem(t_env *e)
 		e->player[i].mem_ref = i * size;
 		ft_memcpy(&(e->mem[i * size]), e->player[i].data,
 				e->player[i].head.prog_size);
+		ft_memset(&(e->mem_gui[i * size]), i + 1, e->player[i].head.prog_size);
 		++i;
 	}
 	return (TRUE);
