@@ -6,7 +6,7 @@
 /*   By: pierre <pleroux@student.42.fr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/15 10:01:43 by pierre            #+#    #+#             */
-/*   Updated: 2018/06/13 13:20:07 by pleroux          ###   ########.fr       */
+/*   Updated: 2018/06/13 13:29:23 by pleroux          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -158,7 +158,7 @@ typedef struct		s_env
 	int				cycle_to_die;
 	int				cycle_totale;
 	int				cycle;
-		t_uint32		nb_live;
+	t_uint32		nb_live;
 	t_uint32		check;
 
 //	t_f_op			ft_tab[NB_OP];

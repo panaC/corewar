@@ -6,7 +6,7 @@
 /*   By: msukhare <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/06 09:28:49 by msukhare          #+#    #+#             */
-/*   Updated: 2018/06/13 13:21:35 by msukhare         ###   ########.fr       */
+/*   Updated: 2018/06/13 13:27:43 by pleroux          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ int				op_live(void *e)
 	p->live = 1;
 	while (i < env->nb_player)
 	{
-		if (p->op.arg[0] == (int)(env->player[i].numero * - 1))
+		if (p->op.arg[0] == ((env->player[i].numero + 1) * - 1))
 		{
 			env->player[i].last_live = env->cycle;
 			env->player[i].nb_live++;

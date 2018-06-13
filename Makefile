@@ -6,7 +6,7 @@
 #    By: pierre <pleroux@student.42.fr>             +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/12/11 13:59:37 by pierre            #+#    #+#              #
-#    Updated: 2018/06/07 21:22:34 by pleroux          ###   ########.fr        #
+#    Updated: 2018/06/13 13:34:35 by pleroux          ###   ########.fr        #
 #    Updated: 2018/06/04 18:18:51 by pierre           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
@@ -51,6 +51,7 @@ SRC_FILE = op.c \
 		   ft_dump.c \
 		   free_links.c \
 		   print_win.c \
+		   mem_gui.c \
 		   op_decod.c \
 		   op_decod_arg.c \
 		   op_code/add.c \
