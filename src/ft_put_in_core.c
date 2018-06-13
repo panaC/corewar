@@ -6,7 +6,7 @@
 /*   By: msukhare <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/09 10:53:08 by msukhare          #+#    #+#             */
-/*   Updated: 2018/06/13 15:39:29 by msukhare         ###   ########.fr       */
+/*   Updated: 2018/06/13 17:33:53 by msukhare         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,25 +47,29 @@ static void			print_hex(t_graphi *info, int *x, int *y, unsigned char hex, t_env
 {
 	char	*tab;
 	int		tmp;
+	int		num;
 
 	tab = "0123456789abcdef";
 	tmp = 0;
+	num = 0;
 	if (ft_reverse_or_not(env, *x, *y))
 	{
 		tmp = 1;
 		wattron(info->core_w, A_REVERSE);
 	}
-	start_color();
-	init_pair(1, COLOR_RED, COLOR_BLACK);
-	if (env->mem_gui[(((*y) - 1) * 64) + ((*x / 3)/* - 5*/)] != 0)
-		wattron(info->core_w, COLOR_PAIR(1));
+	if (env->mem_gui[(((*y) - 1) * 64) + ((*x / 3))] != 0)
+	{
+		num = ((*y - 1) * 64) + (*x / 3);
+		wattron(info->core_w, COLOR_PAIR(env->mem_gui[num]));
+	}
 	mvwaddch(info->core_w, *y, *x, tab[hex / 16]);
 	init_xy(x, y);
 	mvwaddch(info->core_w, *y, *x, tab[hex % 16]);
 	init_xy(x, y);
 	if (tmp == 1)
 		wattroff(info->core_w, A_REVERSE);
-	wattroff(info->core_w, COLOR_PAIR(1));
+	if (num)
+		wattroff(info->core_w, COLOR_PAIR(env->mem_gui[num]));
 	mvwaddch(info->core_w, *y, *x, ' ');
 	init_xy(x, y);
 }
@@ -91,6 +95,7 @@ void				ft_put_in_core(t_graphi *info, t_env *e)
 				print_hex(info, &x, &y, tmp[i], e);
 			i++;
 		}
+		wrefresh(info->core_w);
 		tmp += 64;
 		line++;
 	}
