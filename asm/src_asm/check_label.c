@@ -6,7 +6,7 @@
 /*   By: lchancri <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/15 16:37:51 by lchancri          #+#    #+#             */
-/*   Updated: 2018/06/06 21:10:05 by lchancri         ###   ########.fr       */
+/*   Updated: 2018/06/13 18:10:49 by lchancri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,11 @@ int			check_label(char *str, int a)
 
 	b = a;
 	while (str[a] != LABEL_CHAR && str[a] != '\n' && str[a] != '\0')
+	{
+		if (str[a] == '#')
+			return (0);
 		a++;
+	}
 	if (str[a] == LABEL_CHAR)
 	{
 		if (check_if_label_or_cmd(str, a - 1) == 1)

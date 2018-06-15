@@ -6,7 +6,7 @@
 /*   By: lchancri <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/21 15:04:40 by lchancri          #+#    #+#             */
-/*   Updated: 2018/06/05 18:02:08 by lchancri         ###   ########.fr       */
+/*   Updated: 2018/06/13 15:45:30 by lchancri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,9 @@ int			go_next_parameter(char *str, int a)
 	if (a < 0)
 		return (-1);
 	while (str[a] != '\0' && str[a] != '\n' && str[a] != SEPARATOR_CHAR
-			&& str[a] != COMMENT_CHAR)
+			&& str[a] != COMMENT_CHAR && (str[a] != 32 || str[a] != 9))
 		a++;
-	if (str[a] == '\n' || str[a] == '\0' || str[a] == COMMENT_CHAR)
+	if (str[a] != SEPARATOR_CHAR)
 		return (-1);
 	a++;
 	while (str[a] != '\0' && str[a] != '\n' && (str[a] == 9 || str[a] == 32))
@@ -54,7 +54,7 @@ static int	check_ld_lld(char *str, int a, t_file *file, int b)
 			&& check_indirect(str, a, file) == 0)
 		return (error_parameter(str, a, 1, 4 + b));
 	if ((a = go_next_parameter(str, a)) == -1)
-		return (error_parameter_number(str, -1, 1));
+		return (error_parameter_number(str, a, 1));
 	if ((b = check_register(str, a)) <= 0)
 		return (error_parameter(str, a, 2, 3 + b));
 	if ((a = go_next_parameter(str, a)) != -1)

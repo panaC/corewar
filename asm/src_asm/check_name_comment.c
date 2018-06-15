@@ -6,7 +6,7 @@
 /*   By: lchancri <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/14 13:06:40 by lchancri          #+#    #+#             */
-/*   Updated: 2018/06/06 21:10:14 by lchancri         ###   ########.fr       */
+/*   Updated: 2018/06/13 17:26:50 by lchancri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,6 +112,8 @@ int			check_name_comment(char *str, int a, int name, int comment)
 		print_line_col(str, a);
 		return (-1);
 	}
+	if (str[a] == COMMENT_CHAR || str[a] == '\n' || str[a] == '\0')
+		return (0);
 	if ((check = check_if_name_comment(str, a, name, comment)) != 0)
 	{
 		if ((check == 3 || check == 4) && (name == 0 || comment == 0))

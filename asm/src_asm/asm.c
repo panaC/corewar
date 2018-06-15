@@ -6,7 +6,7 @@
 /*   By: lchancri <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/14 13:06:40 by lchancri          #+#    #+#             */
-/*   Updated: 2018/06/06 21:07:51 by lchancri         ###   ########.fr       */
+/*   Updated: 2018/06/13 18:55:49 by lchancri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,32 +42,6 @@ static char	*get_file(char *str, int fd)
 	return (str);
 }
 
-void		affiche_file(t_file *file)
-{
-	t_cmd		*cmd;
-
-	printf("name : %s\n", file->name);
-	printf("comment : %s\n", file->comment);
-	while (file->label)
-	{
-		printf("label, a = %d : %s\n", file->label->a, file->label->name);
-		while (file->label->cmd)
-		{
-			cmd = file->label->cmd;
-			printf("			%d", cmd->op_code);
-			if (cmd->arg1_type != 0)
-				printf(", 1:%d(%d)", cmd->arg1_type, cmd->arg1_value);
-			if (cmd->arg2_type != 0)
-				printf(", 2:%d(%d)", cmd->arg2_type, cmd->arg2_value);
-			if (cmd->arg3_type != 0)
-				printf(", 3:%d(%d)", cmd->arg3_type, cmd->arg3_value);
-			printf("\n");
-			file->label->cmd = file->label->cmd->next;
-		}
-		file->label = file->label->next;
-	}
-}
-
 static int	empty_file(char *str)
 {
 	write(1, "Error : empty file\n", 19);
@@ -79,11 +53,11 @@ static int	main2(char *str, char *name)
 {
 	t_file	*file;
 
+	if (str[0] == '\0')
+		return (empty_file(str));
 	file = init_file();
 	if (check_file(str, 0, 0, file) != NULL)
 	{
-	//	if (file)
-	//		affiche_file(file);
 		file = prepare_file(file, 0, 0, 0);
 		create_binary(file, name);
 		free_file(file);
@@ -110,12 +84,13 @@ int			main(int av, char **ac)
 			return (0);
 		str[0] = '\0';
 		if ((str = get_file(str, fd)) == NULL)
+		{
+			close(fd);
 			return (0);
-		if (str[0] == '\0')
-			return (empty_file(str));
+		}
+		close(fd);
 		return (main2(str, ac[1]));
 	}
-	else
-		write(1, "Error : too much arguments passed to the function\n", 50);
+	write(1, "Error : too much arguments passed to the function\n", 50);
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: lchancri <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/21 20:38:21 by lchancri          #+#    #+#             */
-/*   Updated: 2018/05/28 18:55:38 by lchancri         ###   ########.fr       */
+/*   Updated: 2018/06/13 17:03:23 by lchancri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,13 +23,15 @@ int			check_sti(char *str, int a, t_file *file, int b)
 		a++;
 	if ((b = check_register(str, a)) <= 0)
 		return (error_parameter(str, a, 1, 3 + b));
-	if ((a = go_next_parameter(str, a)) == -1)
-		return (error_parameter_number(str, -1, 1));
+	if ((b = go_next_parameter(str, a)) == -1)
+		return (error_parameter_number(str, a, 1));
+	a = b;
 	b = 0;
 	if ((b = check_dr(str, a, file)) <= 0 && check_indirect(str, a, file) == 0)
 		return (error_parameter(str, a, 2, 7 + b));
-	if ((a = go_next_parameter(str, a)) == -1)
-		return (error_parameter_number(str, -1, 1));
+	if ((b = go_next_parameter(str, a)) == -1)
+		return (error_parameter_number(str, a, 1));
+	a = b;
 	b = 0;
 	if ((b = check_dr(str, a, file)) <= 0)
 		return (error_parameter(str, a, 3, 5 + b));
@@ -49,13 +51,15 @@ int			check_ldi_lldi(char *str, int a, t_file *file, int b)
 		a++;
 	if ((b = check_dr(str, a, file)) <= 0 && check_indirect(str, a, file) == 0)
 		return (error_parameter(str, a, 1, 7 + b));
-	if ((a = go_next_parameter(str, a)) == -1)
-		return (error_parameter_number(str, -1, 1));
+	if ((b = go_next_parameter(str, a)) == -1)
+		return (error_parameter_number(str, a, 1));
+	a = b;
 	b = 0;
 	if ((b = check_dr(str, a, file)) <= 0)
 		return (error_parameter(str, a, 2, 5 + b));
-	if ((a = go_next_parameter(str, a)) == -1)
-		return (error_parameter_number(str, -1, 1));
+	if ((b = go_next_parameter(str, a)) == -1)
+		return (error_parameter_number(str, a, 1));
+	a = b;
 	b = 0;
 	if ((b = check_register(str, a)) <= 0)
 		return (error_parameter(str, a, 3, 3 + b));
@@ -75,13 +79,15 @@ int			check_sub_add(char *str, int a, int b)
 		a++;
 	if ((b = check_register(str, a)) <= 0)
 		return (error_parameter(str, a, 1, 3 + b));
-	if ((a = go_next_parameter(str, a)) == -1)
-		return (error_parameter_number(str, -1, 1));
+	if ((b = go_next_parameter(str, a)) == -1)
+		return (error_parameter_number(str, a, 1));
+	a = b;
 	b = 0;
 	if ((b = check_register(str, a)) <= 0)
 		return (error_parameter(str, a, 2, 3 + b));
-	if ((a = go_next_parameter(str, a)) == -1)
-		return (error_parameter_number(str, -1, 1));
+	if ((b = go_next_parameter(str, a)) == -1)
+		return (error_parameter_number(str, a, 1));
+	a = b;
 	b = 0;
 	if ((b = check_register(str, a)) <= 0)
 		return (error_parameter(str, a, 3, 3 + b));
@@ -101,8 +107,9 @@ int			check_st(char *str, int a, t_file *file, int b)
 		a++;
 	if ((b = check_register(str, a)) <= 0)
 		return (error_parameter(str, a, 1, 3 + b));
-	if ((a = go_next_parameter(str, a)) == -1)
-		return (error_parameter_number(str, -1, 1));
+	if ((b = go_next_parameter(str, a)) == -1)
+		return (error_parameter_number(str, a, 1));
+	a = b;
 	b = 0;
 	if (check_indirect(str, a, file) == 0 && (b = check_register(str, a)) <= 0)
 		return (error_parameter(str, a, 2, 6 + b));
@@ -122,13 +129,15 @@ int			check_and_or_xor(char *str, int a, t_file *file, int b)
 		a++;
 	if ((b = check_dr(str, a, file)) <= 0 && check_indirect(str, a, file) == 0)
 		return (error_parameter(str, a, 1, 7 + b));
-	if ((a = go_next_parameter(str, a)) == -1)
-		return (error_parameter_number(str, -1, 1));
+	if ((b = go_next_parameter(str, a)) == -1)
+		return (error_parameter_number(str, a, 1));
+	a = b;
 	b = 0;
 	if (check_indirect(str, a, file) == 0 && (b = check_dr(str, a, file)) <= 0)
 		return (error_parameter(str, a, 2, 7 + b));
-	if ((a = go_next_parameter(str, a)) == -1)
-		return (error_parameter_number(str, -1, 1));
+	if ((b = go_next_parameter(str, a)) == -1)
+		return (error_parameter_number(str, a, 1));
+	a = b;
 	b = 0;
 	if ((b = check_register(str, a)) <= 0)
 		return (error_parameter(str, a, 3, 3 + b));

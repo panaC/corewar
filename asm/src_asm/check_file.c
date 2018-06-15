@@ -6,7 +6,7 @@
 /*   By: lchancri <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/14 13:06:40 by lchancri          #+#    #+#             */
-/*   Updated: 2018/06/05 18:27:58 by lchancri         ###   ########.fr       */
+/*   Updated: 2018/06/13 18:22:41 by lchancri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,11 +46,14 @@ static t_file	*get_cmd(t_file *file, char *str, int a)
 static t_file	*get_label(t_file *file, char *str, int a)
 {
 	int		check;
+	int		check_name;
 
 	check = 0;
 	while (str[a] != '\0' && str[a + 1] != '\0' && check != -1)
 	{
 		check = 0;
+		if ((check_name = check_if_name(str, a)) == 1)
+			a = pass_name_comment(str, a);
 		if (str[a] == '\n')
 			check = check_if_cmd_label(str, a, file, 1);
 		if (check == 3)

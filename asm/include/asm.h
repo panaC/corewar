@@ -6,7 +6,7 @@
 /*   By: lchancri <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/14 13:07:18 by lchancri          #+#    #+#             */
-/*   Updated: 2018/06/07 19:36:35 by lchancri         ###   ########.fr       */
+/*   Updated: 2018/06/13 20:19:26 by lchancri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,7 @@ typedef struct		s_file
 	t_label			*label;
 }					t_file;
 
+int					check_rest_param(char *str);
 int					label_place(t_label *label, int which_label, int cmd_place);
 int					size_cmd(t_cmd *cmd);
 int					is_int(char *str, int signe, char c);

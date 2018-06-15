@@ -6,7 +6,7 @@
 /*   By: lchancri <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/21 15:58:30 by lchancri          #+#    #+#             */
-/*   Updated: 2018/06/01 21:20:38 by lchancri         ###   ########.fr       */
+/*   Updated: 2018/06/13 18:22:28 by lchancri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,8 @@ static int		is_label(char *str, t_file *file, int a)
 	tmp2 = file->label;
 	while (file->label)
 	{
-		if (file->label->name && ft_strcmp(tmp, file->label->name) == 0)
+		if (file->label->name && ft_strcmp(tmp, file->label->name) == 0
+				&& check_rest_param(&str[a]) == 1)
 		{
 			free(tmp);
 			file->label = tmp2;
