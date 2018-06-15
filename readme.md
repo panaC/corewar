@@ -27,3 +27,15 @@
  - ld : -> gestion direct et indirect corection bug indirect memoire rotative et signed
  		- gerer le carry : carry == 1 si resulat == 0 mais qu'elle resultat
 
+
+## 09/06
+
+ - Rajouter un usage lors d'un ./corewar
+ - Rajouter verbose sur live avec niveau 2
+ - Printer le parsing en niveau 0
+ - reorganiser le verbose lvl
+ - trouver l'erreur nb cycle checks
+ - faire un script de test
+ - reorganiser fichier git
+ - faire la norme sur game_iter_process
+

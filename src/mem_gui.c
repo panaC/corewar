@@ -1,33 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init.c                                             :+:      :+:    :+:   */
+/*   mem_gui.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pleroux <pleroux@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/06/01 17:39:27 by pleroux           #+#    #+#             */
-/*   Updated: 2018/06/13 13:07:44 by pleroux          ###   ########.fr       */
+/*   Created: 2018/06/13 13:15:15 by pleroux           #+#    #+#             */
+/*   Updated: 2018/06/13 15:33:49 by msukhare         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <libft.h>
 #include "corewar.h"
 
-void	ft_init_struct(t_env *env)
+void		set_int_gui_pc(t_env *e, int s, int pc, int num)
 {
-	env->cycle_to_die = CYCLE_TO_DIE;
-	env->check = 1;
-	env->nb_player = 1;
-	env->win_player = 1;
-	env->verbos = 0;
-	env->verbos_lvl = 0;
-	env->visu = 0;
-	env->dump = 0;
-	env->nb_cycle_dump = 0;
-	env->cycle_totale = 1;
-	env->cycle = 1;
-	env->nb_live = 0;
-	env->err_parsing = NULL;
-	env->current_process = NULL;
-	ft_bzero(env->mem, MEM_SIZE);
-	ft_bzero(env->mem_gui, MEM_SIZE);
+	int		i;
+
+	i = s - 1;
+	while (i <= 4 && i >= 0)
+	{
+		e->mem_gui[rot_mem_set(&pc)] = num;
+		rot_mem(&pc);
+		--i;
+	}
 }

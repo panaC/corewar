@@ -6,13 +6,14 @@
 /*   By: pierre <pleroux@student.42.fr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/17 10:33:14 by pierre            #+#    #+#             */
-/*   Updated: 2018/06/08 10:38:28 by pierre           ###   ########.fr       */
+/*   Updated: 2018/06/13 15:17:00 by msukhare         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <libft.h>
 #include "corewar.h"
 #include "op.h"
+#include "graphi.h"
 
 static void			print_process(t_env *e)
 {
@@ -42,17 +43,20 @@ static void			print_info_process(t_env *e, t_process *p)
 int					game(t_env *e)
 {
 	t_process		*p;
+	t_graphi		*info;
 
 	verbose(e, V_7, "Start game\n");
+	if (e->visu == 1 && !(info = ft_init_ncurses()))
+		return (FALSE);
 	while (game_has_process(e) && game_not_end(e))
 	{
-		verbose(e, V_3, "New Cycle %d : total %d\n", e->cycle, e->cycle_totale);
+		verbose(e, V_3, "New Cycle %d : total %d : next cycle_to_die %d\n", e->cycle, e->cycle_totale, e->cycle_to_die);
 		print_process(e);
+		(e->visu == 1) ? ft_put_arena(info, e) : 0;
 		while ((p = game_iter_process(e)))
 		{
 			print_info_process(e, p);
-			verbose(e, V_5, "process find p = %p\n", p);
-			verbose(e, V_6, "process: live = %d, carry = %d, pc = %d player = %d\n", p->live, p->carry, p->pc, p->numero);
+			verbose(e, V_5, "process find p = %p pc=%d\n", p, p->pc);
 			e->current_process = p;
 			op_decod(e);
 			print_info_process(e, p);
@@ -61,6 +65,8 @@ int					game(t_env *e)
 		++e->cycle_totale;
 		++e->cycle;
 	}
+	(e->visu == 1) ? ft_close_ncurse(info) : 0;
 	verbose(e, V_7, "End game\n");
+	ft_print_memory((void*)e->mem_gui, MEM_SIZE);
 	return (TRUE);
 }

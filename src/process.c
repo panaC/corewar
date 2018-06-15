@@ -6,7 +6,7 @@
 /*   By: pleroux <pleroux@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/16 17:56:53 by pleroux           #+#    #+#             */
-/*   Updated: 2018/06/07 14:30:06 by pleroux          ###   ########.fr       */
+/*   Updated: 2018/06/12 19:57:54 by pleroux          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ void		process_init_empty(t_process *p, int numero)
 	p->live = 0;
 	p->carry = 0;
 	p->pc = 0;
-	p->reg[0].v = numero;
+	p->reg[0].v = (int)(numero * -1);
 	p->numero = numero;
 	i = 1;
 	while (i < REG_NUMBER)
@@ -80,7 +80,7 @@ t_process	*process_create(t_process *prev, t_uint32 pc)
 	return (p);
 }
 
-t_process		*process_add_lst(t_process **bg, t_process *prev, t_uint32 pc)
+t_process	*process_add_lst(t_process **bg, t_process *prev, t_uint32 pc)
 {
 	t_process	*new;
 

@@ -6,7 +6,7 @@
 /*   By: msukhare <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/18 08:42:38 by msukhare          #+#    #+#             */
-/*   Updated: 2018/06/06 18:06:47 by pleroux          ###   ########.fr       */
+/*   Updated: 2018/06/13 13:29:58 by pleroux          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,7 @@ static int	ft_init_player(t_env *env, char *str, int place)
 		}
 	}
 	env->player[place].numero = place;
+	env->player[place].nb_live = 0;
 	env->player[place].name = str;
 	env->player[place].last_live = 0;
 	return (1);

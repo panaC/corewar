@@ -1,36 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   zjmp.c                                          :+:      :+:    :+:   */
+/*   graphi.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: msukhare <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/05/28 14:07:20 by msukhare          #+#    #+#             */
-/*   Updated: 2018/06/08 14:40:51 by pleroux          ###   ########.fr       */
+/*   Created: 2018/06/07 15:39:29 by msukhare          #+#    #+#             */
+/*   Updated: 2018/06/11 14:59:32 by msukhare         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#ifndef __GRAPHI_H
+#define __GRAPHI_H
+
+#include <ncurses.h>
 #include "corewar.h"
-#include <stdio.h>
-#include <stdlib.h>
+#include "libft.h"
 
-int		op_zjmp(void *e)
+typedef struct	s_graphi
 {
-	t_process	*p;
-	int			pc;
-
-	p = ((t_env*)e)->current_process;
-	pc = op_decod_arg((t_env*)e);
-	if (p->carry == 1)
-	{
-		p->pc += (p->op.arg[0] % IDX_MOD);
-		rot_mem_set(&(p->pc));
-		verbose(e, V_7, "op:zjmp: pc=%d\n", p->pc);
-		process_init_instruction(&(p->op));
-		op_decod(e);
-		return (FALSE);
-	}
-	else
-		p->pc = pc;
-	return (TRUE);
-}
+	WINDOW		*core_w;
+	int			col_core;
+	int			row_core;
+	WINDOW		*info_w;
+	int			col_info;
+	int			row_info;
+	int			time;
+}				t_graphi;
+t_graphi		*ft_init_ncurses(void);
+void			ft_close_ncurse(t_graphi *to_free);
+void			ft_put_arena(t_graphi *info, t_env *e);
+void			ft_put_in_core(t_graphi *info, t_env *e);
+#endif

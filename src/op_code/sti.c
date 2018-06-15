@@ -6,7 +6,7 @@
 /*   By: pleroux <pleroux@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/19 22:54:54 by pleroux           #+#    #+#             */
-/*   Updated: 2018/06/06 17:46:03 by pleroux          ###   ########.fr       */
+/*   Updated: 2018/06/13 13:17:54 by pleroux          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,16 +18,29 @@
 
 int			op_sti(void *e)
 {
-	t_process		*p;
-	t_reg			value;
-	int				addr;
-	int				i;
+	t_process	*p;
+	int			pc;
 
-	i = REG_SIZE - 1;
-	p = ((t_env*)e)->current_process;
-	value.v = p->op.arg[0];
-	addr = p->op.arg[1] + p->op.arg[2];
-	while (i >= 0)
-		((t_env*)e)->mem[rot_mem(&addr) - 1] = value.t[--i];
-	return (FALSE);
+	p = ((t_env *)e)->current_process;
+	pc = op_decod_arg((t_env*)e);
+	if (p->op.arg[0] && p->op.arg[0] <= REG_NUMBER)
+	{
+		if (p->op.encodage.bit.a3 == T_REG_BIT &&
+				p->op.arg[1] && p->op.arg[1] <= REG_NUMBER)
+			p->op.arg[1] = p->reg[p->op.arg[1] - 1].v;
+		if (p->op.encodage.bit.a3 == T_IND_BIT)
+			p->op.arg[1] = get_int_mem_pc((t_env*)e, REG_SIZE,
+					p->pc + (p->op.arg[1] % IDX_MOD)).v32;
+		if (p->op.encodage.bit.a2 == T_REG_BIT &&
+				p->op.arg[2] && p->op.arg[2] <= REG_NUMBER)
+			p->op.arg[2] = p->reg[p->op.arg[2] - 1].v;
+		p->op.arg[2] += p->op.arg[1];
+		verbose(e, V_7, "op:sti: s=%0.8x\n", p->op.arg[2]);
+		set_int_mem_pc((t_env*)e, REG_SIZE,
+				p->pc + p->op.arg[2], (t_int)p->reg[p->op.arg[0] - 1].v);
+		set_int_gui_pc((t_env*)e, REG_SIZE,
+				p->pc + (p->op.arg[1] % IDX_MOD), (t_int)p->numero);
+	}
+	p->pc = pc;
+	return (TRUE);
 }

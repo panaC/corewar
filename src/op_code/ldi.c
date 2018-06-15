@@ -6,7 +6,7 @@
 /*   By: pleroux <pleroux@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/20 07:23:51 by pleroux           #+#    #+#             */
-/*   Updated: 2018/06/07 21:00:22 by pleroux          ###   ########.fr       */
+/*   Updated: 2018/06/08 14:43:14 by pleroux          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,25 +15,33 @@
 #include "corewar.h"
 #include "op.h"
 
-int			op_ldi(void *env)
+int			op_ldi(void *e)
 {
-	(void)env;
-//	t_process		*p;
-//	t_env			*e;
-//	int				pc;
-//	t_uint			s;
-//	int				i;
-//
-//	i = (IND_SIZE > 4 ? 3 : IND_SIZE - 1);
-//	e = (t_env *)env;
-//	p = e->current_process;
-//	pc = p->pc + (p->op.arg[0] % IDX_MOD);
-//	while (i >= 0)
-//		s.v[--i] = e->mem[rot_mem(&pc)];
-//	s.v32 += p->op.arg[1];
-//	i = (REG_SIZE > 4 ? 3 : REG_SIZE - 1);
-//	while (i >= 0)
-//		p->reg[p->op.arg_raw[2]].t[--i] = e->mem[rot_mem(&(s.v32))];
-//	p->carry = 1;
-	return (FALSE);
+	t_process	*p;
+	int			pc;
+
+	p = ((t_env *)e)->current_process;
+	pc = op_decod_arg((t_env*)e);
+	if (p->op.arg[2] && p->op.arg[2] <= REG_NUMBER)
+	{
+		if (p->op.encodage.bit.a4 == T_REG_BIT &&
+				p->op.arg[0] && p->op.arg[0] <= REG_NUMBER)
+			p->op.arg[0] = p->reg[p->op.arg[0] - 1].v;
+		if (p->op.encodage.bit.a4 == T_IND_BIT)
+			p->op.arg[0] = get_int_mem_pc((t_env*)e, REG_SIZE,
+					p->pc + (p->op.arg[0] % IDX_MOD)).v32;
+		if (p->op.encodage.bit.a3 == T_REG_BIT &&
+				p->op.arg[1] && p->op.arg[1] <= REG_NUMBER)
+			p->op.arg[1] = p->reg[p->op.arg[1] - 1].v;
+		p->op.arg[0] += p->op.arg[1];
+		verbose(e, V_7, "op:ldi: s=%0.8x\n", p->op.arg[0]);
+		p->reg[p->op.arg[2] - 1].v = get_int_mem_pc((t_env*)e, REG_SIZE,
+					p->pc + (p->op.arg[0] % IDX_MOD)).v32;
+		verbose(e, V_7, "op:ldi: reg[%d]=%0.8x\n", p->op.arg[2] - 1,
+				p->reg[p->op.arg[2] - 1].v);
+		if (p->reg[p->op.arg[2] - 1].v == 0)
+			p->carry = 1;
+	}
+	p->pc = pc;
+	return (TRUE);
 }

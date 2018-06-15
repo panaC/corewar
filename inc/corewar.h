@@ -6,7 +6,7 @@
 /*   By: pierre <pleroux@student.42.fr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/15 10:01:43 by pierre            #+#    #+#             */
-/*   Updated: 2018/06/07 16:11:13 by pleroux          ###   ########.fr       */
+/*   Updated: 2018/06/13 13:29:23 by pleroux          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -136,6 +136,7 @@ typedef struct		s_player
 	char			*name;
 	t_uint32		mem_ref;
 	unsigned long	last_live;
+	int				nb_live;
 }					t_player;
 /* corewar :
 ** structure d'environnement corewar
@@ -148,21 +149,22 @@ typedef struct		s_env
 	int				verbos_lvl;
 	t_bool			visu;
 	t_bool			dump;
-	t_uint32		nb_cycle_dump;
+	int				nb_cycle_dump;
 
 	t_player		player[MAX_PLAYERS];
 	int				nb_player;
 	int				win_player;
 
-	t_uint32		cycle_to_die;
-	t_uint32		cycle_totale;
-	t_uint32		cycle;
+	int				cycle_to_die;
+	int				cycle_totale;
+	int				cycle;
 	t_uint32		nb_live;
 	t_uint32		check;
 
 //	t_f_op			ft_tab[NB_OP];
 
 	char			mem[MEM_SIZE];
+	char			mem_gui[MEM_SIZE];
 	
 	t_string		err_parsing;
 
@@ -261,6 +263,12 @@ void				ft_dump(t_env *env);
 /*
 ** print_win.c
 */
+void				select_winner(t_env *e);
 int					print_win(t_env *e);
+
+/*
+** mem_gui.c
+*/
+void				set_int_gui_pc(t_env *e, int s, int pc, t_int val);
 
 #endif

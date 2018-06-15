@@ -6,7 +6,7 @@
 #    By: pierre <pleroux@student.42.fr>             +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/12/11 13:59:37 by pierre            #+#    #+#              #
-#    Updated: 2018/06/07 21:22:34 by pleroux          ###   ########.fr        #
+#    Updated: 2018/06/13 15:23:36 by msukhare         ###   ########.fr        #
 #    Updated: 2018/06/04 18:18:51 by pierre           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
@@ -27,12 +27,14 @@ LIB_LINK = ft
 SRC_DIR = src/
 INC_DIR = inc/
 CFLAGS = -Wall -Werror -Wextra -I $(LIB_HEADER) -I $(LIB_PRINTF_HEADER) -I $(INC_DIR)
-LIB_FLAGS = -L$(LIB_PRINTF_PATH) -l$(LIB_PRINTF_LINK) -L$(LIB_PATH) -l$(LIB_LINK)
+LIB_FLAGS = -lncurses -L$(LIB_PRINTF_PATH) -l$(LIB_PRINTF_LINK) -L$(LIB_PATH) -l$(LIB_LINK)
 			
 INC_FILE = corewar.h \
 		   op.h \
 		   parser.h \
-		   op_code.h
+		   op_code.h \
+		   graphi.h \
+
 SRC_FILE = op.c \
 		   main.c \
 		   init.c \
@@ -47,10 +49,14 @@ SRC_FILE = op.c \
 		   check_champs_fds.c \
 		   game_init.c \
 		   init_player.c \
+		   init_ncurses.c \
+		   ft_put_arena.c \
+		   ft_put_in_core.c \
 		   verbose.c \
 		   ft_dump.c \
 		   free_links.c \
 		   print_win.c \
+		   mem_gui.c \
 		   op_decod.c \
 		   op_decod_arg.c \
 		   op_code/add.c \

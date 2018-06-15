@@ -6,7 +6,7 @@
 /*   By: msukhare <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/16 16:55:14 by msukhare          #+#    #+#             */
-/*   Updated: 2018/06/05 09:50:15 by msukhare         ###   ########.fr       */
+/*   Updated: 2018/06/09 18:37:28 by pleroux          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ static void		init_header(header_t *a)
 	ft_bzero(a->comment, COMMENT_LENGTH + 1);
 }
 
-static int	ft_get_opt(char *str, t_env *env)
+static int		ft_get_opt(char *str, t_env *env)
 {
 	if (ft_strcmp(str, "-v") == 0)
 		env->verbos = 1;
@@ -29,15 +29,12 @@ static int	ft_get_opt(char *str, t_env *env)
 		env->visu = 1;
 	else if (ft_strcmp(str, "-dump") == 0)
 		env->dump = 1;
-	/*
-	 bonus a rajouter
-	*/
 	else
 		return (0);
 	return (1);
 }
 
-static int	ft_get_after_opt(t_env *env, int *i, char **argv)
+static int		ft_get_after_opt(t_env *env, int *i, char **argv)
 {
 	int		opt;
 
@@ -64,7 +61,7 @@ static int	ft_get_after_opt(t_env *env, int *i, char **argv)
 	return (1);
 }
 
-static int	ft_check_opt(char **argv, int argc, t_env *env)
+static int		ft_check_opt(char **argv, int argc, t_env *env)
 {
 	int		i;
 
@@ -90,7 +87,7 @@ static int	ft_check_opt(char **argv, int argc, t_env *env)
 	return (0);
 }
 
-static void	ft_init_tab_players(t_env *env)
+static void		ft_init_tab_players(t_env *env)
 {
 	int		i;
 
@@ -107,7 +104,8 @@ static void	ft_init_tab_players(t_env *env)
 		i++;
 	}
 }
-int			ft_check_argv(int argc, char **argv, t_env *env)
+
+int				ft_check_argv(int argc, char **argv, t_env *env)
 {
 	int		end_opt;
 
