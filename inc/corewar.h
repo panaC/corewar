@@ -6,7 +6,7 @@
 /*   By: pierre <pleroux@student.42.fr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/15 10:01:43 by pierre            #+#    #+#             */
-/*   Updated: 2018/06/13 13:29:23 by pleroux          ###   ########.fr       */
+/*   Updated: 2018/06/18 09:16:22 by pierre           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -269,6 +269,6 @@ int					print_win(t_env *e);
 /*
 ** mem_gui.c
 */
-void				set_int_gui_pc(t_env *e, int s, int pc, t_int val);
+void				set_int_gui_pc(t_env *e, int s, int pc, int num);
 
 #endif

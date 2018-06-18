@@ -6,7 +6,7 @@
 /*   By: pleroux <pleroux@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/19 22:54:54 by pleroux           #+#    #+#             */
-/*   Updated: 2018/06/13 13:17:54 by pleroux          ###   ########.fr       */
+/*   Updated: 2018/06/18 09:17:42 by pierre           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ int			op_sti(void *e)
 		set_int_mem_pc((t_env*)e, REG_SIZE,
 				p->pc + p->op.arg[2], (t_int)p->reg[p->op.arg[0] - 1].v);
 		set_int_gui_pc((t_env*)e, REG_SIZE,
-				p->pc + (p->op.arg[1] % IDX_MOD), (t_int)p->numero);
+				p->pc + (p->op.arg[1] % IDX_MOD), p->numero);
 	}
 	p->pc = pc;
 	return (TRUE);
