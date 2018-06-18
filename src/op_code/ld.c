@@ -6,7 +6,7 @@
 /*   By: pleroux <pleroux@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/20 07:08:25 by pleroux           #+#    #+#             */
-/*   Updated: 2018/06/07 20:58:04 by pleroux          ###   ########.fr       */
+/*   Updated: 2018/06/18 11:32:49 by pleroux          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,8 @@ int			op_ld(void *e)
 				p->reg[p->op.arg[1] - 1].v);
 		if (p->op.arg[0] == 0)
 			p->carry = 1;
+		else
+			p->carry = FALSE;
 	}
 	p->pc = pc;
 	return (TRUE);

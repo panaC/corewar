@@ -6,7 +6,7 @@
 /*   By: pierre <pleroux@student.42.fr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/04 18:16:14 by pierre            #+#    #+#             */
-/*   Updated: 2018/06/08 14:44:00 by pleroux          ###   ########.fr       */
+/*   Updated: 2018/06/18 11:33:17 by pleroux          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,8 @@ int			op_lldi(void *e)
 				p->reg[p->op.arg[2] - 1].v);
 		if (p->reg[p->op.arg[2] - 1].v == 0)
 			p->carry = 1;
+		else
+			p->carry = FALSE;
 	}
 	p->pc = pc;
 	return (TRUE);

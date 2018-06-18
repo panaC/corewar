@@ -6,7 +6,7 @@
 /*   By: pleroux <pleroux@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/07 21:20:32 by pleroux           #+#    #+#             */
-/*   Updated: 2018/06/08 13:57:44 by pleroux          ###   ########.fr       */
+/*   Updated: 2018/06/18 11:31:50 by pleroux          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,8 @@ int				op_or(void *e)
 		p->reg[p->op.arg[2] - 1] = val;
 		if (val.v == 0)
 			p->carry = 1;
+		else
+			p->carry = FALSE;
 	}
 	p->pc = pc;
 	return (TRUE);

@@ -6,7 +6,7 @@
 /*   By: pleroux <pleroux@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/19 15:54:06 by pleroux           #+#    #+#             */
-/*   Updated: 2018/06/08 14:33:11 by pleroux          ###   ########.fr       */
+/*   Updated: 2018/06/18 11:31:39 by pleroux          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,8 @@ int			op_sub(void *e)
 		p->reg[p->op.arg[2] - 1] = r;
 		if (r.v == 0)
 			p->carry = TRUE;
+		else
+			p->carry = FALSE;
 	}
 	p->pc = pc;
 	return (TRUE);

@@ -6,7 +6,7 @@
 /*   By: pleroux <pleroux@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/19 15:12:36 by pleroux           #+#    #+#             */
-/*   Updated: 2018/06/07 21:23:07 by pleroux          ###   ########.fr       */
+/*   Updated: 2018/06/18 11:34:20 by pleroux          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,10 @@ int			op_add(void *e)
 {
 	t_process	*p;
 	t_reg		r;
+	int			pc;
 
 	p = ((t_env*)e)->current_process;
+	pc = op_decod_arg((t_env*)e);
 	if (p->op.arg[0] > 0 && p->op.arg[0] <= REG_NUMBER &&
 			p->op.arg[1] > 0 && p->op.arg[1] <= REG_NUMBER &&
 			p->op.arg[2] > 0 && p->op.arg[2] <= REG_NUMBER)
@@ -29,6 +31,9 @@ int			op_add(void *e)
 		p->reg[p->op.arg[2] - 1] = r;
 		if (r.v == 0)
 			p->carry = TRUE;
+		else
+			p->carry = FALSE;
 	}
+	p->pc = pc;
 	return (TRUE);
 }

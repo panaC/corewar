@@ -6,7 +6,7 @@
 /*   By: msukhare <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/06 14:39:36 by msukhare          #+#    #+#             */
-/*   Updated: 2018/06/08 13:57:35 by pleroux          ###   ########.fr       */
+/*   Updated: 2018/06/18 11:32:12 by pleroux          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,8 @@ int				op_and(void *e)
 		p->reg[p->op.arg[2] - 1] = val;
 		if (val.v == 0)
 			p->carry = 1;
+		else
+			p->carry = FALSE;
 	}
 	p->pc = pc;
 	return (TRUE);
