@@ -6,7 +6,7 @@
 /*   By: pierre <pleroux@student.42.fr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/17 10:33:14 by pierre            #+#    #+#             */
-/*   Updated: 2018/06/13 15:17:00 by msukhare         ###   ########.fr       */
+/*   Updated: 2018/06/19 09:46:21 by pleroux          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,5 @@ int					game(t_env *e)
 	}
 	(e->visu == 1) ? ft_close_ncurse(info) : 0;
 	verbose(e, V_7, "End game\n");
-	ft_print_memory((void*)e->mem_gui, MEM_SIZE);
 	return (TRUE);
 }

@@ -6,7 +6,7 @@
 /*   By: msukhare <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/09 10:53:08 by msukhare          #+#    #+#             */
-/*   Updated: 2018/06/13 17:33:53 by msukhare         ###   ########.fr       */
+/*   Updated: 2018/06/19 09:27:40 by pleroux          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,9 +57,9 @@ static void			print_hex(t_graphi *info, int *x, int *y, unsigned char hex, t_env
 		tmp = 1;
 		wattron(info->core_w, A_REVERSE);
 	}
-	if (env->mem_gui[(((*y) - 1) * 64) + ((*x / 3))] != 0)
+	if (env->mem_gui[(((*y) - 1) * 64) + (((*x - 5) / 3))] != 0)
 	{
-		num = ((*y - 1) * 64) + (*x / 3);
+		num = ((*y - 1) * 64) + ((*x - 5) / 3);
 		wattron(info->core_w, COLOR_PAIR(env->mem_gui[num]));
 	}
 	mvwaddch(info->core_w, *y, *x, tab[hex / 16]);
