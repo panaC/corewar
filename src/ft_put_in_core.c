@@ -6,7 +6,7 @@
 /*   By: msukhare <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/09 10:53:08 by msukhare          #+#    #+#             */
-/*   Updated: 2018/06/19 09:27:40 by pleroux          ###   ########.fr       */
+/*   Updated: 2018/06/20 11:51:26 by msukhare         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,7 +95,6 @@ void				ft_put_in_core(t_graphi *info, t_env *e)
 				print_hex(info, &x, &y, tmp[i], e);
 			i++;
 		}
-		wrefresh(info->core_w);
 		tmp += 64;
 		line++;
 	}

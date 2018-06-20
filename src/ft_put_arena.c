@@ -6,7 +6,7 @@
 /*   By: msukhare <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/08 15:08:21 by msukhare          #+#    #+#             */
-/*   Updated: 2018/06/13 17:34:55 by msukhare         ###   ########.fr       */
+/*   Updated: 2018/06/20 11:13:59 by msukhare         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,7 @@ static void			ft_put_in_info(WINDOW *info, t_env *env, int play)
 {
 	int				i;
 	int				new_row;
+	static int		printed;
 
 	i = 0;
 	new_row = 0;
@@ -51,15 +52,14 @@ static void			ft_put_in_info(WINDOW *info, t_env *env, int play)
 	mvwprintw(info, new_row += 2, 2, "Process: %d", ft_count_pro(env));
 	while (i < env->nb_player)
 	{
-		mvwprintw(info, new_row += 2, 2, "PLAYER -%d: %s",(i + 1), env->player[i].name);
-		mvwprintw(info, new_row += 2, 2, "Last live:\t%d",env->player[i].last_live);
-		mvwprintw(info, new_row += 2, 2, "Live in current periode: %d", env->player[i].nb_live);
+		print_player(env->player[i], printed, &new_row, info);
 		i++;
 	}
 	mvwprintw(info, new_row += 2, 2, "Cycle_to_die : %d", env->cycle_to_die);
-	mvwprintw(info, new_row += 2, 2, "Cycle_delta : %d", CYCLE_DELTA);
-	mvwprintw(info, new_row += 2, 2, "Nb_live : %d", NBR_LIVE);
-	mvwprintw(info, new_row += 2, 2, "Max_checks: %d", MAX_CHECKS);
+	if (printed == 0)
+		print_info(info, &new_row, &printed);
+	else
+		new_row += 6;
 	wattroff(info, A_BOLD);
 }
 
