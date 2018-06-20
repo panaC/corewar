@@ -6,7 +6,7 @@
 /*   By: pleroux <pleroux@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/19 22:54:54 by pleroux           #+#    #+#             */
-/*   Updated: 2018/06/20 17:19:56 by pleroux          ###   ########.fr       */
+/*   Updated: 2018/06/20 18:59:05 by pleroux          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int			op_sti(void *e)
 	t_process	*p;
 	int			pc;
 	t_int		val;
-	int			pc2;
+	//int			pc2;
 
 	p = ((t_env *)e)->current_process;
 	pc = op_decod_arg((t_env*)e);
@@ -37,8 +37,8 @@ int			op_sti(void *e)
 				p->op.arg[2] > 0 && p->op.arg[2] <= REG_NUMBER)
 			p->op.arg[2] = p->reg[p->op.arg[2] - 1].v;
 		p->op.arg[2] += p->op.arg[1];
-		pc2 = p->pc + p->op.arg[2];
-		verbose(e, V_7, "op:sti: s=%0.8x, mem=%d\n", p->op.arg[2], rot_mem_set(&pc2));
+		//pc2 = p->pc + p->op.arg[2];
+		//verbose(e, V_7, "op:sti: s=%0.8x, mem=%d\n", p->op.arg[2], rot_mem_set(&pc2));
 		val.v32 = p->reg[p->op.arg[0] - 1].v;
 		set_int_mem_pc((t_env*)e, REG_SIZE,
 				p->pc + (p->op.arg[2] % IDX_MOD), val);
