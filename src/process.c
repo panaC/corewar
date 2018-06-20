@@ -6,7 +6,7 @@
 /*   By: pleroux <pleroux@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/16 17:56:53 by pleroux           #+#    #+#             */
-/*   Updated: 2018/06/19 15:11:11 by pleroux          ###   ########.fr       */
+/*   Updated: 2018/06/20 14:25:12 by pleroux          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,7 @@ void		process_init_empty(t_process *p, int numero)
 	p->carry = 0;
 	p->pc = 0;
 	p->numero = numero;
+	p->reg[0].v = numero * -1;
 	i = 1;
 	while (i < REG_NUMBER)
 	{
