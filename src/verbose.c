@@ -6,7 +6,7 @@
 /*   By: pleroux <pleroux@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/02 12:35:11 by pleroux           #+#    #+#             */
-/*   Updated: 2018/06/02 19:53:50 by pleroux          ###   ########.fr       */
+/*   Updated: 2018/06/20 16:40:57 by pleroux          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ int				verbose(t_env *e, int code, const char *s, ...)
 	int			sl;
 
 	sl = 0;
-	if (code <= e->verbos_lvl)
+	if (e->visu == FALSE && code <= e->verbos_lvl)
 	{
 		ft_printf(((code < 0) ? "ERROR :%d: " : "VERBOSE :%d: "), code);
 		va_start(ap, s);
