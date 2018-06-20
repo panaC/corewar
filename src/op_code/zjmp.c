@@ -6,7 +6,7 @@
 /*   By: msukhare <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/28 14:07:20 by msukhare          #+#    #+#             */
-/*   Updated: 2018/06/08 14:40:51 by pleroux          ###   ########.fr       */
+/*   Updated: 2018/06/19 16:25:37 by pleroux          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,9 +26,6 @@ int		op_zjmp(void *e)
 		p->pc += (p->op.arg[0] % IDX_MOD);
 		rot_mem_set(&(p->pc));
 		verbose(e, V_7, "op:zjmp: pc=%d\n", p->pc);
-		process_init_instruction(&(p->op));
-		op_decod(e);
-		return (FALSE);
 	}
 	else
 		p->pc = pc;

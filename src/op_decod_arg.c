@@ -6,7 +6,7 @@
 /*   By: pleroux <pleroux@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/07 12:45:01 by pleroux           #+#    #+#             */
-/*   Updated: 2018/06/08 11:51:58 by pleroux          ###   ########.fr       */
+/*   Updated: 2018/06/20 10:56:16 by pleroux          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,8 +77,6 @@ int			get_decod_arg(t_env *e, int *pc, t_uint8 enc, int n)
 		}
 		else if (enc == T_IND_BIT)
 			return ((int)get_int_mem(e, 2, pc).v16);
-		else
-			rot_mem(pc);
 	}
 	return (0);
 }

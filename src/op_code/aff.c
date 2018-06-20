@@ -6,7 +6,7 @@
 /*   By: pleroux <pleroux@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/20 07:31:49 by pleroux           #+#    #+#             */
-/*   Updated: 2018/06/08 14:41:30 by pleroux          ###   ########.fr       */
+/*   Updated: 2018/06/19 14:44:47 by pleroux          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,12 @@
 int			op_aff(void *e)
 {
 	t_process		*p;
+	int				pc;
 
 	p = ((t_env*)e)->current_process;
-	ft_printf("AFF: %c\n", p->op.arg[0] % 256);
+	pc = op_decod_arg((t_env*)e);
+	if (!((t_env*)e)->visu)
+		ft_printf("AFF: %c\n", p->op.arg[0] % 256);
+	p->pc = pc;
 	return (TRUE);
 }
