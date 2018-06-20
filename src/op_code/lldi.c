@@ -6,7 +6,7 @@
 /*   By: pierre <pleroux@student.42.fr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/04 18:16:14 by pierre            #+#    #+#             */
-/*   Updated: 2018/06/18 11:33:17 by pleroux          ###   ########.fr       */
+/*   Updated: 2018/06/20 17:23:48 by pleroux          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,16 +22,16 @@ int			op_lldi(void *e)
 
 	p = ((t_env *)e)->current_process;
 	pc = op_decod_arg((t_env*)e);
-	if (p->op.arg[2] && p->op.arg[2] <= REG_NUMBER)
+	if (p->op.arg[2] > 0 && p->op.arg[2] <= REG_NUMBER)
 	{
 		if (p->op.encodage.bit.a4 == T_REG_BIT &&
-				p->op.arg[0] && p->op.arg[0] <= REG_NUMBER)
+				p->op.arg[0] > 0 && p->op.arg[0] <= REG_NUMBER)
 			p->op.arg[0] = p->reg[p->op.arg[0] - 1].v;
 		if (p->op.encodage.bit.a4 == T_IND_BIT)
 			p->op.arg[0] = get_int_mem_pc((t_env*)e, REG_SIZE,
 					p->pc + p->op.arg[0]).v32;
 		if (p->op.encodage.bit.a3 == T_REG_BIT &&
-				p->op.arg[1] && p->op.arg[1] <= REG_NUMBER)
+				p->op.arg[1] > 0 && p->op.arg[1] <= REG_NUMBER)
 			p->op.arg[1] = p->reg[p->op.arg[1] - 1].v;
 		p->op.arg[0] += p->op.arg[1];
 		verbose(e, V_7, "op:lldi: s=%0.8x\n", p->op.arg[0]);
@@ -40,7 +40,7 @@ int			op_lldi(void *e)
 		verbose(e, V_7, "op:lldi: reg[%d]=%0.8x\n", p->op.arg[2] - 1,
 				p->reg[p->op.arg[2] - 1].v);
 		if (p->reg[p->op.arg[2] - 1].v == 0)
-			p->carry = 1;
+			p->carry = TRUE;
 		else
 			p->carry = FALSE;
 	}
