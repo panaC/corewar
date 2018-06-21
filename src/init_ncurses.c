@@ -6,7 +6,7 @@
 /*   By: msukhare <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/08 11:20:50 by msukhare          #+#    #+#             */
-/*   Updated: 2018/06/13 17:25:02 by msukhare         ###   ########.fr       */
+/*   Updated: 2018/06/21 11:13:14 by msukhare         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ static WINDOW	*ft_new_window(int raw, int col, int start_raw, int start_col)
 	{
 		ft_putstr_fd("newwin as fail\n", 2);
 		return (NULL);
+	
 	}
 	box(to_ret, ACS_VLINE, ACS_HLINE);
 	wrefresh(to_ret);
@@ -56,6 +57,19 @@ static t_graphi	*ft_creat_struct(void)
 	return (to_ret);
 }
 
+static void		init_param_ncurse(void)
+{
+	start_color();
+	init_pair(1, COLOR_RED, COLOR_BLACK);
+	init_pair(2, COLOR_GREEN, COLOR_BLACK);
+	init_pair(3, COLOR_YELLOW, COLOR_BLACK);
+	init_pair(4, COLOR_BLUE, COLOR_BLACK);
+	refresh();
+	cbreak();
+	noecho();
+	curs_set(0);
+}
+
 t_graphi		*ft_init_ncurses(void)
 {
 	t_graphi	*to_ret;
@@ -65,26 +79,20 @@ t_graphi		*ft_init_ncurses(void)
 	if (!(to_ret = ft_creat_struct()))
 		return (NULL);
 	initscr();
-	start_color();
-	init_pair(1, COLOR_RED, COLOR_BLACK);
-	init_pair(2, COLOR_GREEN, COLOR_BLACK);
-	init_pair(3, COLOR_YELLOW, COLOR_BLACK);
-	init_pair(4, COLOR_BLUE, COLOR_BLACK);
-	refresh();
-	cbreak();
-	noecho();
+	init_param_ncurse();
 	getmaxyx(stdscr, row, col);
-	to_ret->row_core = (row / 1.15);
+	to_ret->row_core = (row / 1.27);
 	to_ret->col_core = (col / 1.80);
-	to_ret->row_info = (row / 1.15);
-	to_ret->col_info = (col / 3.50);
-	if (!(to_ret->core_w = ft_new_window(to_ret->row_core, to_ret->col_core, 0, 0)) ||
-		!(to_ret->info_w = ft_new_window(to_ret->row_info, to_ret->col_info, 0, to_ret->col_core)))
+	to_ret->row_info = (row / 1.27);
+	to_ret->col_info = (col / 5);
+	if (!(to_ret->core_w = ft_new_window(to_ret->row_core,\
+				to_ret->col_core, 0, 0)) ||
+		!(to_ret->info_w = ft_new_window(to_ret->row_info,\
+				to_ret->col_info, 0, to_ret->col_core)))
 	{
 		ft_close_ncurse(to_ret);
 		return (NULL);
 	}
 	nodelay(to_ret->core_w, TRUE);
-	curs_set(0);
 	return (to_ret);
 }

@@ -6,7 +6,7 @@
 /*   By: pleroux <pleroux@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/01 20:31:40 by pleroux           #+#    #+#             */
-/*   Updated: 2018/06/19 16:04:52 by pleroux          ###   ########.fr       */
+/*   Updated: 2018/06/21 10:22:18 by msukhare         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,5 +51,7 @@ t_bool			game_rules(t_env *e)
 		e->nb_live = 0;
 		e->cycle = 0;
 	}
+	++e->cycle_totale;
+	++e->cycle;
 	return (TRUE);
 }

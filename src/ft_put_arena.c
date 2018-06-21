@@ -6,7 +6,7 @@
 /*   By: msukhare <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/08 15:08:21 by msukhare          #+#    #+#             */
-/*   Updated: 2018/06/20 11:13:59 by msukhare         ###   ########.fr       */
+/*   Updated: 2018/06/21 10:59:00 by msukhare         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,13 +49,13 @@ static void			ft_put_in_info(WINDOW *info, t_env *env, int play)
 	else
 		mvwprintw(info, new_row += 2, 2, "STATUS : PLAY ");
 	mvwprintw(info, new_row += 2, 2, "Cycles: %d", env->cycle_totale);
-	mvwprintw(info, new_row += 2, 2, "Process: %d", ft_count_pro(env));
+	mvwprintw(info, new_row += 2, 2, "Process: %d\t", ft_count_pro(env));
 	while (i < env->nb_player)
 	{
 		print_player(env->player[i], printed, &new_row, info);
 		i++;
 	}
-	mvwprintw(info, new_row += 2, 2, "Cycle_to_die : %d", env->cycle_to_die);
+	mvwprintw(info, new_row += 2, 2, "Cycle_to_die : %d\t", env->cycle_to_die);
 	if (printed == 0)
 		print_info(info, &new_row, &printed);
 	else
@@ -77,7 +77,7 @@ static void			ft_modif_time(int c, int *time)
 	}
 }
 
-void				ft_put_arena(t_graphi *info, t_env *e)
+void				ft_put_arena(t_graphi *info, t_env *e, int buff)
 {
 	int				c;
 	static int		play;
@@ -87,6 +87,8 @@ void				ft_put_arena(t_graphi *info, t_env *e)
 	wrefresh(info->info_w);
 	wrefresh(info->core_w);
 	keypad(info->core_w, TRUE);
+	if (buff == 0)
+		return ;
 	while (!play)
 	{
 		c = wgetch(info->core_w);

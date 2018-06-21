@@ -6,7 +6,7 @@
 /*   By: msukhare <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/20 10:49:47 by msukhare          #+#    #+#             */
-/*   Updated: 2018/06/20 11:17:03 by msukhare         ###   ########.fr       */
+/*   Updated: 2018/06/21 10:58:02 by msukhare         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,5 +33,6 @@ void	print_player(t_player player, int printed, int *row, WINDOW *info)
 	else
 		(*row) += 2;
 	mvwprintw(info, (*row) += 2, 2, "Last live:\t%d\t", player.last_live);
-	mvwprintw(info, (*row) += 2, 2, "Live in current periode:%d\t", player.nb_live);
+	mvwprintw(info, (*row) += 2, 2, "Live in current periode:\t%d\t", \
+			player.nb_live);
 }

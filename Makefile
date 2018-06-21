@@ -6,7 +6,7 @@
 #    By: pierre <pleroux@student.42.fr>             +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/12/11 13:59:37 by pierre            #+#    #+#              #
-#    Updated: 2018/06/20 11:11:09 by msukhare         ###   ########.fr        #
+#    Updated: 2018/06/21 10:04:01 by msukhare         ###   ########.fr        #
 #    Updated: 2018/06/04 18:18:51 by pierre           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
@@ -52,7 +52,9 @@ SRC_FILE = op.c \
 		   init_ncurses.c \
 		   ft_put_arena.c \
 		   ft_put_in_core.c \
-		   print_info.c\
+		   print_info.c \
+		   print_winner_in_window.c \
+		   del_process.c \
 		   verbose.c \
 		   ft_dump.c \
 		   free_links.c \
