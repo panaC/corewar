@@ -6,7 +6,7 @@
 /*   By: pleroux <pleroux@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/19 22:54:54 by pleroux           #+#    #+#             */
-/*   Updated: 2018/06/20 18:59:05 by pleroux          ###   ########.fr       */
+/*   Updated: 2018/06/20 20:17:06 by pleroux          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int			op_sti(void *e)
 	t_process	*p;
 	int			pc;
 	t_int		val;
-	//int			pc2;
+	//int		pc2;
 
 	p = ((t_env *)e)->current_process;
 	pc = op_decod_arg((t_env*)e);

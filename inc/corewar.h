@@ -6,7 +6,7 @@
 /*   By: pierre <pleroux@student.42.fr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/15 10:01:43 by pierre            #+#    #+#             */
-/*   Updated: 2018/06/20 16:40:59 by pleroux          ###   ########.fr       */
+/*   Updated: 2018/06/21 15:07:52 by pleroux          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -171,7 +171,7 @@ typedef struct		s_env
 	t_process		*current_process;
 }					t_env;
 
-extern t_op			op_tab[17];
+extern t_op			g_op_tab[17];
 
 /*
 ** init.c
@@ -216,6 +216,7 @@ void				process_init(t_process *p, t_process *prev, t_uint32 pc);
 t_process			*process_create(t_process *prev, t_uint32 pc);
 t_process			*process_add_lst(t_process **bg, t_process *prev,
 		t_uint32 pc);
+void				del_process(t_env *env);
 
 /*
 ** op_decod.c

@@ -6,7 +6,7 @@
 /*   By: msukhare <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/06 14:39:36 by msukhare          #+#    #+#             */
-/*   Updated: 2018/06/20 17:22:07 by pleroux          ###   ########.fr       */
+/*   Updated: 2018/06/20 20:00:45 by pleroux          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ int				op_and(void *e)
 {
 	t_process	*p;
 	t_reg		val;
-	int				pc;
+	int			pc;
 
 	p = ((t_env *)e)->current_process;
 	pc = op_decod_arg((t_env*)e);
@@ -38,10 +38,7 @@ int				op_and(void *e)
 					p->pc + (p->op.arg[1] % IDX_MOD)).v32;
 		val.v = p->op.arg[0] & p->op.arg[1];
 		p->reg[p->op.arg[2] - 1] = val;
-		if (val.v == 0)
-			p->carry = 1;
-		else
-			p->carry = FALSE;
+		p->carry = ((val.v == 0) ? TRUE : FALSE);
 	}
 	p->pc = pc;
 	return (TRUE);

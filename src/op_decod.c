@@ -6,7 +6,7 @@
 /*   By: pierre <pleroux@student.42.fr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/18 19:20:39 by pierre            #+#    #+#             */
-/*   Updated: 2018/06/19 09:05:33 by pleroux          ###   ########.fr       */
+/*   Updated: 2018/06/21 15:10:22 by pleroux          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ int				op_decod(t_env *e)
 		if (p->op.info.op_code == 0)
 		{
 			p->op.op_code = e->mem[p->pc];
-			p->op.info = op_tab[e->mem[p->pc] - 1];
+			p->op.info = g_op_tab[e->mem[p->pc] - 1];
 			verbose(e, V_6, "op: op_code %0.2x\n", e->mem[p->pc]);
 		}
 		if (p->op.info.cycle <= 1)

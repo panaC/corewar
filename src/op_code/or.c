@@ -6,7 +6,7 @@
 /*   By: pleroux <pleroux@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/07 21:20:32 by pleroux           #+#    #+#             */
-/*   Updated: 2018/06/20 17:24:28 by pleroux          ###   ########.fr       */
+/*   Updated: 2018/06/20 20:10:41 by pleroux          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,10 +38,7 @@ int				op_or(void *e)
 					p->pc + (p->op.arg[1] % IDX_MOD)).v32;
 		val.v = p->op.arg[0] | p->op.arg[1];
 		p->reg[p->op.arg[2] - 1] = val;
-		if (val.v == 0)
-			p->carry = 1;
-		else
-			p->carry = FALSE;
+		p->carry = ((val.v == 0) ? TRUE : FALSE);
 	}
 	p->pc = pc;
 	return (TRUE);

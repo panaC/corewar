@@ -6,7 +6,7 @@
 /*   By: pleroux <pleroux@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/20 07:08:25 by pleroux           #+#    #+#             */
-/*   Updated: 2018/06/20 17:28:05 by pleroux          ###   ########.fr       */
+/*   Updated: 2018/06/20 20:12:44 by pleroux          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,10 +30,7 @@ int			op_ld(void *e)
 		p->reg[p->op.arg[1] - 1].v = p->op.arg[0];
 		verbose(e, V_7, "op:ld: reg[%d]=%x\n", p->op.arg[1] - 1,
 				p->reg[p->op.arg[1] - 1].v);
-		if (p->op.arg[0] == 0)
-			p->carry = TRUE;
-		else
-			p->carry = FALSE;
+		p->carry = ((p->op.arg[0] == 0) ? TRUE : FALSE);
 	}
 	p->pc = pc;
 	return (TRUE);

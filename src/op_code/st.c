@@ -6,7 +6,7 @@
 /*   By: pleroux <pleroux@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/20 06:22:36 by pleroux           #+#    #+#             */
-/*   Updated: 2018/06/20 17:26:07 by pleroux          ###   ########.fr       */
+/*   Updated: 2018/06/20 20:14:39 by pleroux          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,13 +33,13 @@ int			op_st(void *e)
 					p->pc + (p->op.arg[1] % IDX_MOD), val);
 			set_int_gui_pc((t_env*)e, REG_SIZE,
 					p->pc + (p->op.arg[1] % IDX_MOD), p->numero);
-			verbose(e, V_7, "op:st: mem[%d]=%x\n", p->pc, val.v32);
+	//		verbose(e, V_7, "op:st: mem[%d]=%x\n", p->pc, val.v32);
 		}
 		else if (p->op.encodage.bit.a3 == T_REG_BIT &&
 				p->op.arg[0] > 0 && p->op.arg[0] <= REG_NUMBER)
 		{
 			p->reg[p->op.arg[1] - 1].v = val.v32;
-			verbose(e, V_7, "op:st: reg[%d]=%x\n", p->op.arg[1] - 1, val.v32);
+	//		verbose(e, V_7, "op:st: reg[%d]=%x\n", p->op.arg[1] - 1, val.v32);
 		}
 	}
 	p->pc = pc;
