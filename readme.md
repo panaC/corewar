@@ -46,3 +46,5 @@
 
 - Desasm : segv sur fichier inconnu
 - Desasm : n'efface pas completement le fichier precedent
+- Rajouter un usage sur le corewar
+- Norme sur tous les fichiers
