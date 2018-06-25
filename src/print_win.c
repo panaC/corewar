@@ -6,7 +6,7 @@
 /*   By: pierre <pleroux@student.42.fr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/03 17:49:15 by pierre            #+#    #+#             */
-/*   Updated: 2018/06/09 11:44:12 by pierre           ###   ########.fr       */
+/*   Updated: 2018/06/25 16:31:09 by pierre           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,17 +19,17 @@ void				select_winner(t_env *e)
 	int				i;
 	t_uint32		last;
 
-	i = 1;
+	i = e->nb_player;
 	last = 0;
 	e->win_player = i;
-	while ((i - 1) < e->nb_player)
+	while (i > 0)
 	{
 		if (last < e->player[i - 1].last_live)
 		{
 			last = e->player[i - 1].last_live;
 			e->win_player = i;
 		}
-		++i;
+		--i;
 	}
 }
 

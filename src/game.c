@@ -6,7 +6,7 @@
 /*   By: pierre <pleroux@student.42.fr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/17 10:33:14 by pierre            #+#    #+#             */
-/*   Updated: 2018/06/21 10:22:25 by msukhare         ###   ########.fr       */
+/*   Updated: 2018/06/25 11:14:47 by pierre           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,7 @@ int					game(t_env *e)
 		verbose(e, V_3, "New Cycle %d : total %d : next cycle_to_die %d\n", e->cycle, e->cycle_totale, e->cycle_to_die);
 		print_process(e);
 		(e->visu == 1) ? ft_put_arena(info, e, 1) : 0;
+		game_rules(e);
 		while ((p = game_iter_process(e)))
 		{
 			print_info_process(e, p);
@@ -61,7 +62,6 @@ int					game(t_env *e)
 			op_decod(e);
 			print_info_process(e, p);
 		}
-		game_rules(e);
 	}
 	(e->visu == 1) ? print_winner_in_window(e, info) : 0;
 	verbose(e, V_7, "End game\n");

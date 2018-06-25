@@ -6,7 +6,7 @@
 /*   By: pleroux <pleroux@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/30 09:00:30 by pleroux           #+#    #+#             */
-/*   Updated: 2018/03/12 15:11:33 by pleroux          ###   ########.fr       */
+/*   Updated: 2018/06/25 10:19:01 by pierre           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,20 +52,20 @@ int				unicode(char **ret, wint_t c, t_bool op)
 
 	i = -1;
 	(*ret) = ft_strnew(4);
-	if ((c >= 0 || op) && (c <= 0x7F || op))
+	if (op && (c <= 0x7F || op))
 		(*ret)[++i] = c;
-	else if (c >= 0 && c <= 0x7FF)
+	else if (c <= 0x7FF)
 	{
 		(*ret)[++i] = (c >> 6) + 0xC0;
 		(*ret)[++i] = (c & 0x3F) + 0x80;
 	}
-	else if (c >= 0 && c <= 0xFFFF && (c < 0xD800 || c > 0xDFFF))
+	else if (c <= 0xFFFF && (c < 0xD800 || c > 0xDFFF))
 	{
 		(*ret)[++i] = (c >> 12) + 0xE0;
 		(*ret)[++i] = ((c >> 6) & 0x3F) + 0x80;
 		(*ret)[++i] = (c & 0x3F) + 0x80;
 	}
-	else if (c >= 0 && c <= 0x10FFFF && (c < 0xD800 || c > 0xDFFF))
+	else if (c <= 0x10FFFF && (c < 0xD800 || c > 0xDFFF))
 	{
 		(*ret)[++i] = (c >> 18) + 0xF0;
 		(*ret)[++i] = ((c >> 12) & 0x3F) + 0x80;

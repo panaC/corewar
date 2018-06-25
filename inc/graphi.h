@@ -6,7 +6,7 @@
 /*   By: msukhare <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/07 15:39:29 by msukhare          #+#    #+#             */
-/*   Updated: 2018/06/21 09:20:12 by msukhare         ###   ########.fr       */
+/*   Updated: 2018/06/25 11:11:19 by pierre           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 #define __GRAPHI_H
 
 #include <ncurses.h>
+#include <libft.h>
 #include "corewar.h"
-#include "libft.h"
 
 typedef struct	s_graphi
 {
@@ -27,6 +27,7 @@ typedef struct	s_graphi
 	int			row_info;
 	int			time;
 }				t_graphi;
+
 t_graphi		*ft_init_ncurses(void);
 void			ft_close_ncurse(t_graphi *to_free);
 void			ft_put_arena(t_graphi *info, t_env *e, int buff);
@@ -35,4 +36,5 @@ void			print_info(WINDOW *info, int *new_row, int *printed);
 void			print_player(t_player player, int printed, int *row,\
 		WINDOW *info);
 void			print_winner_in_window(t_env *e, t_graphi *info);
+
 #endif

@@ -6,7 +6,7 @@
 /*   By: lchancri <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/16 22:27:05 by lchancri          #+#    #+#             */
-/*   Updated: 2018/06/13 18:21:34 by lchancri         ###   ########.fr       */
+/*   Updated: 2018/06/25 10:24:26 by pierre           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,11 +43,7 @@ static int	errror(char *str, int a)
 int			check_cmd(t_file *file, char *str, int a)
 {
 	int		check;
-	t_file	*tmp;
-	t_label	*label;
 
-	tmp = file;
-	label = file->label;
 	a = a + push_a_if_label(file, str, a);
 	while ((str[a] == 32 || str[a] == 9 || str[a] == COMMENT_CHAR)
 			&& str[a] != '\n' && str[a] != '\0')

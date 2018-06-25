@@ -6,7 +6,7 @@
 /*   By: pierre <pleroux@student.42.fr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/18 19:20:39 by pierre            #+#    #+#             */
-/*   Updated: 2018/06/21 15:10:22 by pleroux          ###   ########.fr       */
+/*   Updated: 2018/06/25 15:57:54 by pierre           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,8 @@ int				op_decod(t_env *e)
 
 	verbose(e, V_7, "Start Op_decode\n");
 	p = e->current_process;
-	if (p && e->mem[p->pc] > 0 && e->mem[p->pc] <= REG_NUMBER)
+	if (p->op.info.op_code != 0 ||
+			(p && e->mem[p->pc] > 0 && e->mem[p->pc] <= REG_NUMBER))
 	{
 		if (p->op.info.op_code == 0)
 		{
@@ -61,6 +62,5 @@ int				op_decod(t_env *e)
 	}
 	else
 		rot_mem(&(p->pc));
-	verbose(e, V_7, "End Op_decode\n");
 	return (TRUE);
 }
