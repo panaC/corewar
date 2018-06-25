@@ -39,3 +39,10 @@
  - reorganiser fichier git
  - faire la norme sur game_iter_process
 
+
+# attention a modifier le makefile printf avant de l'envoyer sur le serveur ecole
+
+## 25/06
+
+- Desasm : segv sur fichier inconnu
+- Desasm : n'efface pas completement le fichier precedent
