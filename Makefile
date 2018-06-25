@@ -5,106 +5,46 @@
 #                                                     +:+ +:+         +:+      #
 #    By: pierre <pleroux@student.42.fr>             +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2017/12/11 13:59:37 by pierre            #+#    #+#              #
-#    Updated: 2018/06/21 10:04:01 by msukhare         ###   ########.fr        #
-#    Updated: 2018/06/04 18:18:51 by pierre           ###   ########.fr        #
+#    Created: 2018/06/25 16:42:34 by pierre            #+#    #+#              #
+#    Updated: 2018/06/25 17:02:28 by pierre           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-DBG=-ggdb -fsanitize=address -fno-omit-frame-pointer -g3
-DBG2=-ggdb  -fsanitize=address -fsanitize-memory-track-origins
+ASM= src_asm/
+DESASM= src_desasm/
+VM= src_vm/
 
-NAME = corewar
-CC = gcc
-LIB_PRINTF = ft_printf/libftprintf.a
-LIB_PRINTF_PATH = ft_printf/
-LIB_PRINTF_HEADER = ft_printf/inc
-LIB_PRINTF_LINK = ftprintf
-LIB = libft/libft.a
-LIB_PATH = libft/
-LIB_HEADER = libft/includes
-LIB_LINK = ft
-SRC_DIR = src/
-INC_DIR = inc/
-CFLAGS = -Wall -Werror -Wextra -I $(LIB_HEADER) -I $(LIB_PRINTF_HEADER) -I $(INC_DIR)
-LIB_FLAGS = -lncurses -L$(LIB_PRINTF_PATH) -l$(LIB_PRINTF_LINK) -L$(LIB_PATH) -l$(LIB_LINK)
-			
-INC_FILE = corewar.h \
-		   op.h \
-		   parser.h \
-		   op_code.h \
-		   graphi.h \
+ASM_NAME= asm
+DESASM_NAME= desasm
+VM_NAME= corewar
 
-SRC_FILE = op.c \
-		   main.c \
-		   init.c \
-		   game.c \
-		   game_iter_process.c \
-		   game_rules.c \
-		   parser.c \
-		   parser_tools.c \
-		   process.c \
-		   check_sec.c \
-		   check_argv.c \
-		   check_champs_fds.c \
-		   game_init.c \
-		   init_player.c \
-		   init_ncurses.c \
-		   ft_put_arena.c \
-		   ft_put_in_core.c \
-		   print_info.c \
-		   print_winner_in_window.c \
-		   del_process.c \
-		   verbose.c \
-		   ft_dump.c \
-		   free_links.c \
-		   print_win.c \
-		   mem_gui.c \
-		   op_decod.c \
-		   op_decod_arg.c \
-		   op_code/add.c \
-		   op_code/sub.c \
-		   op_code/sti.c \
-		   op_code/st.c \
-		   op_code/ld.c \
-		   op_code/lld.c \
-		   op_code/aff.c \
-	       op_code/fork.c \
-		   op_code/lfork.c \
-		   op_code/zjmp.c \
-		   op_code/live.c \
-		   op_code/ldi.c \
-		   op_code/lldi.c \
-		   op_code/and.c \
-		   op_code/or.c \
-		   op_code/xor.c
+all			: $(ASM) $(DESASM) $(VM)
 
-SRC = $(addprefix $(SRC_DIR), $(SRC_FILE))
-INC = $(addprefix $(INC_DIR), $(INC_FILE))
-OBJ = $(SRC:.c=.o)
+$(ASM)		:
+	make -C $(ASM)
+	ln -s $(ASM)$(ASM_NAME) $(ASM_NAME)
 
-all		: $(LIB) $(LIB_PRINTF) $(NAME)
+$(DESASM)	:
+	make -C $(DESASM)
+	ln -s $(DESASM)$(DESASM_NAME) $(DESASM_NAME)
 
-$(LIB)	:
-	make -C $(LIB_PATH)
+$(VM)		:
+	make -C $(VM)
+	ln -s $(VM)$(VM_NAME) $(VM_NAME)
 
-$(LIB_PRINTF)	:
-	make -C $(LIB_PRINTF_PATH)
+clean		:
+	make -C $(ASM) clean
+	make -C $(DESASM) clean
+	make -C $(VM) clean
 
-%.o: %.c $(INC)
-	     $(CC) $(CFLAGS) -o $@ -c $<
+fclean		:
+	make -C $(ASM) fclean
+	make -C $(DESASM) fclean
+	make -C $(VM) fclean
+	rm -f $(ASM_NAME)
+	rm -f $(DESASM_NAME)
+	rm -f $(VM_NAME)
 
-$(NAME)	: $(OBJ)
-	$(CC) -o $(NAME) $(CFLAGS) $(OBJ) $(LIB_FLAGS)
+re			: fclean all
 
-clean	:
-	rm -f $(OBJ)
-	make -C $(LIB_PATH) fclean
-	make -C $(LIB_PRINTF_PATH) fclean
-
-fclean	: clean
-	rm -f $(NAME)
-
-re		: clean all
-
-.PHONY	: all clean re fclean $(LIB) $(LIB_PRINTF)
+.PHONY		: all clean fclean re $(ASM) $(DESASM) $(VM)
