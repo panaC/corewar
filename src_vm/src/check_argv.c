@@ -6,15 +6,16 @@
 /*   By: msukhare <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/16 16:55:14 by msukhare          #+#    #+#             */
-/*   Updated: 2018/06/26 09:27:19 by msukhare         ###   ########.fr       */
-/*   Updated: 2018/06/26 09:23:02 by pierre           ###   ########.fr       */
+/*   Updated: 2018/06/26 12:15:05 by pleroux          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "corewar.h"
 #include <libft.h>
 #include <stdlib.h>
-#define USAGE "" \
+static t_string	ft_put_help()
+{
+	return ("" \
 	"./corewar [-v 0-8 -s] [-dump nbr_cycles] [[-n number] champ1.cor] ...\n" \
 	"\n" \
 	"The Corewar ASM Championship Arena VM\n" \
@@ -26,7 +27,8 @@
 	"	-h : print this help then exit\n" \
 	"\n" \
 	" For each champions -n number allow the place modification\n" \
-	"\n"
+	"\n");
+}
 
 static int		ft_get_opt(char *str, t_env *env)
 {
@@ -38,7 +40,7 @@ static int		ft_get_opt(char *str, t_env *env)
 		env->dump = 1;
 	else if (ft_strcmp(str, "-h") == 0)
 	{
-		ft_putstr_fd(USAGE, 1);
+		ft_putstr_fd(ft_put_help(), 1);
 		exit(0);
 	}
 	else
@@ -69,7 +71,7 @@ static int		ft_get_after_opt(t_env *env, int *i, char **argv)
 	if (opt == 1)
 		env->nb_cycle_dump = ft_atoi(argv[*i]);
 	else
-		env->verbos_lvl = ft_atoi(argv[*i]);
+		env->verbos_lvl = (ft_atoi(argv[*i]) > 8 ? 8 : ft_atoi(argv[*i]));
 	return (1);
 }
 
@@ -95,7 +97,7 @@ static int		ft_check_opt(char **argv, int argc, t_env *env)
 		}
 		i++;
 	}
-	ft_putstr_fd(USAGE, 2);
+	ft_putstr_fd(ft_put_help(), 2);
 	return (0);
 }
 
