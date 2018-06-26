@@ -6,7 +6,7 @@
 /*   By: msukhare <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/18 08:42:38 by msukhare          #+#    #+#             */
-/*   Updated: 2018/06/13 13:29:58 by pleroux          ###   ########.fr       */
+/*   Updated: 2018/06/26 09:35:42 by pierre           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ static int	ft_init_player(t_env *env, char *str, int place)
 		env->player[place].fd = env->player[champ_before].fd;
 	else
 	{
-		if ((env->player[place].fd = open(str, 'r')) < 0 && errno)
+		if ((env->player[place].fd = open(str, O_RDONLY)) < 0 && errno)
 		{
 			ft_close_fds(env, str);
 			return (0);
@@ -66,7 +66,7 @@ static int	ft_put_in_place(t_env *env, char **argv, int start, int argc)
 		{
 			if ((place = (ft_atoi(argv[start + 1]) - 1)) < 0)
 			{
-				ft_putstr_fd("place is inf to 1\n", 2);
+				ft_putstr_fd("place is under to 1\n", 2);
 				return (0);
 			}
 			if (ft_check_in_tab_player(place, env) == 0)
