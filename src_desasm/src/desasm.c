@@ -6,7 +6,7 @@
 /*   By: lchancri <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/07 19:35:35 by lchancri          #+#    #+#             */
-/*   Updated: 2018/06/11 11:48:29 by lchancri         ###   ########.fr       */
+/*   Updated: 2018/06/26 09:55:19 by pierre           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,8 @@ int				main(int ac, char **av)
 	if (ac == 2)
 	{
 		fd = open(av[1], O_RDONLY);
+		if (fd < 1)
+			return (1);
 		file = get_file(fd);
 		b_file = file;
 		close(fd);
