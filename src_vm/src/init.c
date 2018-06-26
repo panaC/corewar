@@ -6,7 +6,7 @@
 /*   By: pleroux <pleroux@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/01 17:39:27 by pleroux           #+#    #+#             */
-/*   Updated: 2018/06/25 11:15:11 by pierre           ###   ########.fr       */
+/*   Updated: 2018/06/26 09:17:29 by msukhare         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,4 +30,12 @@ void	ft_init_struct(t_env *env)
 	env->current_process = NULL;
 	ft_bzero(env->mem, MEM_SIZE);
 	ft_bzero(env->mem_gui, MEM_SIZE);
+}
+
+void	init_header(header_t *a)
+{
+	a->magic = 0;
+	a->prog_size = 0;
+	ft_bzero(a->prog_name, PROG_NAME_LENGTH + 1);
+	ft_bzero(a->comment, COMMENT_LENGTH + 1);
 }

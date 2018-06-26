@@ -6,7 +6,7 @@
 /*   By: msukhare <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/08 11:20:50 by msukhare          #+#    #+#             */
-/*   Updated: 2018/06/21 11:13:14 by msukhare         ###   ########.fr       */
+/*   Updated: 2018/06/26 09:15:04 by msukhare         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,6 @@ static WINDOW	*ft_new_window(int raw, int col, int start_raw, int start_col)
 	{
 		ft_putstr_fd("newwin as fail\n", 2);
 		return (NULL);
-	
 	}
 	box(to_ret, ACS_VLINE, ACS_HLINE);
 	wrefresh(to_ret);

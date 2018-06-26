@@ -6,20 +6,12 @@
 /*   By: msukhare <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/16 16:55:14 by msukhare          #+#    #+#             */
-/*   Updated: 2018/06/09 18:37:28 by pleroux          ###   ########.fr       */
+/*   Updated: 2018/06/26 09:17:48 by msukhare         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "corewar.h"
 #include <libft.h>
-
-static void		init_header(header_t *a)
-{
-	a->magic = 0;
-	a->prog_size = 0;
-	ft_bzero(a->prog_name, PROG_NAME_LENGTH + 1);
-	ft_bzero(a->comment, COMMENT_LENGTH + 1);
-}
 
 static int		ft_get_opt(char *str, t_env *env)
 {
