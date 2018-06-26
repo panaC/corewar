@@ -6,7 +6,7 @@
 /*   By: pierre <pleroux@student.42.fr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/15 10:01:43 by pierre            #+#    #+#             */
-/*   Updated: 2018/06/25 11:14:12 by pierre           ###   ########.fr       */
+/*   Updated: 2018/06/26 09:18:59 by msukhare         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -177,6 +177,7 @@ extern t_op			g_op_tab[17];
 ** init.c
 */
 void				ft_init_struct(t_env *e);
+void				init_header(header_t *a);
 
 /*
 ** game_iter_process.c

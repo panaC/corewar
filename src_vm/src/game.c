@@ -6,7 +6,7 @@
 /*   By: pierre <pleroux@student.42.fr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/17 10:33:14 by pierre            #+#    #+#             */
-/*   Updated: 2018/06/25 11:14:47 by pierre           ###   ########.fr       */
+/*   Updated: 2018/06/26 09:20:38 by msukhare         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,9 @@
 #include "op.h"
 #include "graphi.h"
 
-static void			print_process(t_env *e)
+static void		print_process(t_env *e)
 {
-	int		i;
+	int			i;
 	t_process	*tmp;
 
 	verbose(e, V_8, "print process\n");
@@ -34,16 +34,16 @@ static void			print_process(t_env *e)
 	}
 }
 
-static void			print_info_process(t_env *e, t_process *p)
+static void		print_info_process(t_env *e, t_process *p)
 {
 	verbose(e, V_7, "INFO Process %p player %d: live=%d, carry=%d, pc=%d\n", p, p->numero, p->live, p->carry, p->pc);
 	verbose(e, V_7, "INFO Process reg 1 a 16: 0:%d 1:%d 2:%d 3:%d 4:%d 5:%d 6:%d 7:%d 8:%d 9:%d 10:%d 11:%d 12:%d 13:%d 14:%d 15:%d\n", p->reg[0].v, p->reg[1].v, p->reg[2].v, p->reg[3].v, p->reg[4].v, p->reg[5].v, p->reg[6].v, p->reg[7].v, p->reg[8].v, p->reg[9].v, p->reg[10].v, p->reg[11].v, p->reg[12].v, p->reg[13].v, p->reg[14].v, p->reg[15].v);
 }
 
-int					game(t_env *e)
+int				game(t_env *e)
 {
-	t_process		*p;
-	t_graphi		*info;
+	t_process	*p;
+	t_graphi	*info;
 
 	verbose(e, V_7, "Start game\n");
 	if (e->visu == 1 && !(info = ft_init_ncurses()))
