@@ -6,16 +6,15 @@
 /*   By: msukhare <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/07 15:39:29 by msukhare          #+#    #+#             */
-/*   Updated: 2018/06/25 11:11:19 by pierre           ###   ########.fr       */
+/*   Updated: 2018/06/26 12:32:18 by pleroux          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef __GRAPHI_H
-#define __GRAPHI_H
-
-#include <ncurses.h>
-#include <libft.h>
-#include "corewar.h"
+# define __GRAPHI_H
+# include <ncurses.h>
+# include <libft.h>
+# include "corewar.h"
 
 typedef struct	s_graphi
 {

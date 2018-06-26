@@ -6,7 +6,7 @@
 /*   By: pierre <pleroux@student.42.fr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/16 11:53:33 by pierre            #+#    #+#             */
-/*   Updated: 2018/06/08 11:43:54 by pleroux          ###   ########.fr       */
+/*   Updated: 2018/06/26 12:36:32 by pleroux          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,6 @@ t_bool				parser_cor_data(t_env *e, t_player *p);
 ** parser_tools.c
 */
 int					parser_read_byte(int byte, int fd, void *buf);
-void				parser_init_header(header_t *a);
+void				parser_init_header(t_header *a);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: pleroux <pleroux@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/19 22:54:54 by pleroux           #+#    #+#             */
-/*   Updated: 2018/06/26 12:21:13 by pleroux          ###   ########.fr       */
+/*   Updated: 2018/06/26 13:04:36 by pleroux          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,9 @@
 #include "corewar.h"
 #include "op.h"
 #include <ft_printf.h>
+#define V1		val
+#define V2		p->numero
+#define EE		((t_env *)e)
 
 int			op_sti(void *e)
 {
@@ -22,8 +25,8 @@ int			op_sti(void *e)
 	int			pc;
 	t_int		val;
 
-	p = ((t_env *)e)->current_process;
-	pc = op_decod_arg((t_env*)e);
+	p = EE->current_process;
+	pc = op_decod_arg(EE);
 	if (p->op.arg[0] > 0 && p->op.arg[0] <= REG_NUMBER)
 	{
 		if (p->op.encodage.bit.a3 == T_REG_BIT &&
@@ -37,10 +40,8 @@ int			op_sti(void *e)
 			p->op.arg[2] = p->reg[p->op.arg[2] - 1].v;
 		p->op.arg[2] += p->op.arg[1];
 		val.v32 = p->reg[p->op.arg[0] - 1].v;
-		set_int_mem_pc((t_env*)e, REG_SIZE,
-				p->pc + (p->op.arg[2] % IDX_MOD), val);
-		set_int_gui_pc((t_env*)e, REG_SIZE,
-				p->pc + (p->op.arg[2] % IDX_MOD), p->numero);
+		set_int_mem_pc(EE, REG_SIZE, p->pc + (p->op.arg[2] % IDX_MOD), V1);
+		set_int_gui_pc(EE, REG_SIZE, p->pc + (p->op.arg[2] % IDX_MOD), V2);
 	}
 	p->pc = pc;
 	return (TRUE);

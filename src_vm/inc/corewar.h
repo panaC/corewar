@@ -6,7 +6,7 @@
 /*   By: pierre <pleroux@student.42.fr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/15 10:01:43 by pierre            #+#    #+#             */
-/*   Updated: 2018/06/26 09:18:59 by msukhare         ###   ########.fr       */
+/*   Updated: 2018/06/26 12:35:58 by pleroux          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,13 +31,14 @@
 # define V_6			6
 # define V_7			7
 # define V_8			8
+# define ST				struct
 
 /*
 ** decodage op_code :
 ** typedef sur ptr de fonction
 ** permet de pointer vers l'execution de l'op code
 */
-typedef int (t_f_op)(void *);
+typedef int	(t_f_op)(void *);
 
 /*
 ** decodage op_code :
@@ -107,7 +108,8 @@ typedef struct		s_instruction
 	int				arg[NB_ARG];
 	t_op			info;
 }					t_instruc;
-/* game :
+/*
+** game :
 ** structure processus
 ** un exemplaire pour chaque new fork
 ** stokage dans la liste chaine du joueur
@@ -120,7 +122,7 @@ typedef struct		s_process
 	int				numero;
 	t_reg			reg[REG_NUMBER];
 	t_instruc		op;
-	struct s_process	*next;
+	ST s_process	*next;
 }					t_process;
 /*
 ** game :
@@ -128,7 +130,7 @@ typedef struct		s_process
 */
 typedef struct		s_player
 {
-	header_t		head;
+	t_header		head;
 	t_process		*process;
 	char			data[CHAMP_MAX_SIZE];//bzero
 	int				numero;
@@ -138,11 +140,11 @@ typedef struct		s_player
 	unsigned long	last_live;
 	int				nb_live;
 }					t_player;
-/* corewar :
+/*
+** corewar :
 ** structure d'environnement corewar
 ** arg / parsing / game
 */
-
 typedef struct		s_env
 {
 	t_bool			verbos;
@@ -177,7 +179,7 @@ extern t_op			g_op_tab[17];
 ** init.c
 */
 void				ft_init_struct(t_env *e);
-void				init_header(header_t *a);
+void				init_header(t_header *a);
 
 /*
 ** game_iter_process.c
@@ -192,7 +194,8 @@ int					ft_if_opt_in_sec(int start, char **argv, int argc);
 int					ft_if_after_n_error(int start, char **argv, int argc);
 int					ft_check_nb_champ(char **argv, int argc, int start);
 int					ft_str_in_str(char *str, char *cmp);
-int					ft_init_players(t_env *env, char **argv, int start, int argc);
+int					ft_init_players(t_env *env, char **argv, int start,
+		int argc);
 int					ft_check_in_tab_player(int place, t_env *env);
 int					ft_check_champs_before(t_env *env, char *str);
 int					ft_check_fd_before(t_env *env, int i);

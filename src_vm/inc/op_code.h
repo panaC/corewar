@@ -6,14 +6,14 @@
 /*   By: pierre <pleroux@student.42.fr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/03 13:23:29 by pierre            #+#    #+#             */
-/*   Updated: 2018/06/07 21:21:44 by pleroux          ###   ########.fr       */
+/*   Updated: 2018/06/26 12:32:03 by pleroux          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef OP_CODE_H
 # define OP_CODE_H
-#include "corewar.h"
-#include <libft.h>
+# include "corewar.h"
+# include <libft.h>
 
 int			op_add(void *e);
 int			op_aff(void *e);

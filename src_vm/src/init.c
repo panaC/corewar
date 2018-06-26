@@ -6,7 +6,7 @@
 /*   By: pleroux <pleroux@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/01 17:39:27 by pleroux           #+#    #+#             */
-/*   Updated: 2018/06/26 10:49:39 by pierre           ###   ########.fr       */
+/*   Updated: 2018/06/26 12:37:09 by pleroux          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ void	ft_init_struct(t_env *env)
 	ft_bzero(env->mem_gui, MEM_SIZE);
 }
 
-void	init_header(header_t *a)
+void	init_header(t_header *a)
 {
 	a->magic = 0;
 	a->prog_size = 0;
