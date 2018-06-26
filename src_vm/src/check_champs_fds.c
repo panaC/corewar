@@ -6,7 +6,7 @@
 /*   By: msukhare <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/19 14:18:02 by msukhare          #+#    #+#             */
-/*   Updated: 2018/06/09 18:38:37 by pleroux          ###   ########.fr       */
+/*   Updated: 2018/06/26 09:14:59 by pierre           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,15 +21,13 @@ int		ft_check_in_tab_player(int place, t_env *env)
 	i = 0;
 	if (place > (env->nb_player - 1))
 	{
-		ft_putstr_fd("place is supp to nb_players", 2);
+		ft_putstr_fd("place is over the number of players\n", 2);
 		return (0);
 	}
 	while (i < env->nb_player)
 	{
 		if ((int)env->player[i].numero == place)
 		{
-			ft_printf("place = %d num = %d\n i = %d",
-					place, env->player[i].numero, i);
 			ft_putstr_fd("two champ on same place\n", 2);
 			return (0);
 		}

@@ -6,7 +6,7 @@
 #    By: pierre <pleroux@student.42.fr>             +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/06/25 16:42:34 by pierre            #+#    #+#              #
-#    Updated: 2018/06/25 17:02:28 by pierre           ###   ########.fr        #
+#    Updated: 2018/06/26 09:08:34 by pierre           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,15 +22,15 @@ all			: $(ASM) $(DESASM) $(VM)
 
 $(ASM)		:
 	make -C $(ASM)
-	ln -s $(ASM)$(ASM_NAME) $(ASM_NAME)
+	ln -s -f $(ASM)$(ASM_NAME) $(ASM_NAME)
 
 $(DESASM)	:
 	make -C $(DESASM)
-	ln -s $(DESASM)$(DESASM_NAME) $(DESASM_NAME)
+	ln -s -f $(DESASM)$(DESASM_NAME) $(DESASM_NAME)
 
 $(VM)		:
 	make -C $(VM)
-	ln -s $(VM)$(VM_NAME) $(VM_NAME)
+	ln -s -f $(VM)$(VM_NAME) $(VM_NAME)
 
 clean		:
 	make -C $(ASM) clean
