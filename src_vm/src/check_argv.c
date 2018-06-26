@@ -6,12 +6,26 @@
 /*   By: msukhare <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/16 16:55:14 by msukhare          #+#    #+#             */
-/*   Updated: 2018/06/09 18:37:28 by pleroux          ###   ########.fr       */
+/*   Updated: 2018/06/26 09:23:02 by pierre           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "corewar.h"
 #include <libft.h>
+#include <stdlib.h>
+#define USAGE "" \
+	"./corewar [-v 0-8 -s] [-dump nbr_cycles] [[-n number] champ1.cor] ...\n" \
+	"\n" \
+	"The Corewar ASM Championship Arena VM\n" \
+	"\n" \
+	" Option :\n" \
+	"	-v : 1 to 8 verbose level\n" \
+	"	-s : GUI option with ncurses\n" \
+	"	-dump : print the memory at nbr_cycles then exit\n" \
+	"	-h : print this help then exit\n" \
+	"\n" \
+	" For each champions -n number allow the place modification\n" \
+	"\n"
 
 static void		init_header(header_t *a)
 {
@@ -29,6 +43,11 @@ static int		ft_get_opt(char *str, t_env *env)
 		env->visu = 1;
 	else if (ft_strcmp(str, "-dump") == 0)
 		env->dump = 1;
+	else if (ft_strcmp(str, "-h") == 0)
+	{
+		ft_putstr_fd(USAGE, 1);
+		exit(0);
+	}
 	else
 		return (0);
 	return (1);
@@ -48,9 +67,9 @@ static int		ft_get_after_opt(t_env *env, int *i, char **argv)
 			ft_if_all_digit(argv[*i + 1]) == 0)
 	{
 		if (opt == 1)
-			ft_putstr_fd("need nb_cycle to dump after -dump\n", 2);
+			ft_putstr_fd("need nb_cycle to dump memory after -dump\n", 2);
 		else if (opt == 2)
-			ft_putstr_fd("need lvl verbose after -v\n", 2);
+			ft_putstr_fd("need verbose level after -v\n", 2);
 		return (0);
 	}
 	(*i)++;
@@ -75,7 +94,7 @@ static int		ft_check_opt(char **argv, int argc, t_env *env)
 		{
 			if (ft_get_opt(argv[i], env) <= 0)
 			{
-				ft_putstr_fd("wrong option bro\n", 2);
+				ft_putstr_fd("wrong option\n", 2);
 				return (0);
 			}
 			if (ft_get_after_opt(env, &i, argv) != 1)
@@ -83,7 +102,7 @@ static int		ft_check_opt(char **argv, int argc, t_env *env)
 		}
 		i++;
 	}
-	ft_putstr_fd("no champ\n", 2);
+	ft_putstr_fd(USAGE, 2);
 	return (0);
 }
 
