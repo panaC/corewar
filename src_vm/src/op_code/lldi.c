@@ -6,7 +6,7 @@
 /*   By: pierre <pleroux@student.42.fr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/04 18:16:14 by pierre            #+#    #+#             */
-/*   Updated: 2018/06/20 20:14:04 by pleroux          ###   ########.fr       */
+/*   Updated: 2018/06/26 12:20:16 by pleroux          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,11 +34,8 @@ int			op_lldi(void *e)
 				p->op.arg[1] > 0 && p->op.arg[1] <= REG_NUMBER)
 			p->op.arg[1] = p->reg[p->op.arg[1] - 1].v;
 		p->op.arg[0] += p->op.arg[1];
-		//verbose(e, V_7, "op:lldi: s=%0.8x\n", p->op.arg[0]);
 		p->reg[p->op.arg[2] - 1].v = get_int_mem_pc((t_env*)e, REG_SIZE,
 					p->pc + p->op.arg[0]).v32;
-		//verbose(e, V_7, "op:lldi: reg[%d]=%0.8x\n", p->op.arg[2] - 1,
-		//		p->reg[p->op.arg[2] - 1].v);
 		p->carry = ((p->reg[p->op.arg[2] - 1].v == 0) ? TRUE : FALSE);
 	}
 	p->pc = pc;

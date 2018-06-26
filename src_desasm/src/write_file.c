@@ -6,7 +6,7 @@
 /*   By: lchancri <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/08 16:30:22 by lchancri          #+#    #+#             */
-/*   Updated: 2018/06/26 09:56:49 by pierre           ###   ########.fr       */
+/*   Updated: 2018/06/26 12:26:45 by pleroux          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,6 @@ static void	write_file(t_file *file, int fd, int a)
 
 static void	write_name_comment(t_file *file, int fd)
 {
-
 	while (file && file->place != 4)
 		file = file->next;
 	write(fd, ".name \"", 7);

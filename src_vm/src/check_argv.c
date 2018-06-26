@@ -6,14 +6,15 @@
 /*   By: msukhare <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/16 16:55:14 by msukhare          #+#    #+#             */
-/*   Updated: 2018/06/26 12:15:05 by pleroux          ###   ########.fr       */
+/*   Updated: 2018/06/26 12:19:31 by pleroux          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "corewar.h"
 #include <libft.h>
 #include <stdlib.h>
-static t_string	ft_put_help()
+
+static t_string	ft_put_help(void)
 {
 	return ("" \
 	"./corewar [-v 0-8 -s] [-dump nbr_cycles] [[-n number] champ1.cor] ...\n" \
