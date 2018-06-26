@@ -6,7 +6,7 @@
 #    By: pleroux <pleroux@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/11/25 16:44:48 by pleroux           #+#    #+#              #
-#    Updated: 2018/01/29 09:22:08 by pleroux          ###   ########.fr        #
+#    Updated: 2018/06/26 10:06:59 by pierre           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,7 +25,7 @@ NAME=libft.a
 
 VAR_NOT_USED = -Wno-unused-but-set-parameter
 
-CFLAGS		= -Wall -Wextra -Werror -std=c99
+CFLAGS		= -Wall -Wextra -Werror
 
 all: $(OBJ_DIR) $(NAME)
 
