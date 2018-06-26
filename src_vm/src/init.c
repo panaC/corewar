@@ -6,7 +6,7 @@
 /*   By: pleroux <pleroux@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/01 17:39:27 by pleroux           #+#    #+#             */
-/*   Updated: 2018/06/26 09:17:29 by msukhare         ###   ########.fr       */
+/*   Updated: 2018/06/26 10:49:39 by pierre           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 void	ft_init_struct(t_env *env)
 {
 	env->cycle_to_die = CYCLE_TO_DIE;
-	env->check = 1;
+	env->check = 0;
 	env->nb_player = 1;
 	env->win_player = 1;
 	env->verbos = 0;
