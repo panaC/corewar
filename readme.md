@@ -12,7 +12,11 @@ The project is split in 3 softwares :
 
 Virtual Machine arena built in C with implementation specification from both PDF file and VM provide in example
 
+The ncurses graphical option :
 ![arena](https://github.com/panaC/corewar/blob/master/img/Screen%20Shot%202018-10-16%20at%204.08.05%20PM.png)
+
+During the fights with 4 players :
+![fights](https://github.com/panaC/corewar/blob/master/img/Screen%20Shot%202018-10-16%20at%204.20.02%20PM.png)
 
 ## Usage
 
