@@ -6,7 +6,7 @@
 /*   By: lchancri <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/08 16:30:22 by lchancri          #+#    #+#             */
-/*   Updated: 2018/06/26 12:26:45 by pleroux          ###   ########.fr       */
+/*   Updated: 2018/10/16 14:39:08 by pleroux          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,18 +41,20 @@ static int	write_file2(t_file *file, int fd)
 
 static void	write_file(t_file *file, int fd, int a)
 {
-	if (file->c == 1)
+	if (file && file->c == 1)
 		a = write_live(file, fd);
-	else if (file->c == 2)
+	else if (file && file->c == 2)
 		a = write_ld(file, fd);
-	else if (file->c == 3)
+	else if (file && file->c == 3)
 		a = write_st(file, fd);
-	else if (file->c == 4)
+	else if (file && file->c == 4)
 		a = write_add(file, fd);
-	else if (file->c == 5)
+	else if (file && file->c == 5)
 		a = write_sub(file, fd);
-	else
+	else if (file)
 		a = write_file2(file, fd);
+	if (a == 0)
+		return ;
 	if (file)
 		a = a + file->place;
 	while (file && file->place != a)
@@ -84,7 +86,8 @@ static void	write_name_comment(t_file *file, int fd)
 	while (file && file->place < 16 + PROG_NAME_LENGTH + COMMENT_LENGTH)
 		file = file->next;
 	write(fd, "\"\n\n", 3);
-	write_file(file, fd, 1);
+	if (file)
+		write_file(file, fd, 1);
 }
 
 void		create_file(t_file *file, char *name)
@@ -96,11 +99,14 @@ void		create_file(t_file *file, char *name)
 	a = 0;
 	while (name[a] != '\0')
 		a++;
-	if (a > 2 && !(s = (char*)malloc(sizeof(char) * (a - 2))))
+	if (a > 2 && !(s = (char*)malloc(sizeof(char) * (a - 1))))
 		return ;
 	if (a > 2)
 		s = ft_strncpy(s, name, a - 2);
 	s[a - 3] = 's';
+	ft_putstr("Writting output program to ");
+	ft_putstr(s);
+	write(1, "\n", 1);
 	if ((fd = open(s, O_CREAT | O_WRONLY | O_TRUNC, 0600)) <= 0)
 	{
 		free(s);

@@ -6,7 +6,7 @@
 /*   By: lchancri <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/26 19:30:00 by lchancri          #+#    #+#             */
-/*   Updated: 2018/06/09 18:26:26 by lchancri         ###   ########.fr       */
+/*   Updated: 2018/10/16 14:44:04 by pleroux          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -128,7 +128,7 @@ void		create_binary(t_file *file, char *name)
 	write(1, "Writting output program to ", 27);
 	ft_putstr(binary);
 	write(1, "\n", 1);
-	if ((fd = open(binary, O_CREAT | O_WRONLY, 0600)) <= 0)
+	if ((fd = open(binary, O_CREAT | O_WRONLY | O_TRUNC, 0600)) <= 0)
 	{
 		free(binary);
 		return ;

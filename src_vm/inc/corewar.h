@@ -6,7 +6,7 @@
 /*   By: pierre <pleroux@student.42.fr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/15 10:01:43 by pierre            #+#    #+#             */
-/*   Updated: 2018/06/26 13:22:56 by pleroux          ###   ########.fr       */
+/*   Updated: 2018/10/16 14:35:54 by pleroux          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -181,6 +181,11 @@ void					init_header(t_header *a);
 */
 t_process				*game_iter_process(t_env *env);
 int						game_has_process(t_env *env);
+
+/*
+** argv
+*/
+char					*ft_put_help(void);
 int						ft_if_all_digit(char *str);
 int						ft_check_argv(int argc, char **argv, t_env *env);
 int						ft_if_opt_in_sec(int start, char **argv, int argc);

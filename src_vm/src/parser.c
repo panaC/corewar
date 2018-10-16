@@ -6,7 +6,7 @@
 /*   By: pierre <pleroux@student.42.fr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/16 12:57:24 by pierre            #+#    #+#             */
-/*   Updated: 2018/06/08 11:45:06 by pleroux          ###   ########.fr       */
+/*   Updated: 2018/10/16 14:32:02 by pleroux          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ t_bool		parser(t_env *e)
 		{
 			verbose(e, E_PARSING, "Parsing %s n°%d: %s\n",
 					e->player[i - 1].name, i, e->err_parsing);
+			ft_strdel(&(e->err_parsing));
 			return (FALSE);
 		}
 		verbose(e, V_6, "parsing %s n°%d -> OK\n", e->player[i - 1].name, i);

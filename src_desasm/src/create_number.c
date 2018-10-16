@@ -6,7 +6,7 @@
 /*   By: lchancri <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/09 17:29:35 by lchancri          #+#    #+#             */
-/*   Updated: 2018/06/13 20:21:35 by lchancri         ###   ########.fr       */
+/*   Updated: 2018/10/16 14:42:53 by pleroux          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,12 +56,12 @@ int				write_enc(t_file *f, int fd, int dir, int size)
 	int		b;
 
 	b = 128;
-	while (1)
+	while (1 && f)
 	{
 		if (b & f->c)
 		{
 			b = b >> 1;
-			if (b & f->c && f->next && (size = size + 2) != -1)
+			if (f && b & f->c && f->next && (size = size + 2) != -1)
 				ft_putnbr_fd(create_num(f->next, 2, fd, size - 2), fd);
 			else if ((size = size + dir) != -1)
 				ft_putnbr_fd(create_num(f->next, dir + 1, fd, size - dir), fd);

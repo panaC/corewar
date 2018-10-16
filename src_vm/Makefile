@@ -6,7 +6,7 @@
 #    By: pierre <pleroux@student.42.fr>             +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/12/11 13:59:37 by pierre            #+#    #+#              #
-#    Updated: 2018/06/25 16:52:50 by pierre           ###   ########.fr        #
+#    Updated: 2018/10/16 14:37:08 by pleroux          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -45,6 +45,7 @@ SRC_FILE = op.c \
 		   process.c \
 		   check_sec.c \
 		   check_argv.c \
+		   check_argv_help.c \
 		   check_champs_fds.c \
 		   game_init.c \
 		   init_player.c \

@@ -6,7 +6,7 @@
 /*   By: lchancri <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/21 20:41:30 by lchancri          #+#    #+#             */
-/*   Updated: 2018/06/13 15:33:45 by lchancri         ###   ########.fr       */
+/*   Updated: 2018/10/16 14:43:41 by pleroux          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ int			error_parameter_number(char *str, int a, int enough_or_not)
 	if (enough_or_not == 1)
 		write(1, "Error : not enough arguments\n", 29);
 	if (enough_or_not == 2)
-		write(1, "Error : too much arguments\n", 30);
+		write(1, "Error : too much arguments\n", 27);
 	print_line_col(str, a);
 	return (-1);
 }

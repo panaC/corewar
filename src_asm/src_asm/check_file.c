@@ -6,11 +6,22 @@
 /*   By: lchancri <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/14 13:06:40 by lchancri          #+#    #+#             */
-/*   Updated: 2018/06/13 18:22:41 by lchancri         ###   ########.fr       */
+/*   Updated: 2018/10/16 14:44:27 by pleroux          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/asm.h"
+
+static t_file	*error_name_com(t_file *file)
+{
+	if (file && !file->name)
+		ft_putstr("Error : no name\n");
+	else if (file && !file->comment)
+		ft_putstr("Error : no comment\n");
+	if (file)
+		free_file(file);
+	return (NULL);
+}
 
 static int		pass_name_comment(char *str, int a)
 {
@@ -85,7 +96,7 @@ t_file			*check_file(char *str, int a, int check, t_file *file)
 			comment = 1;
 		a = a + ft_strclen(&str[a + 1], '\n') + 1;
 	}
-	if (check == -1)
-		return (free_file(file));
+	if (check == -1 || name != 1 || comment != 1)
+		return (error_name_com(file));
 	return (get_label(file, str, 0));
 }

@@ -6,7 +6,7 @@
 /*   By: pleroux <pleroux@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/01 19:07:48 by pleroux           #+#    #+#             */
-/*   Updated: 2018/06/09 18:27:49 by pleroux          ###   ########.fr       */
+/*   Updated: 2018/10/16 14:32:42 by pleroux          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,10 +34,7 @@ static int			game_iter_process_check(t_env *e, t_process **tab,
 	while (i < MAX_PLAYERS)
 	{
 		if (tab[i] != NULL)
-		{
-			e->win_player = i + 1;
 			break ;
-		}
 		++i;
 	}
 	return (i);

@@ -6,7 +6,7 @@
 /*   By: lchancri <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/14 13:06:40 by lchancri          #+#    #+#             */
-/*   Updated: 2018/06/15 19:57:32 by lchancri         ###   ########.fr       */
+/*   Updated: 2018/10/16 14:45:11 by pleroux          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,6 +91,6 @@ int			main(int av, char **ac)
 		close(fd);
 		return (main2(str, ac[1]));
 	}
-	write(1, "Error : too much arguments passed to the function\n", 50);
+	ft_putstr("./asm [champs.s]\n");
 	return (0);
 }
