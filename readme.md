@@ -1,7 +1,7 @@
 
 # Corewar
 
-Last project on the branch first internship. The Corewar is a complete final project with 3 student per teams. The purpose of a project is the coding an arena that fights ASM minimalist software.
+Last project on the branch first internship. The Corewar is a complete final project with 3 students per teams. The purpose of a project is the coding an arena that fights ASM minimalist software.
 
 The project is split in 3 softwares :
 - Vm Arena
@@ -43,7 +43,7 @@ During the fights with 4 players :
 
 ![op-code](https://github.com/panaC/corewar/blob/master/img/Screen%20Shot%202018-05-14%20at%204.07.37%20PM.png)
 
-> - lfork: means long-fork, to be able to fork abut straw from a distance of 15 meters,
+- lfork: means long-fork, to be able to fork abut straw from a distance of 15 meters,
 exactly like with its opcode. Same as a fork without modulo in the address.
 - sti: Opcode 11. Take a registry, and two indexes (potentially registries) add the
 two indexes, and use this result as an address where the value of the first parameter
